@@ -1,9 +1,11 @@
+import React, { Component } from 'react';
+
 import './App.scss';
 
-function App() {
-  return (
-    <div>Hello frontend!</div>
-  );
+export class App extends Component {
+   render() {
+       return(
+           <h1>Event Tracker</h1>
+       )
+   } 
 }
-
-export default App;
