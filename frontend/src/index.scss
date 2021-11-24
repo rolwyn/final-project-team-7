@@ -1,22 +1,27 @@
 @import "tailwindcss/base";
 // @import "../node_modules/custom-base-styles.css";
 
-@import "tailwindcss/components";
+// @import "tailwindcss/components";
 // @import "../node_modules/custom-components.css";
 
 @import "tailwindcss/utilities";
 // @import "../node_modules/custom-utilities.css";
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+// common body styles
+body {
+  padding: 0;
+  margin: 0;  
+  height: 100%;
 }
+
+// remove default ul style
+ul {list-style: none;}
+
+// remove default fieldset style
+fieldset {margin: 0;}
