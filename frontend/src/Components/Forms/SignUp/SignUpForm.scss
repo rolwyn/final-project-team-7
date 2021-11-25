@@ -1,0 +1,32 @@
+@import '../../../Utils/Design-Tokens/CommonScssUtil.scss';
+
+.column_fieldset {
+    margin-bottom: 10px;
+    @include flex-mixin(column, unset, unset);
+    label {
+        padding-bottom: 5px;
+        font-size: 13px;
+        font-weight: 500;
+        color: #37474f;
+    }
+    input {
+        padding: 10px;
+        border: 1px solid #bdbdbd;
+        border-radius: 10px;
+        outline-color: #ecd9b9;
+    }
+}
+
+.btn_wrapper {
+    padding: 10px;
+    text-align: right;
+    button {
+        @extend %default-btn-style;
+        color: #ffffff;
+        background-color: #03a9f4;
+        border-color: #03a9f4;
+        vertical-align: middle;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+}
