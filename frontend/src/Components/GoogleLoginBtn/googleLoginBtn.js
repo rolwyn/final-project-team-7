@@ -3,19 +3,19 @@ import GoogleLogin from 'react-google-login'
 
 const GoogleLoginBtn = () => {
     
-    const handleSuccess = (resp) => {
-        console.log(resp)
-        console.log(resp.profileObj)
+    const handleSuccess = (response) => {
+        console.log(response)
+        // console.log(resp.profileObj)
     }
 
-    const handleFailure = (resp) => {
-        console.log(resp)
+    const handleFailure = (response) => {
+        console.log(response)
     }
     
     return(
         <div>
             <GoogleLogin
-                clientId=""
+                clientId="168488668480-hmla08j8tjo5dfq1571gfil3r0n36qig.apps.googleusercontent.com"
                 buttonText="Login with Google"
                 onSuccess={handleSuccess()}
                 onFailure={handleFailure()}
