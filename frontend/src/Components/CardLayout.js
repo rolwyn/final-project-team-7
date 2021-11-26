@@ -2,7 +2,22 @@ import React, { Component } from 'react';
 import './CardLayout.scss'
 class CardLayout extends React.Component {
     favourite=()=>{
-        
+        const heart=document.querySelectorAll('.heart');
+
+        heart.forEach((h)=>{
+            const children=h.childNodes;
+            const svg=children[0];
+            const color =svg.getAttribute('fill');
+            if(color==="grey")
+            {
+                svg.setAttribute("fill","red");
+            }
+            else
+            {
+                svg.setAttribute("fill","grey");
+            }
+            
+        })
     }
     render() { 
         // const content ;
