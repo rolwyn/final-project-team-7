@@ -1,0 +1,14 @@
+.cards-container{
+  display: flex;
+  flex-flow : column wrap;
+  justify-content : space-evenly;
+  gap : 10px 5px;
+  .card{
+    height: 100px;
+    width: 80px;
+    border: blur 1px grey;
+    border-radius : 7%;
+    box-shadow : 0 0 5px 5px rgb(248, 236, 236);
+    padding : 2%;
+  }
+}

@@ -1,4 +1,5 @@
-#This is the README for Team-7 Final proj
+# Event Tracker
 
-Added line (Aamrah)
-Added line (Aamrah)
+## Front End
+
+## Back End
