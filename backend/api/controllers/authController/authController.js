@@ -19,8 +19,8 @@ import bcryptjs from 'bcryptjs'
  * @param {*} message the message if there is an error (returned from catch block)
  * @param {*} res will return 500 response status code if there is an error
  */
-const setAuthErrorResponse = (message, res) => {
-    res.status(400);
+const setErrorResponse = (message, res) => {
+    res.status(599);
     res.json({error: message});
 }
 
@@ -30,6 +30,6 @@ export const signup = async (req, res) => {
         const newUser = await authService.signup(user)
         setSuccessResponse(newUser, res)
     } catch (e) {
-        setAuthErrorResponse(e.message, res) 
+        setErrorResponse(e.message, res) 
     }
 }

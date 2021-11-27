@@ -25,6 +25,12 @@ const UserSchema = new Mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    "roles": [
+        {
+            type: Mongoose.Schema.Types.ObjectId,
+            ref: "Role"
+        }
+    ]
 
 },
 {

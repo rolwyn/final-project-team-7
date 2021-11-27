@@ -1,3 +1,4 @@
+import Role from '../models/Role/role.js'
 import User from '../models/user/user.js'
 
 /**
@@ -7,15 +8,12 @@ import User from '../models/user/user.js'
  * @param {user} the user 
  * @returns the save promise 
  */
- export const signup = (user) => {
+export const signup = (user) => {
     const newUser = new User(user)
     return newUser.save()
+}
 
-    // (error, user) => {
-    //     if (error) {
-    //         res.status(500).send
-    //     }
-
-    //     res.send({ message: "User was registered successfully!" });
-    // }
+export const createRole = (role) => {
+    const newRole = new Role(role)
+    return newRole.save()
 }
