@@ -20,7 +20,7 @@ import bcryptjs from 'bcryptjs'
  * @param {*} res will return 500 response status code if there is an error
  */
 const setErrorResponse = (message, res) => {
-    res.status(599);
+    res.status(500);
     res.json({error: message});
 }
 
