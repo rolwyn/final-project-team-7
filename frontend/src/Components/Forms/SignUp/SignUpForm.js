@@ -11,7 +11,8 @@ function SignUpForm() {
     
 
     const handleSuccess = (resp) => {
-        console.log(resp);
+        console.log(resp)
+        console.log(resp?.profileObj)
     }
 
     const handleFailure = (error) => {
