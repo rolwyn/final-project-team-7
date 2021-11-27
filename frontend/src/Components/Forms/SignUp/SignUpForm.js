@@ -1,6 +1,6 @@
 import React from 'react';
 import './SignUpForm.scss';
-import GoogleLoginBtn from '../../GoogleLoginBtn/googleLoginBtn';
+import GoogleLogin from 'react-google-login'
 
 function SignUpForm() {
     let emailRef = React.useRef<HTMLElement>(null)
@@ -9,6 +9,14 @@ function SignUpForm() {
     let passwordRef = React.useRef<HTMLElement>(null)
     let formElement =  React.useRef<HTMLFormElement>(null)
     
+
+    const handleSuccess = (resp) => {
+        console.log(resp);
+    }
+
+    const handleFailure = (error) => {
+        console.log(error)
+    }
 
     return(
         <form ref={form => formElement = form} id="signup-form" className="add_signup_form">
@@ -32,7 +40,13 @@ function SignUpForm() {
             {/* <!-- submit button for creating a user --> */}
             <div className="btn_wrapper">
                 <button id="create-user" type="submit">Sign Up</button>
-                <GoogleLoginBtn></GoogleLoginBtn>
+                <GoogleLogin
+                    clientId="168488668480-hmla08j8tjo5dfq1571gfil3r0n36qig.apps.googleusercontent.com"
+                    buttonText="Login with Google"
+                    onSuccess={handleSuccess()}
+                    onFailure={handleFailure()}
+                    cookiePolicy={'single_host_origin'}
+                />
             </div>
         </form>      
     )
