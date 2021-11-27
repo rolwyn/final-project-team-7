@@ -22,7 +22,7 @@ const setErrorResponse = (message, res) => {
  */
  const setAuthErrorResponse = (message, res) => {
     res.status(400);
-    res.json({message: "User already exists!"});
+    res.json({message: message});
 }
 
 
@@ -36,8 +36,26 @@ const checkForDuplicateUnameEmail = (req, res, next) => {
             return
         }
         if (user) {
-            setAuthErrorResponse(error.message, res)
+            setAuthErrorResponse("User already exists!", res)
             return
         }
+        
+        next()
+    })
+
+    // check if email already exists in db
+    User.findOne({
+        email: req.body.email
+    }).exec((error, user) => {
+        if (error) {
+            setErrorResponse(error.message, res)
+            return
+        }
+        if (user) {
+            setAuthErrorResponse("Email aready in use!", res)
+            return
+        }
+
+        next()
     })
 }
