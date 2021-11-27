@@ -26,7 +26,10 @@ const setErrorResponse = (message, res) => {
 
 export const signup = async (req, res) => {
     try {
-        const user = {...req.body, password: bcryptjs.hashSync(req.body.password, 8) }
+        const user = {
+            ...req.body, name: req.body.givenName + ' ' + req.body.familyName,
+            password: bcryptjs.hashSync(req.body.password, 8)
+        }
         const newUser = await authService.signup(user)
         setSuccessResponse(newUser, res)
     } catch (e) {

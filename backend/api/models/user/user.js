@@ -5,32 +5,37 @@ import Mongoose from "mongoose";
  */
 
 const UserSchema = new Mongoose.Schema({
-    "userName": {
+    "email": {
         type: String,
-        required: "Username is a required field."
+        required: "Email is a required field."
+    },
+    "familyName": {
+        type: String,
+        required: "Family name is a required field."
+    },
+    "givenName": {
+        type: String,
+        required: "Given name is a required field."
+    },
+    "name": {
+        type: String,
+        required: "Name is a required field."
+    },
+    "imageUrl": {
+        type: String,
     },
     "password": {
         type: String,
         required: "Password is a required field."
     },
-    "email": {
-        type: String,
-        required: "Email is a required field."
-    },
-    "fullName": {
-        type: String,
-        required: "FullName is a required field."
-    },
     "createdDate": {
         type: Date,
         default: Date.now
     },
-    "roles": [
-        {
-            type: Mongoose.Schema.Types.ObjectId,
-            ref: "Role"
-        }
-    ]
+    "role": {
+        type: String,
+        default: "user"
+    }
 
 },
 {

@@ -1,6 +1,5 @@
 import models from '../models/index.js';
 
-const Roles = models.Roles
 const User = models.User
 
 /**
@@ -20,7 +19,7 @@ const setErrorResponse = (message, res) => {
  * @param {*} message the message if there is an error (returned from catch block)
  * @param {*} res will return 500 response status code if there is an error
  */
- const setAuthErrorResponse = (message, res) => {
+const setAuthErrorResponse = (message, res) => {
     res.status(400);
     res.json({message: message});
 }
@@ -39,7 +38,7 @@ const checkForDuplicateUnameEmail = (req, res, next) => {
             setAuthErrorResponse("User already exists!", res)
             return
         }
-        
+
         next()
     })
 
@@ -59,3 +58,5 @@ const checkForDuplicateUnameEmail = (req, res, next) => {
         next()
     })
 }
+
+ export default { checkForDuplicateUnameEmail }

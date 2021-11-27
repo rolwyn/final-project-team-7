@@ -8,6 +8,18 @@ import User from '../models/user/user.js'
  * @param {user} the user 
  * @returns the save promise 
  */
+
+//  (err, user) => {
+//     console.log("noob")
+//     // if (req.body.roles) {
+//     //     Role.find({
+//     //         name: { $in: req.body.roles }
+//     //     },
+//     //     (error, roles) => {
+//     //         newUser.roles
+//     //     })
+//     // }
+// }
 export const signup = (user) => {
     const newUser = new User(user)
     return newUser.save()
