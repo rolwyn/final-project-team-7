@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Link, Routes, BrowserRouter as Router } from "react-router-dom";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import SignUp from './Views/SignUp/SignUp';
 import './App.scss';
 

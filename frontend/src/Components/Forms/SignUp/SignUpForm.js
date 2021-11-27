@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import './SignUpForm.scss';
+import GoogleLoginBtn from '../../GoogleLoginBtn/googleLoginBtn';
 
 function SignUpForm() {
     let emailRef = React.useRef<HTMLElement>(null)
@@ -31,6 +32,7 @@ function SignUpForm() {
             {/* <!-- submit button for creating a user --> */}
             <div className="btn_wrapper">
                 <button id="create-user" type="submit">Sign Up</button>
+                <GoogleLoginBtn></GoogleLoginBtn>
             </div>
         </form>      
     )
