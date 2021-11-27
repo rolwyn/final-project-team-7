@@ -11,6 +11,10 @@
     box-shadow: 0 0 5px 5px rgb(248, 236, 236);
     padding: 2%;
     cursor: zoom-in;
+    .flag {
+      float: right;
+      display: none;
+    }
     //property to expand
     display: inline-block;
     vertical-align: middle;
@@ -25,7 +29,7 @@
   .card:hover,
   .card:focus,
   .card:active {
-    transform: scale(2);
+    transform: scale(1.1);
   }
   //property to expand ends
 }
