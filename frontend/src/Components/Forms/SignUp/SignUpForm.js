@@ -19,6 +19,10 @@ function SignUpForm() {
         console.log(error)
     }
 
+    const handleSignUpSubmit = (e) => {
+        e.preventDefault()
+    }
+
     return(
         <form ref={form => formElement = form} id="signup-form" className="add_signup_form">
             <fieldset className="column_fieldset">
@@ -40,7 +44,7 @@ function SignUpForm() {
 
             {/* <!-- submit button for creating a user --> */}
             <div className="btn_wrapper">
-                <button id="create-user" type="submit">Sign Up</button>
+                <button id="create-user" type="submit" onClick={handleSignUpSubmit}>Sign Up</button>
                 <GoogleLogin
                     clientId="168488668480-hmla08j8tjo5dfq1571gfil3r0n36qig.apps.googleusercontent.com"
                     buttonText="Login with Google"
