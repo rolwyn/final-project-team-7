@@ -52,7 +52,7 @@ class CardLayout extends React.Component {
             <div class="cards-container">
                 <div class="card">
                     {flag}
-                    <img ref={(img) => this.img = img} src="" alt="event-image"/>
+                    <img  src="" alt="event-image"/>
                     <div class="options">
                     {heart}
                     {schedule}
