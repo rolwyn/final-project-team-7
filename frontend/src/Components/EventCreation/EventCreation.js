@@ -10,7 +10,9 @@ class EventCreation extends React.Component {
         this.state={
             eventName :'',
             description : '',
-            img : ''
+            img : '',
+            date : '',
+            time : ''
         }
     }
     
@@ -18,7 +20,7 @@ class EventCreation extends React.Component {
     submitForm=(e)=>{
         
         console.log(" Submitting");
-        this.props.postItem(this.state.eventName, this.state.description, this.state.img);
+        this.props.postItem(this.state.eventName, this.state.description, this.state.img, this.state.time , this.state.date);
     }
     //whenever fields are updated
     change=(oneElement,property)=>{
@@ -41,6 +43,14 @@ class EventCreation extends React.Component {
                         <label> Description</label>
                         <input type="text" name="desc" id="desc" onChange={(e)=>this.change(e,"description")} required/>
                     </div>
+                    <div className="formElement">
+                        <label> Date </label>
+                        <input type="date" name="date" id="date" onChange={(e)=>this.change(e,"date")} required/>
+                    </div>
+                    <div className="formElement">
+                        <label> Time</label>
+                        <input type="time" name="time" id="time" onChange={(e)=>this.change(e,"time")} required/>
+                    </div>                 
                     <div className="formElement right">
                         <label> Image</label>
                         <input type="file" name="img" id="img" onChange={(e)=>this.change(e,"img")}  required/>
