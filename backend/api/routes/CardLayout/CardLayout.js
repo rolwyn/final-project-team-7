@@ -3,12 +3,12 @@ import * as CardLayoutController from '../controllers/CardLayout/CardLayout.js'
 const router=express.Router();
 
 router.route('/events')
-    .get(CardLayoutController.index)
-//     .post(CardLayoutController.save);
+    .get(CardLayoutController.indexEvent)
+//     .post(CardLayoutController.saveEvent);
     
 // router.route('/events/:id')// parameter name nodejs is gonna use
-//     .get(CardLayoutController.get)
-//     .put(CardLayoutController.update)
-//     .delete(CardLayoutController.remove);
+//     .get(CardLayoutController.getEvent)
+//     .put(CardLayoutController.updateEvent)
+//     .delete(CardLayoutController.removeEvent);
 
 export default router;
