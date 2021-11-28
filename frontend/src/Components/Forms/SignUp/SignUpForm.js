@@ -1,6 +1,7 @@
 import React from 'react';
 import './SignUpForm.scss';
 import GoogleLogin from 'react-google-login'
+import clientId from '../../../config/config.js';
 
 function SignUpForm() {
     let emailRef = React.useRef<HTMLElement>(null)
@@ -8,7 +9,6 @@ function SignUpForm() {
     let userNameRef =  React.useRef<HTMLElement>(null)
     let passwordRef = React.useRef<HTMLElement>(null)
     let formElement =  React.useRef<HTMLFormElement>(null)
-    
 
     const handleSuccess = (resp) => {
         console.log(resp)
@@ -46,7 +46,7 @@ function SignUpForm() {
             <div className="btn_wrapper">
                 <button id="create-user" type="submit" onClick={handleSignUpSubmit}>Sign Up</button>
                 <GoogleLogin
-                    clientId="168488668480-hmla08j8tjo5dfq1571gfil3r0n36qig.apps.googleusercontent.com"
+                    clientId={clientId}
                     buttonText="Login with Google"
                     onSuccess={handleSuccess}
                     onFailure={handleFailure}
