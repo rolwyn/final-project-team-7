@@ -17,6 +17,10 @@ const UserSchema = new Mongoose.Schema({
         type: String,
         required: "Given name is a required field."
     },
+    "userName": {
+        type: String,
+        required: "Username is a required field."
+    },
     "name": {
         type: String,
         required: "Name is a required field."

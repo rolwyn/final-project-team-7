@@ -1,5 +1,6 @@
 import express from 'express'
 import * as authController from '../../controllers/authController/authController.js'
+import verifySignUpDetails from '../../middlewares/verifySignUpDetails.js'
 
 const router = express.Router();
 
@@ -12,7 +13,9 @@ const router = express.Router();
  */
 
 router.route('/signup')
-   .post(authController.signup)
+   .post(
+      verifySignUpDetails.checkForDuplicateUnameEmail,
+      authController.signup)
 
 // router.route('/login')
 //     .post(authController.login)
