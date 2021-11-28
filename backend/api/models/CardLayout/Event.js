@@ -2,16 +2,40 @@ import Mongoose from "mongoose";
 
 //defines the structure
 const EventSchema=new Mongoose.Schema({
+    "eventName" :{
+        type :String,
+        required : "Event name is needed to create it"
+    },
     "img" : {
         type : String,
         //defined required : on error it will say the following
-        required : "Title is a required field"
+        required : "Add an image, it will look prettier"
     },
     "description" : {
         type : String,
         //defined required : on error it will say the following
-        required : "Description is a required field"
-    }
+        required : "Please add a description"
+    },
+    "time" :{
+        type : String,
+        required : "Time is a required field"
+    },
+    // "creationDate" : {
+    //     type : Date,
+    //     default : new Date()
+    // },
+    // "likeCount" : {
+    //     type : Number,
+    //     default : 0
+    // },
+    // "creator" : {
+    //     type : String,
+    //     required : "User is not logged in"
+    // },
+    // "tags" : {
+    //     type : [String]
+    // }
+
 },
 {
     //added when lines 32 added
