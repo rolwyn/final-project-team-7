@@ -14,7 +14,8 @@ function App() {
                     {/* <Route exact path="/" element={<EventCreation>}/> */}
                 </Routes>
             </Router>
-            <EventCreation></EventCreation>
+            {/*Added event creation ui using below element*/}
+            {/* <EventCreation></EventCreation> */}
         </div>
     )
 }

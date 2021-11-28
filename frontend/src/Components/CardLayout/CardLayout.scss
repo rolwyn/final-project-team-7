@@ -4,8 +4,9 @@
   justify-content: space-evenly;
   gap: 10px 5px;
   .card {
+    margin: 2%;
     height: 100px;
-    width: 80px;
+    width: fit-content;
     border: blur 1px grey;
     border-radius: 7%;
     box-shadow: 0 0 5px 5px rgb(248, 236, 236);
@@ -14,6 +15,12 @@
     .flag {
       float: right;
       display: none;
+    }
+    .options {
+      margin: 1%;
+      padding: 2%;
+      display: flex;
+      float: right;
     }
     //property to expand
     display: inline-block;
