@@ -1,7 +1,6 @@
 import React from 'react';
 import './SignUpForm.scss';
 import GoogleLogin from 'react-google-login'
-import clientId from '../../../config/config.js';
 
 function SignUpForm() {
     let emailRef = React.useRef<HTMLElement>(null)
@@ -46,7 +45,7 @@ function SignUpForm() {
             <div className="btn_wrapper">
                 <button id="create-user" type="submit" onClick={handleSignUpSubmit}>Sign Up</button>
                 <GoogleLogin
-                    clientId={clientId}
+                    clientId={process.env.REACT_APP_CLIENT_ID}
                     buttonText="Login with Google"
                     onSuccess={handleSuccess}
                     onFailure={handleFailure}
