@@ -3,79 +3,79 @@ import ReactDOM from 'react-dom';
 import FileBase from 'react-file-base64';
 import './EventCreation.scss'
 
-function EventCreation1(){
+function EventCreation(){
     const [eventName, setEventName]=useState("");
     const [description, setDescription]= useState("");
     const [img,setImg]=useState("");
     const [date,setDate]=useState("");
     const [time,setTime]=useState("");
-}
-class EventCreation extends React.Component {
-    constructor(props)
-    {
-        super(props);
-        this.state={
-            eventName :'',
-            description : '',
-            img : '',
-            date : '',
-            time : ''
-        }
-    }
+
+//class EventCreation extends React.Component {
     
     //whenever form is submitted
-    submitForm=(e)=>{
+    const submitForm=(e)=>{
         
         console.log(" Submitting");
-        this.props.postItem(this.state.eventName, this.state.description, this.state.img, this.state.time , this.state.date);
+        //axios call
+        //postItem(eventName, description, img, time ,date);
     }
     //whenever fields are updated
-    change=(oneElement,property)=>{
+    const change=(oneElement,property)=>{
         console.log("In update ="+oneElement.target.value + "Property="+property);
         //const property=oneElement.target.name;
-        this.setState({[property] :oneElement.target.value})
+        switch(property){
+            case 'setEventName' :
+                setEventName(oneElement.target.value);
+                break;
+            case 'setDescription' :
+                setDescription(oneElement.target.value);
+                break;
+
+        }
+        
         
     }
-    render() { 
-        const close =
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="white"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        return <div>
+    const closeAdd={
+
+    }
+    //render() { 
+        const close = <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="white"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        return (<div>
             <div id="form">
-            <button className="closeAdd" onClick={this.closeAdd}>{close}</button>
+            <button className="closeAdd" onClick={closeAdd}>{close}</button>
                     <h1 className="star"> Create an Event</h1>
                     <div className="formElement">
                         <label> Event Name</label>
-                        <input type="text" name="eventName" id="eventName" onChange={(event)=>this.change(event, "eventName")} required/>
+                        <input type="text" name="eventName" id="eventName" onChange={(event)=>change(event, "setEventName")} required/>
                     </div>
                     <div className="formElement">
                         <label> Description</label>
-                        <input type="text" name="desc" id="desc" onChange={(e)=>this.change(e,"description")} required/>
+                        <input type="text" name="desc" id="desc" onChange={(e)=>change(e,"setDescription")} required/>
                     </div>
                     <div className="formElement">
                         <label> Date </label>
-                        <input type="date" name="date" id="date" onChange={(e)=>this.change(e,"date")} required/>
+                        <input type="date" name="date" id="date" onChange={(e)=>change(e,"setDate")} required/>
                     </div>
                     <div className="formElement">
                         <label> Time</label>
-                        <input type="time" name="time" id="time" onChange={(e)=>this.change(e,"time")} required/>
+                        <input type="time" name="time" id="time" onChange={(e)=>change(e,"setTime")} required/>
                     </div>                 
                     <div className="formElement right">
                         <label> Image</label>
                         {/* <input type="file"  accept="image/*" name="image" id="file" /> */}
-                        {/* <input type="file" name="img" id="img" onChange={(e)=>this.change(e,"img")}  required/> */}
-                        <FileBase type="file" multiple="false" onChange={(e)=>this.change(e,"img")}/>
+                        <input type="file" name="img" id="img" onChange={(e)=>change(e,"setImg")}  required/>
+                        {/* <FileBase type="file" multiple="false" onChange={(e)=>change(e,"setImg")}/> */}
                     </div>    
                       
                     {/* <label> Time</label>
                     <input type="time" name="time" id="time" onChange={(e)=>this.change(e,"time")} required/> */}
 
-                    <button id="save" onClick={this.submitForm}>Add</button>
-                    
-                
+                    <button id="save" onClick={submitForm}>Add</button>
+       
                 
             </div>
         </div>
-    }
+    )
 }
  
 export default EventCreation;
