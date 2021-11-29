@@ -31,9 +31,9 @@ function SignUpForm() {
         console.log(error)
     }
 
-    const handleSignUpSubmit = (e) => {
+    const handleSignUpSubmit = async (e) => {
         e.preventDefault()
-        // signup(email, familyname, givenname, username, imageurl, password)
+        await signup(email, familyname, givenname, username, imageurl, password)
         console.log(email)
         console.log(familyname)
         console.log(givenname)

@@ -15,7 +15,7 @@ const baseUrl = "http://localhost:4200/"
  * @returns a promise which resolves to a response object or error
  */
  export const signup = (email, familyname, givenname, username, imageurl, password) => {
-    return axios.post(baseUrl + "api/user/signup", {
+    return axios.post(baseUrl + "api/users/signup", {
         email: email,
         familyName: familyname,
         givenName: givenname,
