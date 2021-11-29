@@ -13,10 +13,12 @@ function SignUpForm() {
     const [password, setPassword] = useState("")
 
 
-    let emailRef = React.useRef<HTMLElement>(null)
-    let fullNameRef = React.useRef<HTMLElement>(null)
-    let userNameRef =  React.useRef<HTMLElement>(null)
-    let passwordRef = React.useRef<HTMLElement>(null)
+    // let emailRef = React.useRef<HTMLElement>(null)
+    // let fullNameRef = React.useRef<HTMLElement>(null)
+    // let userNameRef =  React.useRef<HTMLElement>(null)
+    // let passwordRef = React.useRef<HTMLElement>(null)
+    // ref={node => { emailRef = node }}
+
     let formElement =  React.useRef<HTMLFormElement>(null)
 
 
@@ -33,28 +35,54 @@ function SignUpForm() {
         e.preventDefault()
     }
 
+    const onChangeEmail = (e) => {
+        const email = e.target.value
+        setEmail(email)
+    };
+
+    const onChangeFirstName = (e) => {
+        const firstName = e.target.value
+        setFamilyname(firstName)
+    };
+
+    const onChangeLastName = (e) => {
+        const lastName = e.target.value
+        setEmail(lastName)
+    };
+
+    const onChangeValue = (e) => {
+        let elementValue = e.target.value
+        setEmail(elementValue)
+    };
+
     return(
-        <form ref={form => formElement = form} id="signup-form" className="add_signup_form">
+        <form ref={form => formElement = form} id="signup-form" className="add_signup_form" onSubmit={handleSignUpSubmit}>
             <fieldset className="column_fieldset">
                 <label>Email</label>
-                <input id="add-email" ref={node => { emailRef = node }} name="emailid" type="text" className="_inputField" required></input>
+                <input id="add-email"  name="emailid" type="text" className="_inputField" required onChange={onChangeEmail}></input>
             </fieldset>
-            <fieldset className="column_fieldset">
-                <label>Full Name</label>
-                <input id="add-fullName" ref={(ref) => {fullNameRef = ref}} name="fullname" type="text" className="_inputField" required></input>
-            </fieldset>
+            <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
+                <fieldset className="column_fieldset">
+                    <label>First Name</label>
+                    <input id="add-firstname" name="firstname" type="text" className="_inputField" required onChange={onChangeFirstName}></input>
+                </fieldset>
+                <fieldset className="column_fieldset">
+                    <label>Last Name</label>
+                    <input id="add-lastname" name="lastname" type="text" className="_inputField" required></input>
+                </fieldset>
+            </div>
             <fieldset className="column_fieldset">
                 <label>Username</label>
-                <input id="add-username" ref={(ref) => {userNameRef = ref}} name="username" type="text" className="_inputField" required></input>
+                <input id="add-username" name="username" type="text" className="_inputField" required></input>
             </fieldset>
             <fieldset className="column_fieldset">
                 <label>Password</label>
-                <input id="add-password" type="password" ref={(ref) => {passwordRef = ref}} name="title" className="_inputField" required></input>
+                <input id="add-password" name="title" className="_inputField" required></input>
             </fieldset>
 
             {/* <!-- submit button for creating a user --> */}
             <div className="btn_wrapper">
-                <button id="create-user" type="submit" onClick={handleSignUpSubmit}>Sign Up</button>
+                <button id="create-user" type="submit">Sign Up</button>
                 <GoogleLogin
                     clientId={process.env.REACT_APP_CLIENT_ID}
                     buttonText="Login with Google"
