@@ -21,6 +21,7 @@ const required = (value) => {
 
 function SignUpForm() {
 
+    const [isSignIn, setIsSignin] = useState(false)
     const [email, setEmail] = useState("")
     const [familyname, setFamilyname] = useState("")
     const [givenname, setGivenname] = useState("")
@@ -51,6 +52,10 @@ function SignUpForm() {
         }
 
         // const doSignUp = await signup(email, familyname, givenname, username, imageurl, password)
+
+        const resp = await signup(email, familyname, givenname, username, imageurl, password)
+        console.log(resp)
+
     }
 
     const onChangeValue = (e) => {
