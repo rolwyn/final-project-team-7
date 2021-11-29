@@ -1,13 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './SignUpForm.scss';
 import GoogleLogin from 'react-google-login'
+import { signup } from '../../../api/index.js'
 
 function SignUpForm() {
+
+    const [email, setEmail] = useState("")
+    const [familyname, setFamilyname] = useState("")
+    const [givenname, setGivenname] = useState("")
+    const [username, setUsername] = useState("")
+    const [imageurl, setImageurl] = useState("")
+    const [password, setPassword] = useState("")
+
+
     let emailRef = React.useRef<HTMLElement>(null)
     let fullNameRef = React.useRef<HTMLElement>(null)
     let userNameRef =  React.useRef<HTMLElement>(null)
     let passwordRef = React.useRef<HTMLElement>(null)
     let formElement =  React.useRef<HTMLFormElement>(null)
+
 
     const handleSuccess = (resp) => {
         console.log(resp)
