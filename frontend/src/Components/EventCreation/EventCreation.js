@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import FileBase from 'react-file-base64';
 import './EventCreation.scss'
 
+function EventCreation1(){
+    const [eventName, setEventName]=useState("");
+    const [description, setDescription]= useState("");
+    const [img,setImg]=useState("");
+    const [date,setDate]=useState("");
+    const [time,setTime]=useState("");
+}
 class EventCreation extends React.Component {
     constructor(props)
     {

@@ -9,13 +9,13 @@ function App() {
         <div>
             <Router>
                 <Routes>
-                    {/* <Route exact path="/" element={<SignUp/>}/> */}
-                    <Route exact path="/" element={<CardLayout/>}/>
+                    <Route exact path="/" element={<SignUp/>}/>
+                    {/* <Route exact path="/" element={<CardLayout/>}/> */}
                     {/* <Route exact path="/" element={<EventCreation>}/> */}
                 </Routes>
             </Router>
             {/*Added event creation ui using below element*/}
-            <EventCreation></EventCreation>
+            {/* <EventCreation></EventCreation> */}
         </div>
     )
 }
