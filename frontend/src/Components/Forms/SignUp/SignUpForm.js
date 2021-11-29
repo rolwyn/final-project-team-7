@@ -3,6 +3,22 @@ import './SignUpForm.scss';
 import GoogleLogin from 'react-google-login'
 import { signup } from '../../../Api/index.js'
 
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckFieldsButton from "react-validation/build/button";
+
+import { isEmail } from "validator";
+
+const required = (value) => {
+    if (!value) {
+        return (
+            <div className="text-red-500 text-sm italic mt-2">
+                This field is required!
+            </div>
+        );
+    }
+};
+
 function SignUpForm() {
 
     const [email, setEmail] = useState("")
@@ -12,14 +28,8 @@ function SignUpForm() {
     const [imageurl, setImageurl] = useState("dummy")
     const [password, setPassword] = useState("")
 
-
-    // let emailRef = React.useRef<HTMLElement>(null)
-    // let fullNameRef = React.useRef<HTMLElement>(null)
-    // let userNameRef =  React.useRef<HTMLElement>(null)
-    // let passwordRef = React.useRef<HTMLElement>(null)
-    // ref={node => { emailRef = node }}
-
-    let formElement =  React.useRef<HTMLFormElement>(null)
+    const formElement = React.useRef()
+    let chkbuttonElement = React.useRef();
 
 
     const handleSuccess = (resp) => {
@@ -33,13 +43,14 @@ function SignUpForm() {
 
     const handleSignUpSubmit = async (e) => {
         e.preventDefault()
-        await signup(email, familyname, givenname, username, imageurl, password)
-        console.log(email)
-        console.log(familyname)
-        console.log(givenname)
-        console.log(username)
-        console.log(imageurl)
-        console.log(password)
+
+        formElement.current.validateAll()
+
+        if (chkbuttonElement.current.context._errors.length === 0) {
+            console.log(email)
+        }
+
+        // const doSignUp = await signup(email, familyname, givenname, username, imageurl, password)
     }
 
     const onChangeValue = (e) => {
@@ -49,7 +60,7 @@ function SignUpForm() {
             case 'setEmail':
                 setEmail(elementValue)
                 break
-            case 'setFirstname':
+            case 'setFamilyname':
                 setFamilyname(elementValue)
                 break
             case 'setGivenname':
@@ -66,31 +77,71 @@ function SignUpForm() {
         }
     };
 
-    return(
-        <form ref={form => formElement = form} id="signup-form" className="add_signup_form" onSubmit={handleSignUpSubmit}>
+    return(     
+        <Form onSubmit={handleSignUpSubmit} id="signup-form" ref={formElement} className="add_signup_form">
             <fieldset className="column_fieldset">
                 <label>Email</label>
-                <input id="add-email" name="emailid" type="text" className="_inputField" required onChange={onChangeValue} data-state="setEmail"></input>
+                <Input
+                    id="add-email"
+                    type="text"
+                    className="_inputField"
+                    name="emailid"
+                    value={email}
+                    data-state="setEmail"
+                    onChange={onChangeValue}
+                    validations={[required]}
+                />
             </fieldset>
-            <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">        
                 <fieldset className="column_fieldset">
                     <label>First Name</label>
-                    <input id="add-firstname" name="firstname" type="text" className="_inputField" required onChange={onChangeValue} data-state="setFirstname"></input>
+                    <Input
+                        id="add-firstname"
+                        type="text"
+                        className="_inputField"
+                        name="firstname"
+                        value={givenname}
+                        data-state="setGivenname"
+                        onChange={onChangeValue}
+                    />
                 </fieldset>
                 <fieldset className="column_fieldset">
                     <label>Last Name</label>
-                    <input id="add-lastname" name="lastname" type="text" className="_inputField" required onChange={onChangeValue} data-state="setGivenname"></input>
+                    <Input
+                        id="add-lastname"
+                        type="text"
+                        className="_inputField"
+                        name="lastname"
+                        value={familyname}
+                        data-state="setFamilyname"
+                        onChange={onChangeValue}
+                    />
                 </fieldset>
             </div>
             <fieldset className="column_fieldset">
                 <label>Username</label>
-                <input id="add-username" name="username" type="text" className="_inputField" required onChange={onChangeValue} data-state="setUsername"></input>
+                <Input
+                    id="add-username"
+                    type="text"
+                    className="_inputField"
+                    name="username"
+                    value={username}
+                    data-state="setUsername"
+                    onChange={onChangeValue}
+                />
             </fieldset>
             <fieldset className="column_fieldset">
                 <label>Password</label>
-                <input type="password" id="add-password" name="title" className="_inputField" required onChange={onChangeValue} data-state="setPassword"></input>
+                <Input
+                    id="add-password"
+                    type="password"
+                    className="_inputField"
+                    name="emailid"
+                    value={password}
+                    data-state="setPassword"
+                    onChange={onChangeValue}
+                />
             </fieldset>
-
             {/* <!-- submit button for creating a user --> */}
             <div className="btn_wrapper">
                 <button id="create-user" type="submit">Sign Up</button>
@@ -102,7 +153,8 @@ function SignUpForm() {
                     cookiePolicy='single_host_origin'
                 />
             </div>
-        </form>      
+            <CheckFieldsButton style={{ display: "none" }} ref={chkbuttonElement} /> 
+        </Form>
     )
 }
 
