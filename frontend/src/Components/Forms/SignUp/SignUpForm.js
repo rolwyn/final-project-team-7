@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './SignUpForm.scss';
 import GoogleLogin from 'react-google-login'
-import { signup } from '../../../api/index.js'
+import { signup } from '../../../Api/index.js'
 
 function SignUpForm() {
 
