@@ -5,6 +5,7 @@ import { signup } from '../../../Api/index.js'
 
 function SignUpForm() {
 
+    const [isSignIn, setIsSignin] = useState(false)
     const [email, setEmail] = useState("")
     const [familyname, setFamilyname] = useState("")
     const [givenname, setGivenname] = useState("")
@@ -33,13 +34,8 @@ function SignUpForm() {
 
     const handleSignUpSubmit = async (e) => {
         e.preventDefault()
-        await signup(email, familyname, givenname, username, imageurl, password)
-        console.log(email)
-        console.log(familyname)
-        console.log(givenname)
-        console.log(username)
-        console.log(imageurl)
-        console.log(password)
+        const resp = await signup(email, familyname, givenname, username, imageurl, password)
+        console.log(resp)
     }
 
     const onChangeValue = (e) => {
