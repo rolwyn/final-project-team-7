@@ -23,4 +23,4 @@ const baseUrl = "http://localhost:4200/"
         imageUrl: imageurl,
         password: password
     })
-}
+};
