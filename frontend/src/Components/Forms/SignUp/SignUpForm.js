@@ -84,7 +84,7 @@ function SignUpForm() {
 
     return(     
         <Form onSubmit={handleSignUpSubmit} id="signup-form" ref={formElement} className="add_signup_form">
-            <fieldset className="column_fieldset">
+            {isSignIn ? <><fieldset className="column_fieldset">
                 <label>Email</label>
                 <Input
                     id="add-email"
@@ -122,7 +122,9 @@ function SignUpForm() {
                         onChange={onChangeValue}
                     />
                 </fieldset>
-            </div>
+            </div></>
+            : null    
+            }
             <fieldset className="column_fieldset">
                 <label>Username</label>
                 <Input
@@ -158,6 +160,7 @@ function SignUpForm() {
                     cookiePolicy='single_host_origin'
                 />
             </div>
+            have an account? <button type="button" onClick={() => setIsSignin(!isSignIn)}>Sign IN</button>
             <CheckFieldsButton style={{ display: "none" }} ref={chkbuttonElement} /> 
         </Form>
     )
