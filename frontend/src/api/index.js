@@ -1,5 +1,8 @@
-import axios from "axios"
-import config from "../../public/config/config.js"
+import axios from 'axios'
+
+const baseUrl = "http://localhost:4200/"
+
+//this is where you make all your api calls and export them
 
 /**
  * Service call for storing new user information in database
@@ -11,8 +14,8 @@ import config from "../../public/config/config.js"
  * @param {*} password 
  * @returns a promise which resolves to a response object or error
  */
-export const signup = (email, familyname, givenname, username, imageurl, password) => {
-    return axios.post(config.API_BASE_URL + "signup", {
+ export const signup = (email, familyname, givenname, username, imageurl, password) => {
+    return axios.post(baseUrl + "api/user/signup", {
         email: email,
         familyName: familyname,
         givenName: givenname,
