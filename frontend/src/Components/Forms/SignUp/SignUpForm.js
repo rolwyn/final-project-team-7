@@ -9,7 +9,7 @@ function SignUpForm() {
     const [familyname, setFamilyname] = useState("")
     const [givenname, setGivenname] = useState("")
     const [username, setUsername] = useState("")
-    const [imageurl, setImageurl] = useState("")
+    const [imageurl, setImageurl] = useState("dummy")
     const [password, setPassword] = useState("")
 
 
@@ -33,51 +33,62 @@ function SignUpForm() {
 
     const handleSignUpSubmit = (e) => {
         e.preventDefault()
+        // signup(email, familyname, givenname, username, imageurl, password)
+        console.log(email)
+        console.log(familyname)
+        console.log(givenname)
+        console.log(username)
+        console.log(imageurl)
+        console.log(password)
     }
-
-    const onChangeEmail = (e) => {
-        const email = e.target.value
-        setEmail(email)
-    };
-
-    const onChangeFirstName = (e) => {
-        const firstName = e.target.value
-        setFamilyname(firstName)
-    };
-
-    const onChangeLastName = (e) => {
-        const lastName = e.target.value
-        setEmail(lastName)
-    };
 
     const onChangeValue = (e) => {
         let elementValue = e.target.value
-        setEmail(elementValue)
+        // setEmail(elementValue)
+        switch (e.target.dataset.state) {
+            case 'setEmail':
+                setEmail(elementValue)
+                break
+            case 'setFirstname':
+                setFamilyname(elementValue)
+                break
+            case 'setGivenname':
+                setGivenname(elementValue)
+                break
+            case 'setUsername':
+                setUsername(elementValue)
+                break
+            case 'setPassword':
+                setPassword(elementValue)
+                break
+            default:
+                return null
+        }
     };
 
     return(
         <form ref={form => formElement = form} id="signup-form" className="add_signup_form" onSubmit={handleSignUpSubmit}>
             <fieldset className="column_fieldset">
                 <label>Email</label>
-                <input id="add-email"  name="emailid" type="text" className="_inputField" required onChange={onChangeEmail}></input>
+                <input id="add-email" name="emailid" type="text" className="_inputField" required onChange={onChangeValue} data-state="setEmail"></input>
             </fieldset>
             <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
                 <fieldset className="column_fieldset">
                     <label>First Name</label>
-                    <input id="add-firstname" name="firstname" type="text" className="_inputField" required onChange={onChangeFirstName}></input>
+                    <input id="add-firstname" name="firstname" type="text" className="_inputField" required onChange={onChangeValue} data-state="setFirstname"></input>
                 </fieldset>
                 <fieldset className="column_fieldset">
                     <label>Last Name</label>
-                    <input id="add-lastname" name="lastname" type="text" className="_inputField" required></input>
+                    <input id="add-lastname" name="lastname" type="text" className="_inputField" required onChange={onChangeValue} data-state="setGivenname"></input>
                 </fieldset>
             </div>
             <fieldset className="column_fieldset">
                 <label>Username</label>
-                <input id="add-username" name="username" type="text" className="_inputField" required></input>
+                <input id="add-username" name="username" type="text" className="_inputField" required onChange={onChangeValue} data-state="setUsername"></input>
             </fieldset>
             <fieldset className="column_fieldset">
                 <label>Password</label>
-                <input id="add-password" name="title" className="_inputField" required></input>
+                <input type="password" id="add-password" name="title" className="_inputField" required onChange={onChangeValue} data-state="setPassword"></input>
             </fieldset>
 
             {/* <!-- submit button for creating a user --> */}
