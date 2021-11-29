@@ -3,7 +3,8 @@ import CardLayoutRouter from './CardLayout/CardLayout.js'
 
 export default (app) => {
     app.use('/api/users', authRouter)
+    app.use('/api/events',CardLayoutRouter);
 }
 // export default (app)=>{
-//     app.use('/api/events',CardLayoutRouter);
+//     
 // }

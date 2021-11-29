@@ -32,30 +32,28 @@ const checkForDuplicateUnameEmail = (req, res, next) => {
     }).exec((error, user) => {
         if (error) {
             setErrorResponse(error.message, res)
-            return
+            return;
         }
         if (user) {
             setAuthErrorResponse("User already exists!", res)
-            return
+            return;
         }
-
-        next()
-    })
-
-    // check if email already exists in db
-    User.findOne({
-        email: req.body.email
-    }).exec((error, user) => {
-        if (error) {
-            setErrorResponse(error.message, res)
-            return
-        }
-        if (user) {
-            setAuthErrorResponse("Email aready in use!", res)
-            return
-        }
-
-        next()
+        
+        // check if email already exists in db
+        User.findOne({
+            email: req.body.email
+        }).exec((error, user) => {
+            if (error) {
+                setErrorResponse(error.message, res)
+                return;
+            }
+            if (user) {
+                setAuthErrorResponse("Email aready in use!", res)
+                return;
+            }
+            
+            next();
+        })
     })
 }
 
