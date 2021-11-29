@@ -54,10 +54,11 @@ class EventCreation extends React.Component {
                     </div>                 
                     <div className="formElement right">
                         <label> Image</label>
-                        <input type="file" name="img" id="img" onChange={(e)=>this.change(e,"img")}  required/>
-                        {/* <FileBase type="file" multiple="false" onChange={(e)=>this.change(e,"img")}/> */}
+                        {/* <input type="file"  accept="image/*" name="image" id="file" /> */}
+                        {/* <input type="file" name="img" id="img" onChange={(e)=>this.change(e,"img")}  required/> */}
+                        <FileBase type="file" multiple="false" onChange={(e)=>this.change(e,"img")}/>
                     </div>    
-                        
+                      
                     {/* <label> Time</label>
                     <input type="time" name="time" id="time" onChange={(e)=>this.change(e,"time")} required/> */}
 

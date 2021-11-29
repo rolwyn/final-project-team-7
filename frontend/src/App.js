@@ -15,7 +15,7 @@ function App() {
                 </Routes>
             </Router>
             {/*Added event creation ui using below element*/}
-            {/* <EventCreation></EventCreation> */}
+            <EventCreation></EventCreation>
         </div>
     )
 }

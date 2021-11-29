@@ -60,6 +60,7 @@ class CardLayout extends React.Component {
                     <div class="options">
                     {heart}
                     {schedule}
+                    <i class="fas fa-heart"></i>  
                     </div>
                     
                 </div>
