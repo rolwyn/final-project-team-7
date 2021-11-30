@@ -96,13 +96,14 @@ function SignUpForm({user}) {
         }
     };
 
-    const authPageSwitch = () => {
-        setIsSignin(!isSignIn)
-        setEmail('')
-        setFamilyname('')
-        setGivenname('')
-        setUsername('')
-        setPassword('')
+    const authPageSwitch = async () => {
+        console.log("I AM CALLED", username, password)
+        await setIsSignin(!isSignIn)
+        await setEmail('')
+        await setFamilyname('')
+        await setGivenname('')
+        await setUsername('')
+        await setPassword('')
         // Clear all fields
     }
 
@@ -199,12 +200,15 @@ function SignUpForm({user}) {
                             cookiePolicy='single_host_origin'
                         />
                     </div>
+                        {
+                        isSignIn ?
                         <div className="noAccount">
                             Dont have an account? <button type="button" onClick={authPageSwitch}>Sign Up</button>
-                        </div>
+                        </div>:
                         <div className="noAccount">
                             Have an account? <button type="button" onClick={authPageSwitch}>Sign In</button>
                         </div>
+                        }
                     
                     <CheckFieldsButton style={{ display: "none" }} ref={chkbuttonElement} /> 
                 </Form>
