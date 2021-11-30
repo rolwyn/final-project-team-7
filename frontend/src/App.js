@@ -5,15 +5,14 @@ import SignUp from './Views/SignUp/SignUp';
 import './App.scss';
 import CardLayout from './Components/CardLayout/CardLayout.js'
 import EventCreation from './Components/EventCreation/EventCreation';
+import Navbar from './Components/Navbar/Navbar';
+
 function App() {
     const [isSignup, setIsSignup] = useState(false)
 
     return(
         <div>
-            <nav>
-                hello
-                <button onClick={() => setIsSignup(!isSignup)}>Login</button>
-            </nav>
+            <Navbar isSignup={isSignup} setIsSignup={setIsSignup}/>
             <Router>
                 <Routes>
                     {
