@@ -84,6 +84,18 @@ function SignUpForm() {
         }
     };
 
+    const authPageSwitch = () => {
+        setIsSignin(!isSignIn)
+        // formElement.current.reset();
+        // hideError(this.userInput);
+        // Clear all fields
+        setEmail('')
+        setFamilyname('')
+        setGivenname('')
+        setUsername('')
+        setPassword('')
+    }
+
     return(
         <div className="content_wrapper col-span-3 px-5 py-10">
             {/* Title */}
@@ -157,7 +169,7 @@ function SignUpForm() {
                             id="add-password"
                             type="password"
                             className="_inputField"
-                            name="emailid"
+                            name="password"
                             value={password}
                             data-state="setPassword"
                             onChange={onChangeValue}
@@ -179,11 +191,11 @@ function SignUpForm() {
                     </div>
                     {isSignIn ? 
                         <div className="noAccount">
-                            Dont have an account? <button type="button" onClick={() => setIsSignin(!isSignIn)}>Sign Up</button>
+                            Dont have an account? <button type="button" onClick={authPageSwitch}>Sign Up</button>
                         </div>
                         :
                         <div className="noAccount">
-                            Have an account? <button type="button" onClick={() => setIsSignin(!isSignIn)}>Sign In</button>
+                            Have an account? <button type="button" onClick={authPageSwitch}>Sign In</button>
                         </div>
                     }
                     
