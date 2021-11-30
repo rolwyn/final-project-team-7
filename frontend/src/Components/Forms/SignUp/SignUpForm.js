@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import './SignUpForm.scss';
 import GoogleLogin from 'react-google-login'
 import { signup } from '../../../Api/index.js'
-
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckFieldsButton from "react-validation/build/button";
