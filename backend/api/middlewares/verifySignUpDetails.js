@@ -39,6 +39,8 @@ const checkForDuplicateUnameEmail = (req, res, next) => {
             return;
         }
         
+       
+
         // check if email already exists in db
         User.findOne({
             email: req.body.email

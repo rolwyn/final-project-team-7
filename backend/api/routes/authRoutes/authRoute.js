@@ -17,7 +17,7 @@ router.route('/signup')
       verifySignUpDetails.checkForDuplicateUnameEmail,
       authController.signup)
 
-// router.route('/login')
-//     .post(authController.login)
+ router.route('/login')
+   .post(authController.login)
 
 export default router
