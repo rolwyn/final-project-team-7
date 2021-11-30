@@ -29,27 +29,4 @@ app.use(cookieParser());
 
 routes(app)
 
-// const saveRolesToDb = () => {
-//     console.log("Reached to Roles")
-//     models.Role.estimatedDocumentCount(async (error, count) => {
-//         if (!error && count === 0) {
-//             try {
-//                 const userRole = {name: "user"}
-//                 const adminRole = {name: "admin"}
-//                 const moderatorRole = {name: "moderator"}
-
-//                 await authService.createRole(userRole)
-//                 await authService.createRole(adminRole)
-//                 await authService.createRole(moderatorRole)
-
-//                 console.log("Added Roles to Collection")
-
-//             } catch (e) {
-//                 console.log("Error while creating a role:", e)
-//             }
-//         }
-//     })
-// }
-
-
 export default app;
