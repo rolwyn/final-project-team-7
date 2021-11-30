@@ -1,10 +1,10 @@
 import express from 'express';
-import * as CardLayoutController from '../controllers/CardLayout/CardLayout.js'
+import * as CardLayoutController from '../../controllers/CardLayout/CardLayout.js';
 const router=express.Router();
 
-router.route('/events')
+router.route('/createEvent')
     .get(CardLayoutController.indexEvent)
-//     .post(CardLayoutController.saveEvent);
+    .post(CardLayoutController.saveEvent);
     
 // router.route('/events/:id')// parameter name nodejs is gonna use
 //     .get(CardLayoutController.getEvent)

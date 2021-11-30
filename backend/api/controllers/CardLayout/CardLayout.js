@@ -1,7 +1,7 @@
 //map all the named exports to the below object
 import { response } from "express";
-import Event from "../models/CardLayout/Event.js";
-import * as CardLayoutService from "../services/CardLayout/CardLayout.js";
+import Event from "../../models/CardLayout/Event.js";
+import * as CardLayoutService from "../../services/CardLayout.js";
 
 
 //Method to handle errors
