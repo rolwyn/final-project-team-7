@@ -21,4 +21,11 @@ const baseUrl = "http://localhost:4200/"
         date: date,
         time: time
     });
+
+}
+export const uploadImage = (formData) => {
+    return axios.post(baseUrl + "api/events/uploadImage", { 
+        file: formData.file,
+        
+    });
 }

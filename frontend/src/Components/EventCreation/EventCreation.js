@@ -3,10 +3,10 @@ import React, {useState} from 'react';
 import Form from "react-validation/build/form";
 //import Input from "react-validation/build/input";
 //import FileBase from 'react-file-base64';
-import {createEvent} from '../../Api/createEvent.js';
+import {createEvent, uploadImage} from '../../Api/createEvent.js';
 import './EventCreation.scss';
 
-function EventCreation(){
+const EventCreation=()=>{
     const [eventName, setEventName]=useState("");
     const [description, setDescription]= useState("");
     const [img,setImg]=useState("");
@@ -27,6 +27,9 @@ function EventCreation(){
         // checkIfNull;
         console.log(" Submitting");
         //axios call
+        // const formData=new FormData();
+        // formData.append('file', img);
+        // const uploadResponse= await uploadImage(formData);
         const response = await createEvent(eventName,description,img,date,time);
         console.log(response);
     }
@@ -41,9 +44,11 @@ function EventCreation(){
             case 'setDescription' :
                 setDescription(oneElement.target.value);
                 break;
-            case 'setImg' :
-                setImg(oneElement.target.value);
-                break;
+            // case 'setImg' :
+            //     const file=oneElement.target.files[0];
+            //     console.log(file);
+            //     setImg(file);
+            //     break;
             case 'setDate' :
                 setDate(oneElement.target.value);
                 break;
@@ -54,6 +59,12 @@ function EventCreation(){
         }
         
         
+    }
+    const onFileUpload =e =>{
+        const file=e.target.files[0];
+        console.log(file);
+        setImg(file);
+        console.log(img);
     }
     const closeAdd={
 
@@ -81,9 +92,9 @@ function EventCreation(){
                         <input type="time" name="time" id="time" onChange={(e)=>change(e,"setTime")} required/>
                     </div>                 
                     <div className="formElement right">
-                        <label> Image</label>
+                        <label> {img} </label>
                         {/* <Input type="file"  accept="image/*" name="image" id="file" /> */}
-                        <input className="file" type="file" name="img" id="img" onChange={(e)=>change(e,"setImg")}  required/>
+                        <input className="file" type="file" name="img" id="img" onChange={()=>onFileUpload} required/>
                         {/* <FileBase type="file" multiple="false" onChange={(e)=>change(e,"setImg")}/> */}
                     </div>    
                       
