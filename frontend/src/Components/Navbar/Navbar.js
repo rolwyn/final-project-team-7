@@ -1,9 +1,17 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const Navbar = ({user, setUser, isSignup, setIsSignup}) => {
-    console.log(user)
     const location = useLocation()
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+
+    const logout = () => {
+       dispatch({ type: "LOGOUT" }) 
+       navigate('/')
+    }
 
     useEffect(() => {
         const token = user?.token
@@ -14,7 +22,14 @@ const Navbar = ({user, setUser, isSignup, setIsSignup}) => {
     return(
         <nav>
             Welcome, {user !== null ? user?.profileObj?.name : 'Guest'} 
-            {user?.profileObj === undefined ? <button onClick={() => setIsSignup(!isSignup)}><a href="/auth">Login</a></button> : null}
+            {user?.profileObj === undefined ? 
+                <button onClick={() => setIsSignup(!isSignup)}>
+                    <a href="/auth">Login</a>
+                </button> : 
+                <button onClick={logout}>
+                    Logout
+                </button>
+            }
         </nav>
     )
 }
