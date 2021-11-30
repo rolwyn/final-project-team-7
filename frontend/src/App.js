@@ -20,13 +20,16 @@ function App() {
                     {
                         isSignup ? 
                         <Route exact path="/" element={<SignUp/>}/> : 
-                        <Route exact path="/" element={<h1>Hello Cards</h1>}/>
+                        <Route exact path="/" element={
+                                <>
+                                    <CardLayout/>
+                                    <EventCreation/>
+                                </>
+                            }
+                        />
                     }
                 </Routes>
             </Router>
-            {/*Added event creation ui using below element*/}
-            <CardLayout></CardLayout>
-            <EventCreation></EventCreation>
         </div>
     )
 }
