@@ -4,9 +4,10 @@ import GoogleLogin from 'react-google-login'
 import { signup } from '../../../Api/index.js'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckFieldsButton from "react-validation/build/button";
+import Form from "react-validation/build/form"
+import Input from "react-validation/build/input"
+import CheckFieldsButton from "react-validation/build/button"
+import jwt from 'jsonwebtoken'
 
 import { isEmail, isStrongPassword, isAlpha } from "validator";
 
@@ -88,7 +89,6 @@ function SignUpForm({user}) {
     const formElement = React.useRef()
     let chkbuttonElement = React.useRef();
 
-
     const handleSuccess = async (resp) => {
         
         const profileObj = resp?.profileObj
@@ -110,11 +110,22 @@ function SignUpForm({user}) {
         e.preventDefault()
 
         formElement.current.validateAll()
-
         if (chkbuttonElement.current.context._errors.length === 0) {
-            const doSignUp = await signup(email, familyname, givenname, username, imageurl, password)
-            console.log(doSignUp)
+            const doSignUp = await signup(email, familyname, givenname, username, imageurl, password).then((data) => {
+                let profileObj = data
+                let token = jwt.sign({ id: profileObj._id }, "avc", {
+                    // 24 hours
+                    expiresIn: 86400
+                });
+                try {
+                    dispatch({type: 'AUTH', data: { profileObj, token }})
+                    navigate('/')
+                } catch (error) {
+                    console.log(error)  
+                }
+            })
         }
+
 
 
     }
