@@ -1,0 +1,33 @@
+#form {
+  box-shadow: 0px 0px 5px 5px grey;
+  vertical-align: middle;
+  text-align: center;
+  padding: 2%;
+  margin: 0% 1%;
+  border: grey;
+  background-color: black;
+  color: white;
+  width: fit-content;
+  h1 {
+    font-family: helveticaneuew01-55roma;
+  }
+  button {
+    margin: auto;
+  }
+  .closeAdd {
+    float: right;
+  }
+  .formElement {
+    label {
+      margin: 1%;
+    }
+    input {
+      margin: 1%;
+      color: grey;
+    }
+    
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1%;
+  }
+}
