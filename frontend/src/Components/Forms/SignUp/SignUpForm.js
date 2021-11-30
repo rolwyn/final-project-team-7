@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import './SignUpForm.scss';
 import GoogleLogin from 'react-google-login'
 import { signup } from '../../../Api/index.js'
-
-import { useDispatch } from 'react-redux'
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckFieldsButton from "react-validation/build/button";
@@ -33,8 +31,7 @@ function SignUpForm() {
     const formElement = React.useRef()
     let chkbuttonElement = React.useRef();
 
-
-    const handleSuccess = async (resp) => {
+    const handleSuccess = (resp) => {
         console.log(resp)
         console.log(resp?.profileObj)
     }
@@ -88,14 +85,12 @@ function SignUpForm() {
 
     const authPageSwitch = () => {
         setIsSignin(!isSignIn)
-        // formElement.current.reset();
-        // hideError(this.userInput);
-        // Clear all fields
         setEmail('')
         setFamilyname('')
         setGivenname('')
         setUsername('')
         setPassword('')
+        // Clear all fields
     }
 
     return(
@@ -191,15 +186,12 @@ function SignUpForm() {
                             cookiePolicy='single_host_origin'
                         />
                     </div>
-                    {isSignIn ? 
                         <div className="noAccount">
                             Dont have an account? <button type="button" onClick={authPageSwitch}>Sign Up</button>
                         </div>
-                        :
                         <div className="noAccount">
                             Have an account? <button type="button" onClick={authPageSwitch}>Sign In</button>
                         </div>
-                    }
                     
                     <CheckFieldsButton style={{ display: "none" }} ref={chkbuttonElement} /> 
                 </Form>
