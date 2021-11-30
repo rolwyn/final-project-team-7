@@ -39,6 +39,11 @@
         font-size: 18px;
         text-transform: uppercase;
         padding: 10px 25px;
+        &:disabled, &[disabled] {
+            border: 1px solid #c5c5c5;
+            background-color: #cccccc;
+            color: #666666;
+        }
     }
     .googleLogin {
         >div {
