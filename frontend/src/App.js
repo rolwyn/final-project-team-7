@@ -16,7 +16,6 @@ function App() {
             </nav>
             <Router>
                 <Routes>
-                    
                     {
                         isSignup ? 
                         <Route exact path="/" element={<SignUp/>}/> : 
