@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import Form from "react-validation/build/form"
 import Input from "react-validation/build/input"
 import CheckFieldsButton from "react-validation/build/button"
-import jwt from 'jsonwebtoken'
+// import jwt from 'jsonwebtoken'
 
 import { isEmail, isStrongPassword, isAlpha } from "validator";
 
@@ -113,11 +113,7 @@ function SignUpForm({user}) {
         if (chkbuttonElement.current.context._errors.length === 0) {
             const doSignUp = await signup(email, familyname, givenname, username, imageurl, password).then((data) => {
                 let profileObj = data?.data
-                console.log(profileObj)
-                let token = jwt.sign({ id: profileObj._id }, "avc", {
-                    // 24 hours
-                    expiresIn: 86400
-                });
+                let token = data?.tokenId
                 try {
                     dispatch({type: 'AUTH', data: { profileObj, token }})
                     navigate('/')
