@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import SignUp from './Views/SignUp/SignUp';
 import './App.scss';

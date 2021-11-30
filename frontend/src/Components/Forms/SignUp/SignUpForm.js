@@ -30,13 +30,21 @@ function SignUpForm() {
     const [imageurl, setImageurl] = useState("dummy")
     const [password, setPassword] = useState("")
 
+    const dispatch = useDispatch()
     const formElement = React.useRef()
     let chkbuttonElement = React.useRef();
 
 
     const handleSuccess = async (resp) => {
-        console.log(resp)
-        console.log(resp?.profileObj)
+        
+        const profileObj = resp?.profileObj
+        const token = resp?.tokenId
+
+        try {
+            dispatch({type: 'AUTH', data: { profileObj, token }})
+        } catch (error) {
+          console.log(error)  
+        }
     }
 
     const handleFailure = (error) => {
