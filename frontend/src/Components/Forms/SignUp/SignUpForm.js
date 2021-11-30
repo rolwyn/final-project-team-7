@@ -199,15 +199,13 @@ function SignUpForm({user}) {
                             cookiePolicy='single_host_origin'
                         />
                     </div>
-                    {isSignIn ?
                         <div className="noAccount">
                             Dont have an account? <button type="button" onClick={authPageSwitch}>Sign Up</button>
                         </div>
-                        :
                         <div className="noAccount">
                             Have an account? <button type="button" onClick={authPageSwitch}>Sign In</button>
                         </div>
-                    }
+                    
                     <CheckFieldsButton style={{ display: "none" }} ref={chkbuttonElement} /> 
                 </Form>
             </div>
