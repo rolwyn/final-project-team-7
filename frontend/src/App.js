@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import SignUp from './Views/SignUp/SignUp';
 import './App.scss';
 import CardLayout from './Components/CardLayout/CardLayout.js'
@@ -15,7 +15,6 @@ function App() {
     return(
         <div>
             <Navbar user={user} setUser={setUser} isSignup={isSignup} setIsSignup={setIsSignup}/>
-            <Router>
                 <Routes>
                 <Route exact path="/auth" element={<SignUp user={user}/>}/> 
 
@@ -27,7 +26,6 @@ function App() {
                                 </>
                             }/>
                 </Routes>
-            </Router>
         </div>
     )
 }
