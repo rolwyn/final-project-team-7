@@ -1,9 +1,12 @@
-export default (creds = [], action) => {
-    switch (action.type) {
-        case 'SIGNUP':
-            return creds
-    
+
+const authReducer = (state, action) => {
+    switch(action.type){
+        case 'AUTH':
+            console.log(action?.data)
+            break
         default:
-            return creds
+            break
     }
 }
+
+export default authReducer

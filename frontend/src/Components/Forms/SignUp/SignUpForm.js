@@ -43,7 +43,7 @@ function SignUpForm() {
         try {
             dispatch({type: 'AUTH', data: { profileObj, token }})
         } catch (error) {
-          console.log(error)  
+            console.log(error)  
         }
     }
 
