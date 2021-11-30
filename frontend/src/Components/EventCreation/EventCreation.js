@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import FileBase from 'react-file-base64';
+//import Input from "react-validation/build/input";
+//import FileBase from 'react-file-base64';
 import {createEvent} from '../../Api/createEvent.js';
 import './EventCreation.scss';
 
@@ -15,9 +15,16 @@ function EventCreation(){
 
 //class EventCreation extends React.Component {
     
+    // const checkIfNull={
+    //     if(eventName && description && img && date && time)
+    //     {
+    //         return;
+    //     }
+    // } 
     //whenever form is submitted
     const submitForm= async (e)=>{
         e.preventDefault();
+        // checkIfNull;
         console.log(" Submitting");
         //axios call
         const response = await createEvent(eventName,description,img,date,time);
@@ -43,7 +50,7 @@ function EventCreation(){
             case 'setTime' :
                 setTime(oneElement.target.value);
                 break;
-
+            default : break;
         }
         
         
@@ -54,36 +61,36 @@ function EventCreation(){
     //render() { 
         const close = <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="white"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         return (<div>
-            <Form id="form">
-            <button className="closeAdd" onClick={closeAdd}>{close}</button>
+            <Form onSubmit={()=>submitForm} id="form">
+            <button className="closeAdd" onClick={()=>closeAdd}>{close}</button>
                     <h1 className="star"> Create an Event</h1>
                     <div className="formElement">
                         <label> Event Name</label>
-                        <Input type="text" name="eventName" id="eventName" onChange={(event)=>change(event, "setEventName")} required/>
+                        <input type="text" name="eventName" id="eventName" onChange={(event)=>change(event, "setEventName")} required/>
                     </div>
                     <div className="formElement">
                         <label> Description</label>
-                        <Input type="text" name="desc" id="desc" onChange={(e)=>change(e,"setDescription")} required/>
+                        <input type="text" name="desc" id="desc" onChange={(e)=>change(e,"setDescription")} required/>
                     </div>
                     <div className="formElement">
                         <label> Date </label>
-                        <Input type="date" name="date" id="date" onChange={(e)=>change(e,"setDate")} required/>
+                        <input type="date" name="date" id="date" onChange={(e)=>change(e,"setDate")} required/>
                     </div>
                     <div className="formElement">
                         <label> Time</label>
-                        <Input type="time" name="time" id="time" onChange={(e)=>change(e,"setTime")} required/>
+                        <input type="time" name="time" id="time" onChange={(e)=>change(e,"setTime")} required/>
                     </div>                 
                     <div className="formElement right">
                         <label> Image</label>
                         {/* <Input type="file"  accept="image/*" name="image" id="file" /> */}
-                        <Input className="file" type="file" name="img" id="img" onChange={(e)=>change(e,"setImg")}  required/>
+                        <input className="file" type="file" name="img" id="img" onChange={(e)=>change(e,"setImg")}  required/>
                         {/* <FileBase type="file" multiple="false" onChange={(e)=>change(e,"setImg")}/> */}
                     </div>    
                       
                     {/* <label> Time</label>
                     <Input type="time" name="time" id="time" onChange={(e)=>this.change(e,"time")} required/> */}
 
-                    <button id="save" onClick={submitForm}>Add</button>
+                    <button id="save" type="submit">Add</button>
        
                 
             </Form>
