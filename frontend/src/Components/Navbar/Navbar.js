@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Navbar = ({isSignup, setIsSignup}) => {
+const Navbar = ({user, isSignup, setIsSignup}) => {
     return(
         <nav>
-            <button onClick={() => setIsSignup(!isSignup)}>Login</button>
+            Welcome, {user?.profileObj.name} 
+            {user.profileObj === undefined ? <button onClick={() => setIsSignup(!isSignup)}>Login</button> : null}
         </nav>
     )
 }

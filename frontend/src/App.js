@@ -9,15 +9,17 @@ import Navbar from './Components/Navbar/Navbar';
 
 function App() {
     const [isSignup, setIsSignup] = useState(false)
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('userProfile')))
+
 
     return(
         <div>
-            <Navbar isSignup={isSignup} setIsSignup={setIsSignup}/>
+            <Navbar user={user} isSignup={isSignup} setIsSignup={setIsSignup}/>
             <Router>
                 <Routes>
                     {
                         isSignup ? 
-                        <Route exact path="/" element={<SignUp/>}/> : 
+                        <Route exact path="/" element={<SignUp user={user}/>}/> : 
                         <Route exact path="/" element={
                                 <>
                                     <CardLayout/>

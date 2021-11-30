@@ -20,7 +20,7 @@ const required = (value) => {
     }
 };
 
-function SignUpForm() {
+function SignUpForm({user}) {
 
     const [isSignIn, setIsSignin] = useState(true)
     const [email, setEmail] = useState("")
