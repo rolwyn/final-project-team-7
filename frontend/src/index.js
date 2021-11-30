@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.scss'
 import App from './App'
+import { BrowserRouter } from 'react-router-dom'
 import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
@@ -13,7 +14,9 @@ const store = createStore(reducers, compose(applyMiddleware(thunk)))
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>  
   </Provider>,
   document.getElementById('root')
 );

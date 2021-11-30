@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './SignUpForm.scss';
 import GoogleLogin from 'react-google-login'
 import { signup } from '../../../Api/index.js'
-
+import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -20,7 +20,7 @@ const required = (value) => {
     }
 };
 
-function SignUpForm() {
+function SignUpForm({user}) {
 
     const [isSignIn, setIsSignin] = useState(true)
     const [email, setEmail] = useState("")
@@ -30,13 +30,23 @@ function SignUpForm() {
     const [imageurl, setImageurl] = useState("dummy")
     const [password, setPassword] = useState("")
 
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const formElement = React.useRef()
     let chkbuttonElement = React.useRef();
 
 
     const handleSuccess = async (resp) => {
-        console.log(resp)
-        console.log(resp?.profileObj)
+        
+        const profileObj = resp?.profileObj
+        const token = resp?.tokenId
+
+        try {
+            dispatch({type: 'AUTH', data: { profileObj, token }})
+            navigate('/')
+        } catch (error) {
+            console.log(error)  
+        }
     }
 
     const handleFailure = (error) => {
