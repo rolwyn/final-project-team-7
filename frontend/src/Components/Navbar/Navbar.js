@@ -1,31 +1,37 @@
-import React from "react";
-import './Navbar.scss';
-import { Avatar, Toolbar, Button, Typography } from '@material-ui/core/';
-import  { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-const user = null;
-
-const Navbar = () => {
-  return (
-  <nav>
-    <span className="navbar" ></span>
-    <h1 className="title">Events Page</h1>
-    <Toolbar>
-      {user ? (
-        <div className="profile">
-            <Avatar className="avatar" alt={user.result.name} src={user.result.imageurl}> {user.result.name.charAt(0)}
-             <button className="logout"> Logout </button> 
-            </Avatar>
-        </div>
-      ) : (
-        <div>
-          <button type="button" component={Link} to="/auth"  className="loginbtn">Sign In</button>
-        </div>
-      ) }
-    </Toolbar>
-  </nav>
-  )};
+const Navbar = ({user, setUser, isSignup, setIsSignup}) => {
+    const location = useLocation()
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
 
+    const logout = () => {
+       dispatch({ type: "LOGOUT" }) 
+       navigate('/')
+    }
 
-export default Navbar;
+    useEffect(() => {
+        const token = user?.token
+
+        setUser(JSON.parse(localStorage.getItem('userProfile')))
+    },[location])
+
+    return(
+        <nav>
+            Welcome, {user !== null ? user?.profileObj?.name : 'Guest'} 
+            {user?.profileObj === undefined ? 
+                <button onClick={() => setIsSignup(!isSignup)}>
+                    <a href="/auth">Login</a>
+                </button> : 
+                <button onClick={logout}>
+                    Logout
+                </button>
+            }
+        </nav>
+    )
+}
+
+export default Navbar

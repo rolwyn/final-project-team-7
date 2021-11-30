@@ -22,8 +22,14 @@
 }
 
 .btn_wrapper {
-    padding: 10px;
-    text-align: right;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    ._orSeparator {
+        font-size: 12px;
+        color: #616161;
+    }
     button {
         @extend %default-btn-style;
         color: #ffffff;
@@ -32,8 +38,24 @@
         vertical-align: middle;
         font-size: 18px;
         text-transform: uppercase;
-        margin-right: 1%;
-        
-       
+        padding: 10px 25px;
+    }
+    .googleLogin {
+        >div {
+            padding: 8px !important;
+        }
+        >span {
+            padding: 8px 10px 8px 0px !important;
+        }
+    }
+}
+
+.noAccount {
+    text-align: right;
+    font-size: 14px;
+    color: #757575;
+    margin: 10px 0;
+    button {
+        color: #2196f3;
     }
 }
