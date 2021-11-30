@@ -14,20 +14,18 @@ function App() {
 
     return(
         <div>
-            <Navbar user={user} isSignup={isSignup} setIsSignup={setIsSignup}/>
+            <Navbar user={user} setUser={setUser} isSignup={isSignup} setIsSignup={setIsSignup}/>
             <Router>
                 <Routes>
-                    {
-                        isSignup ? 
-                        <Route exact path="/" element={<SignUp user={user}/>}/> : 
+                <Route exact path="/auth" element={<SignUp user={user}/>}/> 
+
+         
                         <Route exact path="/" element={
                                 <>
                                     <CardLayout/>
                                     <EventCreation/>
                                 </>
-                            }
-                        />
-                    }
+                            }/>
                 </Routes>
             </Router>
         </div>

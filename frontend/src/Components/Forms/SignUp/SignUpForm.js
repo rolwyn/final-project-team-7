@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './SignUpForm.scss';
 import GoogleLogin from 'react-google-login'
 import { signup } from '../../../Api/index.js'
-
+import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -30,6 +30,7 @@ function SignUpForm({user}) {
     const [imageurl, setImageurl] = useState("dummy")
     const [password, setPassword] = useState("")
 
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const formElement = React.useRef()
     let chkbuttonElement = React.useRef();
@@ -42,6 +43,7 @@ function SignUpForm({user}) {
 
         try {
             dispatch({type: 'AUTH', data: { profileObj, token }})
+            navigate('/')
         } catch (error) {
             console.log(error)  
         }
