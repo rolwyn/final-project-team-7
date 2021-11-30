@@ -112,7 +112,8 @@ function SignUpForm({user}) {
         formElement.current.validateAll()
         if (chkbuttonElement.current.context._errors.length === 0) {
             const doSignUp = await signup(email, familyname, givenname, username, imageurl, password).then((data) => {
-                let profileObj = data
+                let profileObj = data?.data
+                console.log(profileObj)
                 let token = jwt.sign({ id: profileObj._id }, "avc", {
                     // 24 hours
                     expiresIn: 86400
