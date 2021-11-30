@@ -96,13 +96,14 @@ function SignUpForm({user}) {
         }
     };
 
-    const authPageSwitch = () => {
-        setIsSignin(!isSignIn)
-        setEmail('')
-        setFamilyname('')
-        setGivenname('')
-        setUsername('')
-        setPassword('')
+    const authPageSwitch = async () => {
+        console.log("I AM CALLED", username, password)
+        await setIsSignin(!isSignIn)
+        await setEmail('')
+        await setFamilyname('')
+        await setGivenname('')
+        await setUsername('')
+        await setPassword('')
         // Clear all fields
     }
 
