@@ -3,6 +3,7 @@ import './SignUpForm.scss';
 import GoogleLogin from 'react-google-login'
 import { signup } from '../../../Api/index.js'
 
+import { useDispatch } from 'react-redux'
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckFieldsButton from "react-validation/build/button";
@@ -33,7 +34,7 @@ function SignUpForm() {
     let chkbuttonElement = React.useRef();
 
 
-    const handleSuccess = (resp) => {
+    const handleSuccess = async (resp) => {
         console.log(resp)
         console.log(resp?.profileObj)
     }
