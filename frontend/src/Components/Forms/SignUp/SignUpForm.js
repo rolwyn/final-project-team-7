@@ -8,17 +8,70 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckFieldsButton from "react-validation/build/button";
 
-import { isEmail } from "validator";
+import { isEmail, isStrongPassword, isAlpha } from "validator";
 
 const required = (value) => {
     if (!value) {
         return (
+        <div className="text-red-500 text-sm italic mt-2">
+            This field is required!
+        </div>
+    )}
+}
+
+const emailIsValid = (value) => {
+    if (!isEmail(value)) {
+        return (
+        <div className="text-red-500 text-sm italic mt-2">
+            Enter valid email
+        </div>
+    )}
+}
+
+const userNameIsValid = (value) => {
+    if (value.length < 2 || value.length > 15) {
+      return (
+        <div className="text-red-500 text-sm italic mt-2">
+            Username should be between 2 and 15 characters
+        </div>
+    )}
+}
+
+const nameIsValid = (value) => {
+    if (value.length < 2 || value.length > 15) {
+      return (
+        <div className="text-red-500 text-sm italic mt-2">
+            Characters should be between 2 and 15 characters
+        </div>
+    )} else if (!isAlpha(value)) {
+        return (
             <div className="text-red-500 text-sm italic mt-2">
-                This field is required!
+                Only alphabetical characters allowed
             </div>
-        );
+        )
     }
-};
+} 
+
+const passwordIsValid = (value) => {
+    if (value.length < 8 || value.length > 25) {
+      return (
+        <div className="text-red-500 text-sm italic mt-2">
+            Password should be between 8 and 25 characters
+        </div>
+    )} else if (!isStrongPassword(value, {
+        minLength: 8, 
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+        returnScore: false})) {
+        return (
+            <div className="text-red-500 text-sm italic mt-2">
+                Password should contain minimum length of 8, One Lowercase, Uppercase and a symbol
+            </div>
+        )   
+    }
+}
 
 function SignUpForm({user}) {
 
@@ -59,7 +112,6 @@ function SignUpForm({user}) {
         formElement.current.validateAll()
 
         if (chkbuttonElement.current.context._errors.length === 0) {
-            console.log(email)
             const doSignUp = await signup(email, familyname, givenname, username, imageurl, password)
             console.log(doSignUp)
         }
@@ -104,6 +156,7 @@ function SignUpForm({user}) {
         await setGivenname('')
         await setUsername('')
         await setPassword('')
+        
         // Clear all fields
     }
 
@@ -128,7 +181,7 @@ function SignUpForm({user}) {
                             value={email}
                             data-state="setEmail"
                             onChange={onChangeValue}
-                            validations={[required]}
+                            validations={[required, emailIsValid]}
                         />
                     </fieldset>
                     <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">        
@@ -142,7 +195,7 @@ function SignUpForm({user}) {
                                 value={givenname}
                                 data-state="setGivenname"
                                 onChange={onChangeValue}
-                                validations={[required]}
+                                validations={[required, nameIsValid]}
                             />
                         </fieldset>
                         <fieldset className="column_fieldset">
@@ -155,7 +208,7 @@ function SignUpForm({user}) {
                                 value={familyname}
                                 data-state="setFamilyname"
                                 onChange={onChangeValue}
-                                validations={[required]}
+                                validations={[required, nameIsValid]}
                             />
                         </fieldset>
                     </div></>
@@ -171,7 +224,7 @@ function SignUpForm({user}) {
                             value={username}
                             data-state="setUsername"
                             onChange={onChangeValue}
-                            validations={[required]}
+                            validations={[required, userNameIsValid]}
                         />
                     </fieldset>
                     <fieldset className="column_fieldset">
@@ -184,7 +237,7 @@ function SignUpForm({user}) {
                             value={password}
                             data-state="setPassword"
                             onChange={onChangeValue}
-                            validations={[required]}
+                            validations={[required, passwordIsValid]}
                         />
                     </fieldset>
                     {/* <!-- submit button for creating a user --> */}
