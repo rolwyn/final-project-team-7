@@ -111,9 +111,10 @@ function SignUpForm({user}) {
 
         formElement.current.validateAll()
         if (chkbuttonElement.current.context._errors.length === 0) {
-            const doSignUp = await signup(email, familyname, givenname, username, imageurl, password).then((data) => {
-                let profileObj = data?.data
-                let token = data?.tokenId
+            await signup(email, familyname, givenname, username, imageurl, password).then((data) => {
+                console.log(data)
+                let profileObj = data?.data?.newUser
+                let token = data?.data?.tokenId
                 try {
                     dispatch({type: 'AUTH', data: { profileObj, token }})
                     navigate('/')
