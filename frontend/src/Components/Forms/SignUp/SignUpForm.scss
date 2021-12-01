@@ -2,12 +2,17 @@
 
 .column_fieldset {
     margin-bottom: 10px;
+    position: relative;
     @include flex-mixin(column, unset, unset);
     label {
-        padding-bottom: 5px;
         font-size: 13px;
         font-weight: 500;
-        color: #37474f;
+        color: #8b8b8b;
+        position: absolute;
+        top: -11px;
+        background: white;
+        left: 13px;
+        padding: 0px 5px 5px 5px;
     }
     input {
         padding: 10px;
@@ -15,6 +20,7 @@
         border-radius: 10px;
         outline-color: #ecd9b9;
         width: 100%;
+        margin-bottom: 20px;
         &.is-invalid-input {
             border: 1px solid #eb2e24;
         }

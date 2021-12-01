@@ -87,7 +87,7 @@ function SignUpForm({user}) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const formElement = React.useRef()
-    let chkbuttonElement = React.useRef();
+    const chkbuttonElement = React.useRef();
 
     const handleSuccess = async (resp) => {
         
@@ -174,13 +174,13 @@ function SignUpForm({user}) {
             {/* Title */}
             <header className="content_title mb-5">
                 <h2 className="text-4xl mb-2">{isSignIn ? 'Login': 'Create an account'} to get started</h2>
-                <span className="text-sm">Find events you love, meet new people, build your connection. All this with just one click.
+                <span className="text-sm mb-4">Find events you love, meet new people, build your connection. All this with just one click.
                     What are you waiting for? {isSignIn ? 'Join Now': 'Login'}</span>
             </header>
             {/* Form */}
             <div>
                 <Form onSubmit={isSignIn ? handleSignInSubmit: handleSignUpSubmit} id="signup-form" ref={formElement} className="add_signup_form">
-                    {!isSignIn ? <><fieldset className="column_fieldset">
+                    {!isSignIn? <><fieldset className="column_fieldset">
                         <label>Email</label>
                         <Input
                             id="add-email"
