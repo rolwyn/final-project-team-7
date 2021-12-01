@@ -1,6 +1,7 @@
 import { response } from 'express'
 import * as authService from '../../services/authService.js'
 import bcryptjs from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 
 /**
  * Set a success response
@@ -28,10 +29,15 @@ export const signup = async (req, res) => {
     try {
         const user = {
             ...req.body, name: req.body.givenName + ' ' + req.body.familyName,
-            password: bcryptjs.hashSync(req.body.password, 8)
+            password: bcryptjs.hashSync(req.body.password, 8),
         }
         const newUser = await authService.signup(user)
-        setSuccessResponse(newUser, res)
+        
+        let token = jwt.sign({ id: newUser?._id }, "avc", {
+            // 24 hours
+            expiresIn: 86400
+        });
+        setSuccessResponse({newUser: newUser, tokenId: token}, res)
     } catch (e) {
         setErrorResponse(e.message, res) 
     }
