@@ -10,8 +10,18 @@
         margin: 0 auto;
         // padding: 2% 0%;
         min-height: 400px;
+        position: relative;
         box-shadow: 0 0 5px #dbdbdb;
     }
+}
+
+._backBtn {
+    top: 5px;
+    left: 15px;
+    z-index: 10;
+    font-size: 30px;
+    color: #607d8b;
+    position: absolute;
 }
 
 .branding_wrapper {
@@ -27,6 +37,7 @@
         animation: shake 5s infinite linear;
         transition: 5s ease-in-out;
         object-fit: contain;
+        margin-top: 30px;
     }
 }
 
