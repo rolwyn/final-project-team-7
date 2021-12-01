@@ -24,3 +24,17 @@ const baseUrl = "http://localhost:4200/"
         password: password
     })
 };
+
+/**
+ * Service call to login existing user
+ * @param {*} username 
+ * @param {*} password 
+ * @returns 
+ */
+
+export const login = ( username, password) => {
+    return axios.post(baseUrl + "api/users/login", {
+        userName: username,
+        password: password
+    })
+};
