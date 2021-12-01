@@ -3,7 +3,10 @@ import * as authService from '../../services/authService.js'
 import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import User from '../../models/user/user.js'
+import config from '../config/config.js'
+ 
 
+const secretKey = config.secretKey
 /**
  * Set a success response
  * 
@@ -34,7 +37,7 @@ export const signup = async (req, res) => {
         }
         const newUser = await authService.signup(user)
 
-        let token = jwt.sign({ id: newUser?._id }, "avc", {
+        let token = jwt.sign({ id: newUser?._id }, config.secretKey, {
             // 24 hours
             expiresIn: 86400
         });
@@ -50,7 +53,7 @@ export const login = async (req, res) => {
         User.findOne({
             username: req.body.username
         })
-        .populate("roles", "-__v")
+       
         .exec((err, user) => {
             if (!user) {
                 return setErrorResponse("User doesn't exist! Please sign-up!", res)
@@ -64,15 +67,15 @@ export const login = async (req, res) => {
                 return setErrorResponse("Invalid Password!", res)
             };
 
-            let token = jwt.sign({ id: user.id }, config.secret, {
+            let token = jwt.sign({ id: user.id }, config.secretKey, {
                 expiresIn: 86400 // 24 hours
             });
 
-            let authorities = [];
+            // let authorities = [];
 
-            for (let i = 0; i < user.roles.length; i++) {
-                authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
-            }
+            // for (let i = 0; i < user.roles.length; i++) {
+            //     authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
+            // }
             res.status(200).send({
                 id: user._id,
                 username: user.username,
