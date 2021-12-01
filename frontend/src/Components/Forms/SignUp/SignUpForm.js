@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux'
 import Form from "react-validation/build/form"
 import Input from "react-validation/build/input"
 import CheckFieldsButton from "react-validation/build/button"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import FileBase from 'react-file-base64'
 // import jwt from 'jsonwebtoken'
 
 import { isEmail, isStrongPassword, isAlpha } from "validator";
@@ -81,8 +83,9 @@ function SignUpForm({user}) {
     const [familyname, setFamilyname] = useState("")
     const [givenname, setGivenname] = useState("")
     const [username, setUsername] = useState("")
-    const [imageurl, setImageurl] = useState("dummy")
+    const [imageurl, setImageurl] = useState("")
     const [password, setPassword] = useState("")
+    const [showprofile, setShowProfile] = useState(false)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -110,6 +113,7 @@ function SignUpForm({user}) {
         e.preventDefault()
 
         formElement.current.validateAll()
+        console.log(setImageurl)
         if (chkbuttonElement.current.context._errors.length === 0) {
             await signup(email, familyname, givenname, username, imageurl, password).then((data) => {
                 console.log(data)
@@ -123,9 +127,6 @@ function SignUpForm({user}) {
                 }
             })
         }
-
-
-
     }
 
     // write login logic here
@@ -164,9 +165,20 @@ function SignUpForm({user}) {
         await setFamilyname('')
         await setGivenname('')
         await setUsername('')
+        await setImageurl('')
         await setPassword('')
         
         // Clear all fields
+    }
+
+    const handleImageContent = async (base64) => {
+        console.log(base64)
+        if (base64) {
+            setImageurl(base64)
+            await setShowProfile(true)
+        } else {
+            await setShowProfile(false)
+        }
     }
 
     return(
@@ -174,8 +186,8 @@ function SignUpForm({user}) {
             {/* Title */}
             <header className="content_title mb-5">
                 <h2 className="text-4xl mb-2">{isSignIn ? 'Login': 'Create an account'} to get started</h2>
-                <span className="text-sm mb-4">Find events you love, meet new people, build your connection. All this with just one click.
-                    What are you waiting for? {isSignIn ? 'Join Now': 'Login'}</span>
+                <span className="text-sm mb-1">Find events you love, meet new people, build your connection. All this with just one click.
+                    What are you waiting for? {isSignIn ? 'Join Now': 'Login'} </span>
             </header>
             {/* Form */}
             <div>
@@ -220,7 +232,22 @@ function SignUpForm({user}) {
                                 validations={[required, nameIsValid]}
                             />
                         </fieldset>
-                    </div></>
+                    </div>
+                    <fieldset className="column_fieldset">
+                        <label>Profile Picture</label>
+                        <FileBase
+                            type="file"
+                            multiple={false}
+                            onDone={({base64}) => handleImageContent(base64)}
+                        />
+                    </fieldset>
+                    {showprofile ?
+                        <fieldset className="column_fieldset">
+                            <img alt="profile" src={imageurl} className="profileImg"></img>
+                        </fieldset>
+                        : null
+                    }
+                    </>
                     : null    
                     }
                     <fieldset className="column_fieldset">

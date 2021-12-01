@@ -9,7 +9,7 @@
         font-weight: 500;
         color: #8b8b8b;
         position: absolute;
-        top: -11px;
+        top: 9px;
         background: white;
         left: 13px;
         padding: 0px 5px 5px 5px;
@@ -20,10 +20,18 @@
         border-radius: 10px;
         outline-color: #ecd9b9;
         width: 100%;
-        margin-bottom: 20px;
+        margin-top: 20px;
         &.is-invalid-input {
             border: 1px solid #eb2e24;
         }
+    }
+    .profileImg {
+        width: 115px;
+        height: 110px;
+        border: 1px solid #b9b9b9;
+        border-radius: 70px;
+        object-fit: cover;
+        object-position: top;
     }
 }
 
