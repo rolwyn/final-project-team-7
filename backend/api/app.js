@@ -7,8 +7,10 @@ import routes from './routes/index.js';
 import models from './models/index.js';
 // import * as authService from './services/authService.js'
 
-const host = config.DB_HOST
+//for uploading file
+//const fileUpload =require('express-fileupload');
 
+const host = config.DB_HOST
 const app = express();
 
 // use new parser else set it to false to use old url parser
@@ -26,6 +28,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
+//to upload file
+//app.use(fileUpload());
 
 routes(app)
 
