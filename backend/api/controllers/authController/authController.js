@@ -37,7 +37,7 @@ export const signup = async (req, res) => {
             // 24 hours
             expiresIn: 86400
         });
-        setSuccessResponse(newUser, res)
+        setSuccessResponse({newUser: newUser, tokenId: token}, res)
     } catch (e) {
         setErrorResponse(e.message, res) 
     }
