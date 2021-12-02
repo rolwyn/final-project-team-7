@@ -7,8 +7,6 @@ import routes from './routes/index.js';
 import models from './models/index.js';
 // import * as authService from './services/authService.js'
 
-//for uploading file
-// import fileUpload from 'express-fileupload';
 
 const host = config.DB_HOST
 const app = express();
@@ -28,8 +26,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
-//to upload file
-//app.use(fileUpload());
 
 routes(app)
 
