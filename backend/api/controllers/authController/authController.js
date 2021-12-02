@@ -59,17 +59,17 @@ export const login = async (req, res) => {
                 userName: req.body.userName
             }).exec((error, user) => {
                 if (error) {
-                    setErrorResponse(error.message, res)
+                    setErrorResponse("ERROR FETCHING USER" + error.message , res)
                     return;
                 }
                 if (!user) {
-                    setAuthErrorResponse("User doesn't exist! Please Sing-Up!", res)
+                    setErrorResponse("User doesn't exist! Please Sing-Up!", res)
                     return;
                 }
                 
         });
     }    catch (e) {
-            setErrorResponse(e.message, res)
+            setErrorResponse("ERROR FETCHING USER" + e.message, res)
         }
     
 };

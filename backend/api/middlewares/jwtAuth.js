@@ -3,7 +3,7 @@ import config from "../../config/auth.config.js";
 import User from "../models/user/user.js";
 
 const setErrorResponse = (message, res) => {
-  res.status(403);
+  res.status(500);
   res.json({error: message});
 }
 
@@ -11,6 +11,11 @@ const setAuthErrorResponse = (message, res) => {
   res.status(401);
   res.json({message: message});
 }
+const setForbiddenErrorResponse = (message, res) => {
+  res.status(403);
+  res.json({message: message});
+}
+
 
 verifyJwtToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
@@ -37,4 +42,4 @@ const authJwt = {
   verifyJwtToken
 };
 
-module.exports = authJwt;
+export default { authJwt };
