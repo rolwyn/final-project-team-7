@@ -94,6 +94,7 @@ function SignUpForm({ user }) {
     const [password, setPassword] = useState("")
     const [showprofile, setShowProfile] = useState(false)
     const [showUserError, setShowUserError] = useState(false)
+    const [errorMsg, setErrorMsg] = useState("")
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -135,7 +136,7 @@ function SignUpForm({ user }) {
                     console.log(error)
                 }
             } catch(e) {
-                console.log(e.response)
+                setErrorMsg(e.response?.data.message)
             }
             
         }
@@ -164,6 +165,7 @@ function SignUpForm({ user }) {
     const onChangeValue = (e) => {
         let elementValue = e.target.value
         // setEmail(elementValue)
+        setErrorMsg("")
         switch (e.target.dataset.state) {
             case 'setEmail':
                 setEmail(elementValue)
@@ -199,7 +201,7 @@ function SignUpForm({ user }) {
     }
 
     const handleImageContent = async (base64) => {
-        console.log(base64)
+        // console.log(base64.target)
         if (base64) {
             setImageurl(base64)
             setShowProfile(true)
@@ -217,6 +219,12 @@ function SignUpForm({ user }) {
                     What are you waiting for? {isSignIn ? 'Join Now' : 'Login'} </span>
             </header>
             {/* Form */}
+            {errorMsg? <>
+                <div className="error_message" role="alert">
+                    {errorMsg}
+                </div>
+                </>: null
+            }
             <div>
                 <Form onSubmit={isSignIn ? handleSignInSubmit : handleSignUpSubmit} id="signup-form" ref={formElement} className="add_signup_form">
                     {!isSignIn ? <><fieldset className="column_fieldset">
@@ -325,6 +333,7 @@ function SignUpForm({ user }) {
                                 Have an account? <button type="button" onClick={authPageSwitch}>Sign In</button>
                             </div>
                     }
+
 
                     <CheckFieldsButton style={{ display: "none" }} ref={chkbuttonElement} />
                 </Form>
