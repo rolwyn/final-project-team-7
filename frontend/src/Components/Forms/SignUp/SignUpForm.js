@@ -86,6 +86,7 @@ function SignUpForm({user}) {
     const [imageurl, setImageurl] = useState("")
     const [password, setPassword] = useState("")
     const [showprofile, setShowProfile] = useState(false)
+    const [showUserError, setShowUserError] = useState(false)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -115,7 +116,8 @@ function SignUpForm({user}) {
         formElement.current.validateAll()
         console.log(setImageurl)
         if (chkbuttonElement.current.context._errors.length === 0) {
-            await signup(email, familyname, givenname, username, imageurl, password).then((data) => {
+            try {
+                const data = await signup(email, familyname, givenname, username, imageurl, password)
                 console.log(data)
                 let profileObj = data?.data?.newUser
                 let token = data?.data?.tokenId
@@ -125,7 +127,10 @@ function SignUpForm({user}) {
                 } catch (error) {
                     console.log(error)  
                 }
-            })
+            } catch(e) {
+                console.log(e.response)
+            }
+            
         }
     }
 
@@ -175,9 +180,9 @@ function SignUpForm({user}) {
         console.log(base64)
         if (base64) {
             setImageurl(base64)
-            await setShowProfile(true)
+            setShowProfile(true)
         } else {
-            await setShowProfile(false)
+            setShowProfile(false)
         }
     }
 
