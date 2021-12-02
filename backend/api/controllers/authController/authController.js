@@ -31,10 +31,6 @@ const setErrorResponse = (message, res) => {
     res.json({ error: message });
 }
 
-// Object.keys(data).filter((key) => {
-//     return !data[password]
-// }
-
 export const signup = async (req, res) => {
     try {
         const user = {
