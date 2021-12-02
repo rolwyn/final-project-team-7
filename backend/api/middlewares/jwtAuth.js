@@ -20,7 +20,7 @@ const setForbiddenErrorResponse = (message, res) => {
 verifyJwtToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
 if(!token) {
-  return setAuthErrorResponse( "No token provided", res);
+  return setForbiddenErrorResponse( "No token provided", res);
 }
 
 jwt.verify(token.config.secret, (e, decoded)=> {
@@ -28,10 +28,9 @@ jwt.verify(token.config.secret, (e, decoded)=> {
     return setAuthErrorResponse("Unauthorised", res);
   }
 
-  req.userName = decoded.id;
+  req.userId = decoded.id;
   next();
-})
-
+});
 
 
 

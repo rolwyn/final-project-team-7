@@ -9,7 +9,6 @@ const secretKey = config.secretKey
 
 
 
-
 /**
  * Set a success response
  * 
@@ -53,11 +52,29 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
     console.log('login api is callled');
-   
+    const userName = req.body.userName
+    const password = req.body.password
+
         try{
             User.findOne({
-                userName: req.body.userName
-            }).exec((error, user) => {
+                userName
+            }).then( user => {
+                if (!user) {
+                    console.log('not found');
+                    
+                } else {
+                    console.log("user found" + userName)
+                }
+            }
+                
+             
+            )}
+         catch (e) {
+            console.log('error' + e);
+            
+        }
+    }
+            /*( user =>(error, user) => {
                 if (error) {
                     setErrorResponse("ERROR FETCHING USER" + error.message , res)
                     return;
@@ -73,7 +90,7 @@ export const login = async (req, res) => {
         }
     
 };
-       
+       */
     
     
     // try {
