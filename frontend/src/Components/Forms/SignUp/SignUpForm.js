@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import './SignUpForm.scss';
 import GoogleLogin from 'react-google-login'
-import { signup } from '../../../Api/index.js'
+import { signup, login } from '../../../Api/index.js'
+
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import Form from "react-validation/build/form"
@@ -132,6 +133,23 @@ function SignUpForm({user}) {
     // write login logic here
     const handleSignInSubmit = async (e) => {
         e.preventDefault()
+
+ console.log('Api calling from frontend');
+ 
+        {
+            await login( username, password).then((data) => {
+                console.log(data)
+                // let profileObj = data?.data?.newUser
+                // let token = data?.data?.tokenId
+                // try {
+                //     dispatch({type: 'AUTH', data: { profileObj, token }})
+                //     navigate('/')
+                // } catch (error) {
+                //     console.log(error)  
+                // }
+            })
+        }
+
     } 
 
     const onChangeValue = (e) => {
