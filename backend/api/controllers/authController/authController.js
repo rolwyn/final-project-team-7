@@ -17,7 +17,7 @@ const secretKey = config.secretKey
  */
 const setSuccessResponse = (data, res) => {
     res.status(200);
-    res.json(data);
+    res.json(data)
 }
 
 /**
@@ -31,19 +31,26 @@ const setErrorResponse = (message, res) => {
     res.json({ error: message });
 }
 
+// Object.keys(data).filter((key) => {
+//     return !data[password]
+// }
+
 export const signup = async (req, res) => {
     try {
         const user = {
             ...req.body, name: req.body.givenName + ' ' + req.body.familyName,
             password: bcryptjs.hashSync(req.body.password, 8),
         }
-        const newUser = await authService.signup(user)
+        const newUser = await authService.signup(user).then()
+        const userData = newUser.toJSON()
+        delete userData['password']
 
         let token = jwt.sign({ id: newUser?._id }, config.secretKey, {
             // 24 hours
             expiresIn: 86400
         });
-        setSuccessResponse({ newUser: newUser, tokenId: token }, res)
+
+        setSuccessResponse({ newUser: userData, tokenId: token }, res)
     } catch (e) {
         setErrorResponse(e.message, res)
     }
