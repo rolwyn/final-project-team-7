@@ -14,12 +14,13 @@ const EventCreation=()=>{
     const [time,setTime]=useState("");
     
     //clear all states
-    const clearAllFields =()=>{
-        setDate("");
-        setDescription("");
-        setImg("");
-        setEventName("");
-        setTime("");
+    const clearAllFields = async ()=>{
+        console.log("Cleared")
+        await setDate("");
+        await setDescription("");
+        await setImg("");
+        await setEventName("");
+        await setTime("");
     }
     //whenever form is submitted
     const submitForm= async (e)=>{
@@ -31,7 +32,6 @@ const EventCreation=()=>{
     }
     //whenever fields are updated
     const change=(oneElement,property)=>{
-        console.log("In update ="+oneElement.target.value + "Property="+property);
         
         switch(property){
             case 'setEventName' :

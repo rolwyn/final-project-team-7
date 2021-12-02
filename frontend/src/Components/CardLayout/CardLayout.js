@@ -14,7 +14,8 @@ function CardLayout(){
    
     useEffect(() => {
         async function fetchData() {
-          
+            // console.log("hi")
+
             const eventList = await getEvents();
             setEventData(eventList.data)
                
