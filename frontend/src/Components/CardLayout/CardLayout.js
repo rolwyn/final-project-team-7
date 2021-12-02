@@ -1,27 +1,30 @@
 import React, {useEffect, useState} from 'react';
-import { getEvents } from '../../Api/index';
+import { useSelector } from 'react-redux';
 import './CardLayout.scss'
 //import 
 function CardLayout(){
 
+    const eventData = useSelector((state) => state.events)
     // const [img, setImage] =useState("");
     // const [description, setDescription] =useState("");
     // const [eventName, setEventName]=useState("");
     // const [date,setDate]=useState("");
     // const [time,setTime]=useState("");
     //const [events,setEvents]=useState([]);
-    const [eventData, setEventData] = useState([]); 
+    // const [eventData, setEventData] = useState([]); 
    
-    useEffect(() => {
-        async function fetchData() {
-            // console.log("hi")
+    // useEffect(() => {
+    //     async function fetchData() {
+    //         // console.log("hi")
 
-            const eventList = await getEvents();
-            setEventData(eventList.data)
+    //         const eventList = await getEvents();
+    //         setEventData(eventList.data)
                
-        }
-        fetchData();
-    },[]);
+    //     }
+    //     fetchData();
+    // },[]);
+
+
     const favourite=()=>{
         
         const heart=document.querySelectorAll('.heart');
