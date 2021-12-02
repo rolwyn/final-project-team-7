@@ -5,8 +5,8 @@
   gap: 10px 5px;
   .card {
     margin: 2%;
-    height: 100px;
-    width: fit-content;
+    height: fit-content;
+    width: 20%;
     border: blur 1px grey;
     border-radius: 7%;
     box-shadow: 0 0 5px 5px rgb(248, 236, 236);
@@ -30,9 +30,6 @@
     -moz-osx-font-smoothing: grayscale;
     transition-duration: 0.3s;
     transition-property: transform;
-    // property to expand ends
-    //   transform: rotate(180deg);
-    // transform: scaleX(-1);
   }
   //property to expand
   .card:hover,

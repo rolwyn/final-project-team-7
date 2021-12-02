@@ -17,7 +17,7 @@ const setSuccessResponse= (data, response)=>{
 
 };
 //for error handling : 8:34pm 10/11/21
-export const indexEvent=async (request,response)=>{
+export const getAllEvents=async (request,response)=>{
     //response will get all the event deets
     try{
         const events= await CardLayoutService.searchEvent();
