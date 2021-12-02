@@ -19,6 +19,13 @@ export const createRole = (role) => {
     return newRole.save()
 }
 
+
+export const login = (userName) => {
+    const promise = User.findOne({
+        userName
+    }).exec()
+    return promise  
+}
 // export const search = ((params = {}) =>{
 //     //const id =  params.id || 1;
 //     const promise = User.find(params).exec();

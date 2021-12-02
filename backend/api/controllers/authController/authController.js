@@ -43,7 +43,7 @@ export const signup = async (req, res) => {
             // 24 hours
             expiresIn: 86400
         });
-        setSuccessResponse({newUser: newUser, tokenId: token}, res)
+        setSuccessResponse({ newUser: newUser, tokenId: token }, res)
     } catch (e) {
         setErrorResponse(e.message, res)
     }
@@ -51,87 +51,22 @@ export const signup = async (req, res) => {
 
 
 export const login = async (req, res) => {
-    console.log('login api is callled');
-    const userName = req.body.userName
-    const password = req.body.password
+    try {
+        console.log('login api is callled from backend');
+        const userName = req.body.userName
+        const password = req.body.password
 
-        try{
-            User.findOne({
-                userName
-            }).then( user => {
-                if (!user) {
-                    console.log('not found');
-                    
-                } else {
-                    console.log("user found" + userName)
-                }
-            }
-                
-             
-            )}
-         catch (e) {
-            console.log('error' + e);
-            
-        }
-    }
-            /*( user =>(error, user) => {
-                if (error) {
-                    setErrorResponse("ERROR FETCHING USER" + error.message , res)
-                    return;
-                }
-                if (!user) {
-                    setErrorResponse("User doesn't exist! Please Sing-Up!", res)
-                    return;
-                }
-                
+        const loginUser = await authService.login(userName)
+        console.log(loginUser)
+        let token = jwt.sign({ id: loginUser?._id }, config.secretKey, {
+            // 24 hours
+            expiresIn: 86400
         });
-    }    catch (e) {
-            setErrorResponse("ERROR FETCHING USER" + e.message, res)
-        }
-    
-};
-       */
-    
-    
-    // try {
-    //     User.findOne({
-    //         username: req.body.username            
-    //     })
-       
-    //     .exec((user) => {
-    //         console.log(user);
-            
-    //         if (!user) {
-    //             return setErrorResponse("User doesn't exist! Please sign-up!", res)
-    //         }
+        setSuccessResponse({ newUser: loginUser, tokenId: token }, res)
 
-    //         let passwordIsValid = bcryptjs.compareSync(
-    //             req.body.password,
-    //             User.password
-    //         );
-    //         if (!passwordIsValid) {
-    //             return setErrorResponse("Invalid Password!", res)
-    //         };
+    } catch (e) {
+        setErrorResponse(e.message , res)
+    }
 
-    //         let token = jwt.sign({ id: user.id }, config.secretKey, {
-    //             expiresIn: 86400 // 24 hours
-    //         });
 
-    //         // let authorities = [];
-
-    //         // for (let i = 0; i < user.roles.length; i++) {
-    //         //     authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
-    //         // }
-    //         res.status(200).send({
-    //             id: user._id,
-    //             username: user.username,
-    //           //  roles: authorities,
-    //             accessToken: token
-    //         });
-    //     });
-    // }
-
-    // catch (e) {
-    //     setErrorResponse(e.message, res)
-    // }
-
+}
