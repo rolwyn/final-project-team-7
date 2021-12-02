@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { getEvents } from '../../Api/createEvent';
+import { getEvents } from '../../Api/index';
 import './CardLayout.scss'
 //import 
 function CardLayout(){

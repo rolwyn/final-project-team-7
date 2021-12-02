@@ -24,3 +24,28 @@ const baseUrl = "http://localhost:4200/"
         password: password
     })
 }
+
+/**
+ * Service call for creating new event in the database
+ * @param {*} eventName 
+ * @param {*} description 
+ * @param {*} img 
+ * @param {*} date 
+ * @param {*} time 
+ * @returns a promise which resolves to a response object or error
+ */
+ export const createEvent = (eventName,description,img,date,time) => {
+    return axios.post(baseUrl + "api/events/createEvent", {
+        eventName: eventName,
+        description: description,
+        img: img,
+        date: date,
+        time: time
+    });
+
+}
+//service call for getting all the events in the database
+export const getEvents=()=>{
+    return axios.get(baseUrl + "api/events/getEvents")
+    
+}

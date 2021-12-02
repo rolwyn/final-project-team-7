@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import Form from "react-validation/build/form";
 //import Input from "react-validation/build/input";
 import FileBase from 'react-file-base64';
-import {createEvent} from '../../Api/createEvent.js';
+import {createEvent} from '../../Api/index.js';
 import './EventCreation.scss';
 
 const EventCreation=()=>{
