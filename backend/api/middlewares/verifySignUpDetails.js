@@ -39,6 +39,8 @@ const checkForDuplicateUnameEmail = (req, res, next) => {
             return;
         }
         
+       
+
         // check if email already exists in db
         User.findOne({
             email: req.body.email
@@ -57,4 +59,23 @@ const checkForDuplicateUnameEmail = (req, res, next) => {
     })
 }
 
- export default { checkForDuplicateUnameEmail }
+
+const checkExistingUser = (req, res) => {
+    User.findOne({
+        userName: req.body.userName
+    }).exec((error, user) => {
+        if (error) {
+            setErrorResponse(error.message, res)
+            return;
+        }
+        if (!user) {
+            setAuthErrorResponse("User doesn't exist! Please Sing-Up!", res)
+            return;
+        }
+        
+}
+);
+}
+
+
+ export default { checkForDuplicateUnameEmail, checkExistingUser  }

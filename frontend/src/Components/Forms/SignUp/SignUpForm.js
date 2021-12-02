@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './SignUpForm.scss';
 import GoogleLogin from 'react-google-login'
-import { signup } from '../../../Api/index.js'
+import { signup, login } from '../../../Api/index.js'
+
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import Form from "react-validation/build/form"
@@ -16,67 +17,73 @@ import { isEmail, isStrongPassword, isAlpha } from "validator";
 const required = (value) => {
     if (!value) {
         return (
-        <div className="text-red-500 text-sm italic mt-2">
-            This field is required!
-        </div>
-    )}
+            <div className="text-red-500 text-sm italic mt-2">
+                This field is required!
+            </div>
+        )
+    }
 }
 
 const emailIsValid = (value) => {
     if (!isEmail(value)) {
         return (
-        <div className="text-red-500 text-sm italic mt-2">
-            Enter valid email
-        </div>
-    )}
+            <div className="text-red-500 text-sm italic mt-2">
+                Enter valid email
+            </div>
+        )
+    }
 }
 
 const userNameIsValid = (value) => {
     if (value.length < 2 || value.length > 15) {
-      return (
-        <div className="text-red-500 text-sm italic mt-2">
-            Username should be between 2 and 15 characters
-        </div>
-    )}
+        return (
+            <div className="text-red-500 text-sm italic mt-2">
+                Username should be between 2 and 15 characters
+            </div>
+        )
+    }
 }
 
 const nameIsValid = (value) => {
     if (value.length < 2 || value.length > 15) {
-      return (
-        <div className="text-red-500 text-sm italic mt-2">
-            Characters should be between 2 and 15 characters
-        </div>
-    )} else if (!isAlpha(value)) {
+        return (
+            <div className="text-red-500 text-sm italic mt-2">
+                Characters should be between 2 and 15 characters
+            </div>
+        )
+    } else if (!isAlpha(value)) {
         return (
             <div className="text-red-500 text-sm italic mt-2">
                 Only alphabetical characters allowed
             </div>
         )
     }
-} 
+}
 
 const passwordIsValid = (value) => {
     if (value.length < 8 || value.length > 25) {
-      return (
-        <div className="text-red-500 text-sm italic mt-2">
-            Password should be between 8 and 25 characters
-        </div>
-    )} else if (!isStrongPassword(value, {
-        minLength: 8, 
+        return (
+            <div className="text-red-500 text-sm italic mt-2">
+                Password should be between 8 and 25 characters
+            </div>
+        )
+    } else if (!isStrongPassword(value, {
+        minLength: 8,
         minLowercase: 1,
         minUppercase: 1,
         minNumbers: 1,
         minSymbols: 1,
-        returnScore: false})) {
+        returnScore: false
+    })) {
         return (
             <div className="text-red-500 text-sm italic mt-2">
                 Password should contain minimum length of 8, One Lowercase, Uppercase and a symbol
             </div>
-        )   
+        )
     }
 }
 
-function SignUpForm({user}) {
+function SignUpForm({ user }) {
 
     const [isSignIn, setIsSignin] = useState(true)
     const [email, setEmail] = useState("")
@@ -93,15 +100,15 @@ function SignUpForm({user}) {
     const chkbuttonElement = React.useRef();
 
     const handleSuccess = async (resp) => {
-        
+
         const profileObj = resp?.profileObj
         const token = resp?.tokenId
 
         try {
-            dispatch({type: 'AUTH', data: { profileObj, token }})
+            dispatch({ type: 'AUTH', data: { profileObj, token } })
             navigate('/')
         } catch (error) {
-            console.log(error)  
+            console.log(error)
         }
     }
 
@@ -120,10 +127,10 @@ function SignUpForm({user}) {
                 let profileObj = data?.data?.newUser
                 let token = data?.data?.tokenId
                 try {
-                    dispatch({type: 'AUTH', data: { profileObj, token }})
+                    dispatch({ type: 'AUTH', data: { profileObj, token } })
                     navigate('/')
                 } catch (error) {
-                    console.log(error)  
+                    console.log(error)
                 }
             })
         }
@@ -132,7 +139,22 @@ function SignUpForm({user}) {
     // write login logic here
     const handleSignInSubmit = async (e) => {
         e.preventDefault()
-    } 
+
+        console.log('Api calling from frontend');
+        const user = await login(username, password)
+        console.log(user)
+        // let profileObj = data?.data?.newUser
+        // let token = data?.data?.tokenId
+        // try {
+        //     dispatch({type: 'AUTH', data: { profileObj, token }})
+        //     navigate('/')
+        // } catch (error) {
+        //     console.log(error)  
+        // }
+
+
+    }
+
 
     const onChangeValue = (e) => {
         let elementValue = e.target.value
@@ -167,7 +189,7 @@ function SignUpForm({user}) {
         await setUsername('')
         await setImageurl('')
         await setPassword('')
-        
+
         // Clear all fields
     }
 
@@ -181,18 +203,18 @@ function SignUpForm({user}) {
         }
     }
 
-    return(
+    return (
         <div className="content_wrapper col-span-3 px-5 py-10">
             {/* Title */}
             <header className="content_title mb-5">
-                <h2 className="text-4xl mb-2">{isSignIn ? 'Login': 'Create an account'} to get started</h2>
+                <h2 className="text-4xl mb-2">{isSignIn ? 'Login' : 'Create an account'} to get started</h2>
                 <span className="text-sm mb-1">Find events you love, meet new people, build your connection. All this with just one click.
-                    What are you waiting for? {isSignIn ? 'Join Now': 'Login'} </span>
+                    What are you waiting for? {isSignIn ? 'Join Now' : 'Login'} </span>
             </header>
             {/* Form */}
             <div>
-                <Form onSubmit={isSignIn ? handleSignInSubmit: handleSignUpSubmit} id="signup-form" ref={formElement} className="add_signup_form">
-                    {!isSignIn? <><fieldset className="column_fieldset">
+                <Form onSubmit={isSignIn ? handleSignInSubmit : handleSignUpSubmit} id="signup-form" ref={formElement} className="add_signup_form">
+                    {!isSignIn ? <><fieldset className="column_fieldset">
                         <label>Email</label>
                         <Input
                             id="add-email"
@@ -205,50 +227,50 @@ function SignUpForm({user}) {
                             validations={[required, emailIsValid]}
                         />
                     </fieldset>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">        
+                        <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
+                            <fieldset className="column_fieldset">
+                                <label>First Name</label>
+                                <Input
+                                    id="add-firstname"
+                                    type="text"
+                                    className="_inputField"
+                                    name="firstname"
+                                    value={givenname}
+                                    data-state="setGivenname"
+                                    onChange={onChangeValue}
+                                    validations={[required, nameIsValid]}
+                                />
+                            </fieldset>
+                            <fieldset className="column_fieldset">
+                                <label>Last Name</label>
+                                <Input
+                                    id="add-lastname"
+                                    type="text"
+                                    className="_inputField"
+                                    name="lastname"
+                                    value={familyname}
+                                    data-state="setFamilyname"
+                                    onChange={onChangeValue}
+                                    validations={[required, nameIsValid]}
+                                />
+                            </fieldset>
+                        </div>
                         <fieldset className="column_fieldset">
-                            <label>First Name</label>
-                            <Input
-                                id="add-firstname"
-                                type="text"
-                                className="_inputField"
-                                name="firstname"
-                                value={givenname}
-                                data-state="setGivenname"
-                                onChange={onChangeValue}
-                                validations={[required, nameIsValid]}
+                            <label>Profile Picture</label>
+                            <FileBase
+                                type="file"
+                                multiple={false}
+                                onDone={({ base64 }) => handleImageContent(base64)}
                             />
                         </fieldset>
-                        <fieldset className="column_fieldset">
-                            <label>Last Name</label>
-                            <Input
-                                id="add-lastname"
-                                type="text"
-                                className="_inputField"
-                                name="lastname"
-                                value={familyname}
-                                data-state="setFamilyname"
-                                onChange={onChangeValue}
-                                validations={[required, nameIsValid]}
-                            />
-                        </fieldset>
-                    </div>
-                    <fieldset className="column_fieldset">
-                        <label>Profile Picture</label>
-                        <FileBase
-                            type="file"
-                            multiple={false}
-                            onDone={({base64}) => handleImageContent(base64)}
-                        />
-                    </fieldset>
-                    {showprofile ?
-                        <fieldset className="column_fieldset">
-                            <img alt="profile" src={imageurl} className="profileImg"></img>
-                        </fieldset>
-                        : null
-                    }
+                        {showprofile ?
+                            <fieldset className="column_fieldset">
+                                <img alt="profile" src={imageurl} className="profileImg"></img>
+                            </fieldset>
+                            : null
+                        }
                     </>
-                    : null    
+                        : null
                     }
                     <fieldset className="column_fieldset">
                         <label>Username</label>
@@ -278,7 +300,7 @@ function SignUpForm({user}) {
                     </fieldset>
                     {/* <!-- submit button for creating a user --> */}
                     <div className="btn_wrapper">
-                        <button id="create-user" type="submit">{isSignIn ? 'Sign In': 'Sign Up'}</button>
+                        <button id="create-user" type="submit">{isSignIn ? 'Sign In' : 'Sign Up'}</button>
                         <span className="_orSeparator mx-3">- OR -</span>
                         <GoogleLogin
                             clientId={process.env.REACT_APP_CLIENT_ID}
@@ -289,17 +311,17 @@ function SignUpForm({user}) {
                             cookiePolicy='single_host_origin'
                         />
                     </div>
-                        {
+                    {
                         isSignIn ?
-                        <div className="noAccount">
-                            Dont have an account? <button type="button" onClick={authPageSwitch}>Sign Up</button>
-                        </div>:
-                        <div className="noAccount">
-                            Have an account? <button type="button" onClick={authPageSwitch}>Sign In</button>
-                        </div>
-                        }
-                    
-                    <CheckFieldsButton style={{ display: "none" }} ref={chkbuttonElement} /> 
+                            <div className="noAccount">
+                                Dont have an account? <button type="button" onClick={authPageSwitch}>Sign Up</button>
+                            </div> :
+                            <div className="noAccount">
+                                Have an account? <button type="button" onClick={authPageSwitch}>Sign In</button>
+                            </div>
+                    }
+
+                    <CheckFieldsButton style={{ display: "none" }} ref={chkbuttonElement} />
                 </Form>
             </div>
             {/* Copyrights */}
