@@ -8,7 +8,7 @@ import models from './models/index.js';
 // import * as authService from './services/authService.js'
 
 //for uploading file
-//const fileUpload =require('express-fileupload');
+// import fileUpload from 'express-fileupload';
 
 const host = config.DB_HOST
 const app = express();

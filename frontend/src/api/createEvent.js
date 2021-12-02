@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useState } from 'react';
 
 const baseUrl = "http://localhost:4200/"
 
@@ -24,8 +25,13 @@ const baseUrl = "http://localhost:4200/"
 
 }
 export const uploadImage = (formData) => {
-    return axios.post(baseUrl + "api/events/uploadImage", { 
-        file: formData.file,
-        
+    return axios.post(baseUrl + "api/events/uploadImage");
+}
+
+
+export const getEvents=()=>{
+    axios.get(baseUrl + "api/events/getEvents").then (eventResponse=>{
+        console.log(eventResponse);
     });
+    
 }

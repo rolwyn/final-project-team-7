@@ -1,7 +1,19 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import { getEvents } from '../../Api/createEvent';
 import './CardLayout.scss'
+//import 
 function CardLayout(){
 
+    const [img, setImage] =useState("");
+    const [description, setDescription] =useState("");
+    const [eventName, setEventName]=useState("");
+    const [date,setDate]=useState("");
+    const [time,setTime]=useState("");
+    const [events,setEvents]=useState([]);
+
+        useEffect(()=>{
+             setEvents(getEvents());
+        },[null]);
     const favourite=()=>{
         
         const heart=document.querySelectorAll('.heart');
