@@ -13,25 +13,26 @@ const EventCreation=()=>{
     const [date,setDate]=useState("");
     const [time,setTime]=useState("");
     
-    // const checkIfNull={
-    //     if(eventName && description && img && date && time)
-    //     {
-    //         return;
-    //     }
-    // } 
+    //clear all states
+    const clearAllFields =()=>{
+        setDate("");
+        setDescription("");
+        setImg("");
+        setEventName("");
+        setTime("");
+    }
     //whenever form is submitted
     const submitForm= async (e)=>{
         e.preventDefault();
         // checkIfNull;
         console.log(" Submitting");
-        console.log(img);
         const response = await createEvent(eventName,description,img,date,time);
-        console.log(response);
+        clearAllFields();
     }
     //whenever fields are updated
     const change=(oneElement,property)=>{
         console.log("In update ="+oneElement.target.value + "Property="+property);
-        //const property=oneElement.target.name;
+        
         switch(property){
             case 'setEventName' :
                 setEventName(oneElement.target.value);
@@ -39,10 +40,6 @@ const EventCreation=()=>{
             case 'setDescription' :
                 setDescription(oneElement.target.value);
                 break;
-            // case 'setImg' :
-                
-                
-            //     break;
             case 'setDate' :
                 setDate(oneElement.target.value);
                 break;
@@ -59,7 +56,7 @@ const EventCreation=()=>{
         {
             setImg(base64.base64);
         }
-        console.log(img);        
+             
     }
     // const closeAdd={
 
@@ -92,10 +89,6 @@ const EventCreation=()=>{
                         
                         <FileBase type="file" multiple={false} onDone={(base64)=>onFileUpload(base64)}/>
                     </div>    
-                      
-                    {/* <label> Time</label>
-                    <Input type="time" name="time" id="time" onChange={(e)=>this.change(e,"time")} required/> */}
-
                     <button id="save" type="submit">Add</button>
        
                 
