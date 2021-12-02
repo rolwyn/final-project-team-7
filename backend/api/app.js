@@ -7,8 +7,8 @@ import routes from './routes/index.js';
 import models from './models/index.js';
 // import * as authService from './services/authService.js'
 
-const host = config.DB_HOST
 
+const host = config.DB_HOST
 const app = express();
 
 // use new parser else set it to false to use old url parser
