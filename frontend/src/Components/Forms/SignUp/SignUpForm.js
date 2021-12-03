@@ -100,6 +100,7 @@ function SignUpForm({ user }) {
     const dispatch = useDispatch()
     const formElement = React.useRef()
     const chkbuttonElement = React.useRef();
+    const uploadBtnElement = React.useRef(null);
 
     const handleSuccess = async (resp) => {
 
@@ -188,6 +189,7 @@ function SignUpForm({ user }) {
     };
 
     const authPageSwitch = async () => {
+        setErrorMsg("")
         console.log("I AM CALLED", username, password)
         await setIsSignin(!isSignIn)
         await setEmail('')
@@ -200,12 +202,63 @@ function SignUpForm({ user }) {
         // Clear all fields
     }
 
-    const handleImageContent = async (base64) => {
-        // console.log(base64.target)
-        if (base64) {
-            setImageurl(base64)
-            setShowProfile(true)
+    // const handleImageContent = async (base64) => {
+    //     console.log(base64)
+    //     if (base64) {
+    //         setImageurl(base64)
+    //         setShowProfile(true)
+    //     } else {
+    //         setShowProfile(false)
+    //     }
+    // }
+
+    /**
+     * Handles all logic for file upload i.e size, type, file convert to base64
+     * @param {*} e the event of file upload btn
+     */
+    const handleImageContent = (e) => {
+        setErrorMsg("")
+        console.log(e)
+        let file = e.target.files[0]
+        let files = []
+        // console.log(file)
+        let reader = new FileReader()
+
+        if (file !== undefined) {
+            reader.readAsDataURL(file)
+            reader.onload = () => {
+                let fileData = {
+                    name: file.name,
+                    type: file.type,
+                    size: Math.round(file.size / 1000) + ' kB',
+                    base64: reader.result,
+                    file: file,
+                };
+                files.push(fileData)
+                console.log(files)
+                if (!(Math.round(file.size / 1000) > 15000)) {
+                    if (fileData.base64) {
+                        setImageurl(fileData.base64)
+                        setShowProfile(true)
+                    } else {
+                        setShowProfile(false)
+                    }
+                } else {
+                    setErrorMsg("File size cannot be more than 16 MB. File won't be uploaded")
+                    uploadBtnElement.current.value = ""
+                    setImageurl("")
+                    setShowProfile(false)
+                }
+
+                if (!file.name.match(/\.(jpg|jpeg|png)$/)) {
+                    setImageurl("")
+                    setShowProfile(false)
+                    uploadBtnElement.current.value = ""
+                    setErrorMsg("Please select only jpg, jpeg or png file formats")
+                }
+            }
         } else {
+            setImageurl("")
             setShowProfile(false)
         }
     }
@@ -270,10 +323,16 @@ function SignUpForm({ user }) {
                         </div>
                         <fieldset className="column_fieldset">
                             <label>Profile Picture</label>
-                            <FileBase
+                            {/* <FileBase
                                 type="file"
                                 multiple={false}
                                 onDone={({ base64 }) => handleImageContent(base64)}
+                            /> */}
+                            <input
+                                type="file"
+                                ref={uploadBtnElement}
+                                onChange={ handleImageContent }
+                                onClick={() => setErrorMsg("")}
                             />
                         </fieldset>
                         {showprofile ?
