@@ -5,11 +5,6 @@ import EventCard from '../EventCard/EventCard.js'
 //import 
 function CardLayout(){
 
-    const childClassArray = [
-        '_small',
-        '_medium'
-    ];
-
     const eventData = useSelector((state) => state.events)
     // const [img, setImage] =useState("");
     // const [description, setDescription] =useState("");
@@ -86,11 +81,7 @@ function CardLayout(){
             eventData.map(event=>(
                 <EventCard
                     key={event.id}
-                    id={event.id}
-                    childClassName={"card " +childClassArray[Math.floor(Math.random()*childClassArray.length)]}
-                    eventName={event.eventName}
-                    img={event.img}
-                    description={event.description}     
+                    event={event}  
                 />
                 // <div key ={event.id} className="card">
                 //     {flagIcon}
