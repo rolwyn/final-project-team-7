@@ -41,7 +41,7 @@ export const signup = async (req, res) => {
         const userData = newUser.toJSON()
         delete userData['password']
 
-        let token = jwt.sign({ id: newUser?._id }, config.secretKey, {
+        let token = jwt.sign({ id: newUser?._id }, secretKey, {
             // 24 hours
             expiresIn: 86400
         });
@@ -61,7 +61,29 @@ export const login = async (req, res) => {
 
         const loginUser = await authService.login(userName).then()
         console.log(loginUser)
-        let token = jwt.sign({ id: loginUser?._id }, config.secretKey, {
+        console.log(req.body.password + password);
+
+        let passwordIsValid = bcryptjs.compareSync(
+           password,
+            loginUser.password
+        );
+
+        if (passwordIsValid) {
+            setErrorResponse("CORRECT Password!" + passwordIsValid + password + password + loginUser+ loginUser.password, res)
+            // return res.status(200).send({
+            //     accessToken: null,
+            //     message: "CORRECT Password!" + password +  loginUser.password
+            // });
+        } else  if (!passwordIsValid){
+            setErrorResponse("WRONG Password!" + passwordIsValid+ password + password + loginUser + loginUser.password, res)
+            // return res.status(401).send({
+            //     accessToken: null,
+            //     message: "Invalid Password!" + password +  loginUser.password
+            // });
+
+        }
+
+        let token = jwt.sign({ id: loginUser?._id }, secretKey, {
             // 24 hours
             expiresIn: 86400
         });
@@ -69,7 +91,7 @@ export const login = async (req, res) => {
 
 
     } catch (e) {
-        setErrorResponse(e.message , res)
+        setErrorResponse(e.message, res)
     }
 
 

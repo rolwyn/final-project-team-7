@@ -1,4 +1,5 @@
 import models from '../models/index.js';
+import bcryptjs from 'bcryptjs';
 
 const User = models.User
 
@@ -10,7 +11,7 @@ const User = models.User
  */
 const setErrorResponse = (message, res) => {
     res.status(500);
-    res.json({error: message});
+    res.json({ error: message });
 }
 
 /**
@@ -21,8 +22,10 @@ const setErrorResponse = (message, res) => {
  */
 const setAuthErrorResponse = (message, res) => {
     res.status(400);
-    res.json({message: message});
+    res.json({ message: message });
 }
+
+
 
 
 const checkForDuplicateUnameEmail = (req, res, next) => {
@@ -38,8 +41,8 @@ const checkForDuplicateUnameEmail = (req, res, next) => {
             setAuthErrorResponse("User already exists!", res)
             return;
         }
-        
-       
+
+
 
         // check if email already exists in db
         User.findOne({
@@ -53,7 +56,7 @@ const checkForDuplicateUnameEmail = (req, res, next) => {
                 setAuthErrorResponse("Email aready in use!", res)
                 return;
             }
-            
+
             next();
         })
     })
@@ -72,13 +75,15 @@ const checkExistingUser = (req, res, next) => {
             setAuthErrorResponse("User doesn't exist! Please Sing-Up!", res)
             return;
         }
-           
-        next();  
-     
-        
-}
-);
+        next();
+
+    
+
+
+
+    }
+    );
 }
 
 
- export default { checkForDuplicateUnameEmail, checkExistingUser  }
+export default { checkForDuplicateUnameEmail, checkExistingUser }
