@@ -3,7 +3,8 @@ import React, {useState} from 'react';
 import Form from "react-validation/build/form";
 //import Input from "react-validation/build/input";
 import FileBase from 'react-file-base64';
-import {createEvent} from '../../Api/index.js';
+import {createEvent} from '../../Actions/events';
+import { useDispatch } from 'react-redux';
 import './EventCreation.scss';
 
 const EventCreation=()=>{
@@ -12,26 +13,29 @@ const EventCreation=()=>{
     const [img,setImg]=useState("");
     const [date,setDate]=useState("");
     const [time,setTime]=useState("");
-    
+    const dispatch = useDispatch()
+
     //clear all states
-    const clearAllFields =()=>{
-        setDate("");
-        setDescription("");
-        setImg("");
-        setEventName("");
-        setTime("");
+    const clearAllFields = async ()=>{
+        console.log("Cleared")
+        await setDate("");
+        await setDescription("");
+        await setImg("");
+        await setEventName("");
+        await setTime("");
     }
     //whenever form is submitted
     const submitForm= async (e)=>{
         e.preventDefault();
         // checkIfNull;
         console.log(" Submitting");
-        const response = await createEvent(eventName,description,img,date,time);
+        
+        dispatch(createEvent(eventName, description, img, date, time))
+
         clearAllFields();
     }
     //whenever fields are updated
     const change=(oneElement,property)=>{
-        console.log("In update ="+oneElement.target.value + "Property="+property);
         
         switch(property){
             case 'setEventName' :
