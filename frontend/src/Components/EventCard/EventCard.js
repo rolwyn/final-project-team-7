@@ -3,18 +3,20 @@ import './EventCard.scss';
 
 
 function EventCard(props){
-    return (
-        <div className={props.childClassName}>
+    const cardElements = props.events
+        .map((event, i) =>
+        <div key={i} className="card">
             {/* {flagIcon} */}
-            {props.eventName}
-            <img className="eventImg" src={props.img} alt="event-pic"/>
-            <article>{props.description}</article>
+            {event.eventName}
+            <img className="eventImg" src={event.img} alt="event-pic"/>
+            <article>{event.description}</article>
             {/* <div className="options">
                 {this.props.heartIcon}
                 {this.props.scheduleIcon}
             </div>   */}
         </div>
     )
+    return (cardElements)
 }
 
 export default EventCard
