@@ -5,10 +5,6 @@ import jwt from 'jsonwebtoken'
 import User from '../../models/user/user.js'
 import config from '../../../config/config.js'
 
-const secretKey = config.secretKey
-
-
-
 /**
  * Set a success response
  * 
