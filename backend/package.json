@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/neu-mis-info6150-fall2021/final-project-team-7#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
