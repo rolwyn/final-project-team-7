@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken'
 import User from '../../models/user/user.js'
 import config from '../../../config/config.js'
 
+const secretKey = config.secretKey
 
 
 
@@ -40,7 +41,7 @@ export const signup = async (req, res) => {
         const userData = newUser.toJSON()
         delete userData['password']
 
-        let token = jwt.sign({ id: newUser?._id }, secretKey, {
+        let token = jwt.sign({ id: newUser?._id }, config.secretKey, {
             // 24 hours
             expiresIn: 86400
         });
@@ -58,33 +59,16 @@ export const login = async (req, res) => {
         const userName = req.body.userName
         const password = req.body.password
 
-        const loginUser = await authService.login(userName).then()
+        const loginUser = await authService.login(userName)
         console.log(loginUser)
-        console.log(req.body.password + password);
-
-        let passwordIsValid = bcryptjs.compareSync(
-           password,
-            loginUser.password
-        );
-
-        if (!passwordIsValid) {
-            
-            return res.status(401).send({
-                token: null,
-                message: "Invalid Password!"
-            });
-        } 
-
-        let token = jwt.sign({ id: loginUser?._id }, secretKey, {
+        let token = jwt.sign({ id: loginUser?._id }, config.secretKey, {
             // 24 hours
             expiresIn: 86400
         });
-
         setSuccessResponse({ newUser: loginUser, tokenId: token }, res)
 
-
     } catch (e) {
-        setErrorResponse(e.message, res)
+        setErrorResponse(e.message , res)
     }
 
 
