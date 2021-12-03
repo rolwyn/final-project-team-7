@@ -188,7 +188,6 @@ function SignUpForm({ user }) {
     };
 
     const authPageSwitch = async () => {
-        console.log("I AM CALLED", username, password)
         await setIsSignin(!isSignIn)
         await setEmail('')
         await setFamilyname('')

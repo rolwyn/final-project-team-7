@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Route, Routes } from "react-router-dom";
 import SignUp from './Views/SignUp/SignUp';
@@ -6,17 +6,23 @@ import './App.scss';
 import CardLayout from './Components/CardLayout/CardLayout.js'
 import EventCreation from './Components/EventCreation/EventCreation';
 import Navbar from './Components/Navbar/Navbar';
+import { useDispatch } from 'react-redux';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faCoffee, faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons'
+import { getEvents } from './Actions/events';
 
 library.add(fab, faCoffee, faArrowCircleLeft)
 
 function App() {
     const [isSignup, setIsSignup] = useState(false)
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('userProfile')))
+    const dispatch = useDispatch()
 
+    useEffect(() => {
+        dispatch(getEvents())
+    },[dispatch])
 
     return(
         <div>
