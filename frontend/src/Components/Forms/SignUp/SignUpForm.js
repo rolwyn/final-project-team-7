@@ -136,14 +136,14 @@ function SignUpForm({ user }) {
                 } catch (error) {
                     console.log(error)
                 }
-            } catch(e) {
+            } catch (e) {
                 setErrorMsg(e.response?.data.message)
             }
-            
+
         }
     }
 
-    // write login logic here
+    // Login Logic
     const handleSignInSubmit = async (e) => {
         e.preventDefault()
 
@@ -153,10 +153,10 @@ function SignUpForm({ user }) {
         let profileObj = user?.data?.newUser
         let token = user?.data?.tokenId
         try {
-            dispatch({type: 'AUTH', data: { profileObj, token }})
+            dispatch({ type: 'AUTH', data: { profileObj, token } })
             navigate('/')
         } catch (error) {
-            console.log(error)  
+            console.log(error)
         }
 
 
@@ -272,11 +272,11 @@ function SignUpForm({ user }) {
                     What are you waiting for? {isSignIn ? 'Join Now' : 'Login'} </span>
             </header>
             {/* Form */}
-            {errorMsg? <>
+            {errorMsg ? <>
                 <div className="error_message" role="alert">
                     {errorMsg}
                 </div>
-                </>: null
+            </> : null
             }
             <div>
                 <Form onSubmit={isSignIn ? handleSignInSubmit : handleSignUpSubmit} id="signup-form" ref={formElement} className="add_signup_form">
@@ -331,7 +331,7 @@ function SignUpForm({ user }) {
                             <input
                                 type="file"
                                 ref={uploadBtnElement}
-                                onChange={ handleImageContent }
+                                onChange={handleImageContent}
                                 onClick={() => setErrorMsg("")}
                             />
                         </fieldset>
