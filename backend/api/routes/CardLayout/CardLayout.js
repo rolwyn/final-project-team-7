@@ -1,9 +1,11 @@
 import express from 'express';
 import * as CardLayoutController from '../../controllers/CardLayout/CardLayout.js';
+import {verifyJwtToken} from '../../middlewares/jwtAuth.js'
+
 const router=express.Router();
 
 router.route('/createEvent')
-    .post(CardLayoutController.saveEvent);
+    .post(verifyJwtToken, CardLayoutController.saveEvent);
 router.route('/getEvents')
     .get(CardLayoutController.getAllEvents);
 

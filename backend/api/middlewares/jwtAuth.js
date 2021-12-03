@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import config from "../../config/auth.config.js";
+import config from "../../config/config.js";
 import User from "../models/user/user.js";
 
 const setErrorResponse = (message, res) => {
@@ -17,7 +17,7 @@ const setForbiddenErrorResponse = (message, res) => {
 }
 
 
-const verifyJwtToken = async (req, res, next) => {
+export const verifyJwtToken = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1]
     const isOurToken = token.length < 500
@@ -38,5 +38,3 @@ const verifyJwtToken = async (req, res, next) => {
 }
 
 
-
-export default verifyJwtToken;
