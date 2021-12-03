@@ -4,11 +4,11 @@ import './EventCard.scss';
 
 function EventCard(props){
     return (
-        <div className={props.childClassName}>
+        <div className="card">
             {/* {flagIcon} */}
-            {props.eventName}
-            <img className="eventImg" src={props.img} alt="event-pic"/>
-            <article>{props.description}</article>
+            {props.event.eventName}
+            <img className="eventImg" src={props.event.img} alt="event-pic"/>
+            <article>{props.event.description}</article>
             {/* <div className="options">
                 {this.props.heartIcon}
                 {this.props.scheduleIcon}
