@@ -1,42 +1,11 @@
-.cards-container {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: space-evenly;
-  gap: 10px 5px;
-  .card {
-    margin: 2%;
-    height: fit-content;
-    width: 20%;
-    border: blur 1px grey;
-    border-radius: 7%;
-    box-shadow: 0 0 5px 5px rgb(248, 236, 236);
-    padding: 2%;
-    cursor: zoom-in;
-    .flag {
-      float: right;
-      display: none;
-    }
-    .options {
-      margin: 1%;
-      padding: 2%;
-      display: flex;
-      float: right;
-    }
-    //property to expand
-    display: inline-block;
-    vertical-align: middle;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    -moz-osx-font-smoothing: grayscale;
-    transition-duration: 0.3s;
-    transition-property: transform;
-  }
-  //property to expand
-  .card:hover,
-  .card:focus,
-  .card:active {
-    transform: scale(1.1);
-    box-shadow: 0 0 5px 5px rgb(247, 180, 180);
-  }
-  //property to expand ends
+.cards_container {
+	// display: flex;
+	// flex-flow: column wrap;
+	// justify-content: space-evenly;
+	// gap: 10px 5px;
+	display: grid;
+	height: 100%;
+	grid-template-rows: repeat(6, 1fr);
+	grid-template-columns: repeat(5, 1fr);
+	grid-gap: 20px;
 }
