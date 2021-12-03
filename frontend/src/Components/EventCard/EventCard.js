@@ -1,12 +1,13 @@
 import React from 'react';
+import './EventCard.scss';
 
 
 function EventCard(props){
     return (
-        <div className="card">
+        <div className={props.childClassName}>
             {/* {flagIcon} */}
             {props.eventName}
-            <img src={props.img} alt="event-pic"/>
+            <img className="eventImg" src={props.img} alt="event-pic"/>
             <article>{props.description}</article>
             {/* <div className="options">
                 {this.props.heartIcon}
