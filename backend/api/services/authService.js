@@ -26,9 +26,4 @@ export const login = (userName) => {
     }).exec()
     return promise  
 }
-// export const search = ((params = {}) =>{
-//     //const id =  params.id || 1;
-//     const promise = User.find(params).exec();
-//     return promise;
-  
-//   });
+
