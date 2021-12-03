@@ -93,6 +93,8 @@ function SignUpForm({ user }) {
     const [imageurl, setImageurl] = useState("")
     const [password, setPassword] = useState("")
     const [showprofile, setShowProfile] = useState(false)
+    const [showUserError, setShowUserError] = useState(false)
+    const [errorMsg, setErrorMsg] = useState("")
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -122,7 +124,8 @@ function SignUpForm({ user }) {
         formElement.current.validateAll()
         console.log(setImageurl)
         if (chkbuttonElement.current.context._errors.length === 0) {
-            await signup(email, familyname, givenname, username, imageurl, password).then((data) => {
+            try {
+                const data = await signup(email, familyname, givenname, username, imageurl, password)
                 console.log(data)
                 let profileObj = data?.data?.newUser
                 let token = data?.data?.tokenId
@@ -132,7 +135,10 @@ function SignUpForm({ user }) {
                 } catch (error) {
                     console.log(error)
                 }
-            })
+            } catch(e) {
+                setErrorMsg(e.response?.data.message)
+            }
+            
         }
     }
 
@@ -159,6 +165,7 @@ function SignUpForm({ user }) {
     const onChangeValue = (e) => {
         let elementValue = e.target.value
         // setEmail(elementValue)
+        setErrorMsg("")
         switch (e.target.dataset.state) {
             case 'setEmail':
                 setEmail(elementValue)
@@ -193,12 +200,12 @@ function SignUpForm({ user }) {
     }
 
     const handleImageContent = async (base64) => {
-        console.log(base64)
+        // console.log(base64.target)
         if (base64) {
             setImageurl(base64)
-            await setShowProfile(true)
+            setShowProfile(true)
         } else {
-            await setShowProfile(false)
+            setShowProfile(false)
         }
     }
 
@@ -211,6 +218,12 @@ function SignUpForm({ user }) {
                     What are you waiting for? {isSignIn ? 'Join Now' : 'Login'} </span>
             </header>
             {/* Form */}
+            {errorMsg? <>
+                <div className="error_message" role="alert">
+                    {errorMsg}
+                </div>
+                </>: null
+            }
             <div>
                 <Form onSubmit={isSignIn ? handleSignInSubmit : handleSignUpSubmit} id="signup-form" ref={formElement} className="add_signup_form">
                     {!isSignIn ? <><fieldset className="column_fieldset">
@@ -319,6 +332,7 @@ function SignUpForm({ user }) {
                                 Have an account? <button type="button" onClick={authPageSwitch}>Sign In</button>
                             </div>
                     }
+
 
                     <CheckFieldsButton style={{ display: "none" }} ref={chkbuttonElement} />
                 </Form>

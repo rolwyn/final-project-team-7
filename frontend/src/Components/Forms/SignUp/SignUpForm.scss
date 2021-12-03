@@ -7,12 +7,12 @@
     label {
         font-size: 13px;
         font-weight: 500;
-        color: #8b8b8b;
+        color: #8f8f8f;
         position: absolute;
         top: 9px;
         background: white;
         left: 13px;
-        padding: 0px 5px 5px 5px;
+        padding: 0px 5px 0px 5px;
     }
     input {
         padding: 10px;
@@ -35,6 +35,15 @@
     }
 }
 
+.error_message {
+    padding: 20px;
+    border: 1px solid #ef5350;
+    border-radius: 15px;
+    background: #ef5350;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
 .btn_wrapper {
     padding: 10px 0;
     display: flex;
@@ -50,7 +59,7 @@
         background-color: #03a9f4;
         border-color: #03a9f4;
         vertical-align: middle;
-        font-size: 18px;
+        font-size: 13px;
         text-transform: uppercase;
         padding: 10px 25px;
         &:disabled, &[disabled] {
