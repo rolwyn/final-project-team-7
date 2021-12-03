@@ -78,7 +78,11 @@ function CardLayout(){
         <React.Fragment>
         <div className="cards_container">
         {
-            <EventCard events = {eventData} />
+            eventData.map(event=>(
+                <EventCard
+                    key={event.id}
+                    event={event}  
+                />
                 // <div key ={event.id} className="card">
                 //     {flagIcon}
                 //     {event.eventName}
@@ -88,7 +92,9 @@ function CardLayout(){
                 //         {heartIcon}
                 //         {scheduleIcon}
                 //     </div>  
-                // </div>  
+                // </div>
+                
+            ))
         }
         </div>
         </React.Fragment>           
