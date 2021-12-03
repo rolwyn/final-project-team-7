@@ -60,7 +60,19 @@ export const login = async (req, res) => {
         const password = req.body.password
 
         const loginUser = await authService.login(userName)
-        console.log(loginUser)
+
+        let passwordIsValid = bcryptjs.compareSync(
+            password,
+             loginUser.password
+         );
+ 
+         if (!passwordIsValid) {
+ 
+             return res.status(401).send({
+                 token: null,
+                 message: "Invalid Password!"
+             });
+         } 
         let token = jwt.sign({ id: loginUser?._id }, config.secretKey, {
             // 24 hours
             expiresIn: 86400
