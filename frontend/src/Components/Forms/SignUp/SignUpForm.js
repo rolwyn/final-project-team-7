@@ -149,14 +149,14 @@ function SignUpForm({ user }) {
         console.log('Api calling from frontend');
         const user = await login(username, password)
         console.log(user)
-        // let profileObj = data?.data?.newUser
-        // let token = data?.data?.tokenId
-        // try {
-        //     dispatch({type: 'AUTH', data: { profileObj, token }})
-        //     navigate('/')
-        // } catch (error) {
-        //     console.log(error)  
-        // }
+        let profileObj = user?.data?.newUser
+        let token = user?.data?.tokenId
+        try {
+            dispatch({type: 'AUTH', data: { profileObj, token }})
+            navigate('/')
+        } catch (error) {
+            console.log(error)  
+        }
 
 
     }

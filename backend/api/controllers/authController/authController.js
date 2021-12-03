@@ -68,25 +68,19 @@ export const login = async (req, res) => {
             loginUser.password
         );
 
-        if (passwordIsValid) {
-            setErrorResponse("CORRECT Password!" + passwordIsValid + password + password + loginUser+ loginUser.password, res)
-            // return res.status(200).send({
-            //     accessToken: null,
-            //     message: "CORRECT Password!" + password +  loginUser.password
-            // });
-        } else  if (!passwordIsValid){
-            setErrorResponse("WRONG Password!" + passwordIsValid+ password + password + loginUser + loginUser.password, res)
-            // return res.status(401).send({
-            //     accessToken: null,
-            //     message: "Invalid Password!" + password +  loginUser.password
-            // });
-
-        }
+        if (!passwordIsValid) {
+            
+            return res.status(401).send({
+                token: null,
+                message: "Invalid Password!"
+            });
+        } 
 
         let token = jwt.sign({ id: loginUser?._id }, secretKey, {
             // 24 hours
             expiresIn: 86400
         });
+
         setSuccessResponse({ newUser: loginUser, tokenId: token }, res)
 
 

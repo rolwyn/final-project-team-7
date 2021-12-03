@@ -3,7 +3,6 @@ import * as authController from '../../controllers/authController/authController
 import verifySignUpDetails from '../../middlewares/verifySignUpDetails.js'
 
 const router = express.Router();
-
 /**
  * all auth urls will here here
  * get      - get all data

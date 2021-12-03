@@ -77,10 +77,6 @@ const checkExistingUser = (req, res, next) => {
         }
         next();
 
-    
-
-
-
     }
     );
 }
