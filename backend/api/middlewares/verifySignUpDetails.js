@@ -60,7 +60,7 @@ const checkForDuplicateUnameEmail = (req, res, next) => {
 }
 
 
-const checkExistingUser = (req, res) => {
+const checkExistingUser = (req, res, next) => {
     User.findOne({
         userName: req.body.userName
     }).exec((error, user) => {
@@ -72,6 +72,9 @@ const checkExistingUser = (req, res) => {
             setAuthErrorResponse("User doesn't exist! Please Sing-Up!", res)
             return;
         }
+           
+        next();  
+     
         
 }
 );

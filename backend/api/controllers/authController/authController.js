@@ -59,13 +59,14 @@ export const login = async (req, res) => {
         const userName = req.body.userName
         const password = req.body.password
 
-        const loginUser = await authService.login(userName)
+        const loginUser = await authService.login(userName).then()
         console.log(loginUser)
         let token = jwt.sign({ id: loginUser?._id }, config.secretKey, {
             // 24 hours
             expiresIn: 86400
         });
         setSuccessResponse({ newUser: loginUser, tokenId: token }, res)
+
 
     } catch (e) {
         setErrorResponse(e.message , res)
