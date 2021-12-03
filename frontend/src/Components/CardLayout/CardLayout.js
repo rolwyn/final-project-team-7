@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import './CardLayout.scss'
+import EventCard from '../EventCard/EventCard.js'
 //import 
 function CardLayout(){
 
@@ -78,16 +79,24 @@ function CardLayout(){
             <div className="cards-container">
             {
                 eventData.map(event=>(
-                    <div key ={event.id} className="card">
-                        {flagIcon}
-                        {event.eventName}
-                        <img  src={event.img} alt="event-pic"/>
-                        <article>{event.description}</article>
-                        <div className="options">
-                            {heartIcon}
-                            {scheduleIcon}
-                        </div>  
-                    </div>
+                    <EventCard
+                        key={event.id}
+                        id={event.id}
+                        className="card"
+                        eventName={event.eventName}
+                        img={event.img}
+                        description={event.description}     
+                    />
+                    // <div key ={event.id} className="card">
+                    //     {flagIcon}
+                    //     {event.eventName}
+                    //     <img  src={event.img} alt="event-pic"/>
+                    //     <article>{event.description}</article>
+                    //     <div className="options">
+                    //         {heartIcon}
+                    //         {scheduleIcon}
+                    //     </div>  
+                    // </div>
                     
                 ))
             }
