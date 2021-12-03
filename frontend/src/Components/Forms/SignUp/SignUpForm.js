@@ -9,7 +9,7 @@ import Form from "react-validation/build/form"
 import Input from "react-validation/build/input"
 import CheckFieldsButton from "react-validation/build/button"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import FileBase from 'react-file-base64'
+// import FileBase from 'react-file-base64'
 // import jwt from 'jsonwebtoken'
 
 import { isEmail, isStrongPassword, isAlpha } from "validator";
@@ -93,7 +93,7 @@ function SignUpForm({ user }) {
     const [imageurl, setImageurl] = useState("")
     const [password, setPassword] = useState("")
     const [showprofile, setShowProfile] = useState(false)
-    const [showUserError, setShowUserError] = useState(false)
+    // const [showUserError, setShowUserError] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
 
     const navigate = useNavigate()

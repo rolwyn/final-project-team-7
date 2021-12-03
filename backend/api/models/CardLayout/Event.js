@@ -20,18 +20,18 @@ const EventSchema=new Mongoose.Schema({
         type : String,
         required : "Time is a required field"
     },
-    // "creationDate" : {
-    //     type : Date,
-    //     default : new Date()
-    // },
-    // "likeCount" : {
-    //     type : Number,
-    //     default : 0
-    // },
-    // "creator" : {
-    //     type : String,
-    //     required : "User is not logged in"
-    // },
+    "creationDate" : {
+        type : Date,
+        default : new Date()
+    },
+    "likes" : {
+        type : [String],
+        default : []
+    },
+    "creator" : {
+        type : String,
+        required : "User is not logged in"
+    },
     // "tags" : {
     //     type : [String]
     // }

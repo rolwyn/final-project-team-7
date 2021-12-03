@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 //import ReactDOM from 'react-dom';
 import Form from "react-validation/build/form";
 //import Input from "react-validation/build/input";
@@ -17,7 +17,6 @@ const EventCreation=()=>{
 
     //clear all states
     const clearAllFields = async ()=>{
-        console.log("Cleared")
         await setDate("");
         await setDescription("");
         await setImg("");
@@ -73,19 +72,19 @@ const EventCreation=()=>{
                     <h1 className="star"> Create an Event</h1>
                     <div className="formElement">
                         <label> Event Name</label>
-                        <input type="text" name="eventName" id="eventName" onChange={(event)=>change(event, "setEventName")} required/>
+                        <input type="text" name="eventName" value={eventName} id="eventName" onChange={(event)=>change(event, "setEventName")} required/>
                     </div>
                     <div className="formElement">
                         <label> Description</label>
-                        <input type="text" name="desc" id="desc" onChange={(e)=>change(e,"setDescription")} required/>
+                        <input type="text" value={description} name="desc" id="desc" onChange={(e)=>change(e,"setDescription")} required/>
                     </div>
                     <div className="formElement">
                         <label> Date </label>
-                        <input type="date" name="date" id="date" onChange={(e)=>change(e,"setDate")} required/>
+                        <input type="date" value={date} name="date" id="date" onChange={(e)=>change(e,"setDate")} required/>
                     </div>
                     <div className="formElement">
                         <label> Time</label>
-                        <input type="time" name="time" id="time" onChange={(e)=>change(e,"setTime")} required/>
+                        <input type="time" value={time} name="time" id="time" onChange={(e)=>change(e,"setTime")} required/>
                     </div>                 
                     <div className="formElement right">
                         <label> Image </label>

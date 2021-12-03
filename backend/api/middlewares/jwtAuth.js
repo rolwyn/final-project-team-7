@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import config from "../../config/auth.config.js";
+import config from "../../config/config.js";
 import User from "../models/user/user.js";
 
 const setErrorResponse = (message, res) => {
@@ -17,28 +17,24 @@ const setForbiddenErrorResponse = (message, res) => {
 }
 
 
-verifyJwtToken = (req, res, next) => {
-  let token = req.headers["x-access-token"];
-if(!token) {
-  return setForbiddenErrorResponse( "No token provided", res);
-}
+export const verifyJwtToken = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization.split(" ")[1]
+    const isOurToken = token.length < 500
 
-jwt.verify(token.config.secret, (e, decoded)=> {
-  if(e) {
-    return setAuthErrorResponse("Unauthorised", res);
+    let decoded
+
+    if(token && isOurToken) {
+      decoded = jwt.verify(token, config.secretKey)
+      req.userId = decoded?._id
+    } else {
+      decoded = jwt.decode(token)
+      req.userId = decoded?.sub
+    }
+    next()
+  } catch (error) {
+    console.log(error)
   }
-
-  req.userId = decoded.id;
-  next();
-});
-
-
-
 }
 
 
-const authJwt = {
-  verifyJwtToken
-};
-
-export default { authJwt };
