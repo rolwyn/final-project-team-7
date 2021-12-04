@@ -71,3 +71,5 @@ export const createEvent = (eventName, description, img, date, time, name) => {
 export const getEvents = () => baseUrl.get("/api/events/getEvents")
 
 export const likeEvent = (id) => baseUrl.patch(`/api/events/${id}/like`)
+
+export const deleteEvent = (id) => baseUrl.delete(`/api/events/${id}`)

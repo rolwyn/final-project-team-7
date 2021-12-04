@@ -28,3 +28,12 @@ export const likeEvent = (id) => async (dispatch) => {
        console.log(error.message) 
     }
 }
+
+export const deleteEvent = (id) => async (dispatch) => {
+    try{
+        await api.deleteEvent(id)
+        dispatch({ type: 'DELETE', payload: id })
+    } catch (e) {
+        console.log(e)
+    }
+}
