@@ -1,8 +1,14 @@
 import axios from 'axios'
 
-const baseUrl = "http://localhost:4200/"
+const baseUrl = axios.create({baseURL:"http://localhost:4200"})
 
 //this is where you make all your api calls and export them
+
+baseUrl.interceptors.request.use((req) => {
+    if(localStorage.getItem('userProfile')){
+        req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('userProfile')).tokenId}`
+    }
+})
 
 /**
  * Service call for storing new user information in database
@@ -15,7 +21,7 @@ const baseUrl = "http://localhost:4200/"
  * @returns a promise which resolves to a response object or error
  */
 export const signup = (email, familyname, givenname, username, imageurl, password) => {
-    return axios.post(baseUrl + "api/users/signup", {
+    return baseUrl.post("/api/users/signup", {
         email: email,
         familyName: familyname,
         givenName: givenname,
@@ -33,7 +39,7 @@ export const signup = (email, familyname, givenname, username, imageurl, passwor
  */
 
 export const login = (username, password) => {
-    return axios.post(baseUrl + "api/users/login", {
+    return baseUrl.post("/api/users/login", {
         userName: username,
         password: password
     })
@@ -50,7 +56,7 @@ export const login = (username, password) => {
  * @returns a promise which resolves to a response object or error
  */
 export const createEvent = (eventName, description, img, date, time) => {
-    return axios.post(baseUrl + "api/events/createEvent", {
+    return baseUrl.post("/api/events/createEvent", {
         eventName: eventName,
         description: description,
         img: img,
@@ -61,6 +67,6 @@ export const createEvent = (eventName, description, img, date, time) => {
 }
 //service call for getting all the events in the database
 export const getEvents = () => {
-    return axios.get(baseUrl + "api/events/getEvents")
+    return baseUrl.get("/api/events/getEvents")
 
 }
