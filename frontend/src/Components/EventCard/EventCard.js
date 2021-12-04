@@ -1,7 +1,8 @@
 import React from 'react';
 import './EventCard.scss';
 import {likeEvent, deleteEvent} from '../../Actions/events'
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 function EventCard(props){
@@ -32,8 +33,8 @@ function EventCard(props){
             by {props.event.name}
             <img className="eventImg" src={props.event.img} alt="event-pic"/>
             <article>{props.event.description}</article>
-            <button onClick={handleLike}>Like</button>
-            <button onClick={handleEdit}>Edit</button>
+            <button onClick={handleLike}><FontAwesomeIcon icon="heart" /></button>
+            <button onClick={handleEdit}><FontAwesomeIcon icon="faEdit" /></button>
             {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && <button onClick={handleDelete}>Delete</button>}
         </div>
     )

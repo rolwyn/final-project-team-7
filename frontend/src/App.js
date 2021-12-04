@@ -10,10 +10,10 @@ import { useDispatch } from 'react-redux';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faCoffee, faArrowCircleLeft, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit } from '@fortawesome/free-solid-svg-icons'
 import { getEvents } from './Actions/events';
 
-library.add(fab, faCoffee, faArrowCircleLeft, faSpinner)
+library.add(fab, faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit)
 
 function App() {
     const [isSignup, setIsSignup] = useState(false)
