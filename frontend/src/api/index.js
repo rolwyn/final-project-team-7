@@ -56,15 +56,18 @@ export const login = (username, password) => {
  * @param {*} time 
  * @returns a promise which resolves to a response object or error
  */
-export const createEvent = (eventName, description, img, date, time) => {
+export const createEvent = (eventName, description, img, date, time, name) => {
     return baseUrl.post("/api/events/createEvent", {
         eventName: eventName,
         description: description,
         img: img,
         date: date,
-        time: time
+        time: time,
+        name: name
     });
 
 }
 //service call for getting all the events in the database
 export const getEvents = () => baseUrl.get("/api/events/getEvents")
+
+export const likeEvent = (id) => baseUrl.patch(`/api/events/${id}/like`)

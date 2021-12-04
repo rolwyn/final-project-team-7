@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import './CardLayout.scss'
 import EventCard from '../EventCard/EventCard.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
 function CardLayout(){
 
     const eventData = useSelector((state) => state.events)

@@ -10,11 +10,20 @@ export const getEvents = () => async (dispatch) => {
     }
 }
 
-export const createEvent = (eventName, description, img, date, time) => async (dispatch) => {
+export const createEvent = (eventName, description, img, date, time, name) => async (dispatch) => {
     try {
-        const {data} = await api.createEvent(eventName, description, img, date, time)
+        const {data} = await api.createEvent(eventName, description, img, date, time, name)
         dispatch({ type: 'CREATE', payload: data })
 
+    } catch (error) {
+       console.log(error.message) 
+    }
+}
+
+export const likeEvent = (id) => async (dispatch) => {
+    try {
+        const {data} = await api.likeEvent(id)
+        dispatch({ type: 'LIKE', payload: data })
     } catch (error) {
        console.log(error.message) 
     }

@@ -57,6 +57,31 @@ export const getEvent=async (request,response)=>{
         errorHandler(e.message,response);
     }
 };
+
+export const likeEvent = async (req, resp) => {
+    try {
+
+        const { id } = req.params
+        
+        if(!req.userId) return errorHandler("Unauthenticated", resp)
+
+        const event = await CardLayoutService.getEvent(id)
+        const didLike = event.likes.findIndex((id) => id === String(req.userId))
+
+        if(didLike === -1){
+            //Liking the post
+            event.likes.push(req.userId)
+        }else{
+            event.likes = event.likes.filter((id) => id !== String(req.userId))
+        }
+
+        const newEvent = await CardLayoutService.updateEvent(event)
+        setSuccessResponse(newEvent, resp)
+
+    } catch (error) {
+       console.log(error) 
+    }
+}
 // //update the item 
 // export const updateEvent=async (request,response)=>{
 //     try{
