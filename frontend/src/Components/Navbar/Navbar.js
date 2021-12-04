@@ -13,9 +13,11 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
         dispatch({ type: "LOGOUT" })
         navigate('/')
     }
-//need to add logic for create
+    //need to add logic for create
     const addEvent = () => {
-        dispatch({ type: "" })
+        console.log('add event is called');
+        
+        dispatch({ type: "CREATE" })
         navigate('/')
     }
 
@@ -27,8 +29,8 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
 
 
     return (
-        <nav> 
-           
+        <nav>
+
             <button className='navbar-username'>
                 <a href="/">
                     Welcome, {user !== null ? user?.profileObj?.name : 'Guest'}
@@ -40,16 +42,16 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
                 </button> :
                 <div>
                     <button className='addbtn' onClick={addEvent}>
-                        Add
+                    <a href="/">Add</a>
                     </button>
                     <button className='loginbtn' onClick={logout}>
                         Logout
                     </button>
                 </div>
-                
+
             }
-           
-           
+
+
         </nav>
     )
 }

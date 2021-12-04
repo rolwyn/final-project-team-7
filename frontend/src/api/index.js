@@ -74,4 +74,4 @@ export const likeEvent = (id) => baseUrl.patch(`/api/events/${id}/like`)
 
 export const deleteEvent = (id) => baseUrl.delete(`/api/events/${id}`)
 
-export const editEvent = (id) => baseUrl.delete(`/api/events/${id}`)
+export const editEvent = (id) => baseUrl.patch(`/api/events/${id}`)
