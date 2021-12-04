@@ -1,18 +1,40 @@
 #form {
-  box-shadow: 0px 0px 5px 5px grey;
+  box-shadow: 0px 0px 5px 5px rgb(255, 121, 188);
   vertical-align: middle;
   text-align: center;
   padding: 2%;
-  margin: 0% 1%;
+  margin: auto; //0% 1%;
   border: grey;
-  background-color: black;
+  background-image: linear-gradient(
+    to left bottom,
+    #de0651,
+    #ea4376,
+    #f36798,
+    #f987b8,
+    #fda6d4
+  );
   color: white;
   width: fit-content;
   h1 {
-    font-family: helveticaneuew01-55roma;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 24px;
+    letter-spacing: -1.6px;
+    word-spacing: 2px;
+    color: #ffffff;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    margin: 5%;
   }
   button {
     margin: auto;
+    display: block;
+    background-color: #03a9f4;
+    border: white;
+    padding: 2% 5%;
+    border-radius: 5%;
   }
   .closeAdd {
     float: right;
@@ -25,9 +47,12 @@
       margin: 1%;
       color: grey;
     }
-    
+    textarea {
+      color: grey;
+    }
+
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin: 1%;
   }
 }
