@@ -35,7 +35,6 @@ export const saveEvent= async (request,response)=>{
         //shallow clone = ... = clones
         const event={...request.body, creator: request.userId, creationDate: new Date().toISOString()};
         const newEvent= await CardLayoutService.createEvent(event);
-        console.log(newEvent)
         setSuccessResponse(newEvent,response);
     }
     catch(e)
