@@ -3,8 +3,9 @@ $bkg-color: #d6492698;
 
 
 @mixin button-style($color, $bkgcolor) {
+  top: 0;
   padding: 10px;
-  display: block;
+ // display: block;
  // background: black;
   color: $color;
   background-color: $bkgcolor;
@@ -16,7 +17,7 @@ $bkg-color: #d6492698;
   width: max-content;
   height: max-content;
   cursor: pointer;;
-  transition: 0.3s;
+  //transition: 0.3s;
   border-radius: 2;
   
 }
@@ -26,7 +27,7 @@ nav{
   position: fixed;
   display: block;
   background-color: rgba(238, 156, 156, 0.466);
-  height: 55px;
+  height: 70px;
   width: 100%;
   border-radius: 5px;
   color:black;
