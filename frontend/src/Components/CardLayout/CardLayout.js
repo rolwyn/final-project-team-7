@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import './CardLayout.scss'
 import EventCard from '../EventCard/EventCard.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Loader from '../Loader/Loader';
+//import Loader from '../Loader/Loader';
 //import 
 function CardLayout(){
 
