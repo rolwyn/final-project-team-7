@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 //import ReactDOM from 'react-dom';
 import Form from "react-validation/build/form";
 //import Input from "react-validation/build/input";
@@ -14,6 +14,7 @@ const EventCreation=()=>{
     const [date,setDate]=useState("");
     const [time,setTime]=useState("");
     const dispatch = useDispatch()
+    const user = JSON.parse(localStorage.getItem('userProfile'))
 
     //clear all states
     const clearAllFields = async ()=>{
@@ -23,15 +24,22 @@ const EventCreation=()=>{
         await setEventName("");
         await setTime("");
     }
+
+   
     //whenever form is submitted
     const submitForm= async (e)=>{
         e.preventDefault();
         // checkIfNull;
-        console.log(" Submitting");
+        if(!user?.profileObj?.name){
+            clearAllFields();
+            return alert("You have to sign in to make a event")
+            
+        }
         
-        dispatch(createEvent(eventName, description, img, date, time))
+        dispatch(createEvent(eventName, description, img, date, time, user?.profileObj?.name))   
 
         clearAllFields();
+        
     }
     //whenever fields are updated
     const change=(oneElement,property)=>{

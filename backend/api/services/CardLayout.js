@@ -11,9 +11,13 @@ export const searchEvent =(params={})=>{
 };
 
 //takes contact, and saves it
-export const createEvent=(event)=>{
-    const newContact=new Event(event);
-    return newContact.save();//should return a promise, this is of mongoose
+export const createEvent=async (event)=>{
+    try { 
+        const newContact=new Event(event);
+        return newContact.save();//should return a promise, this is of mongoose   
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export const getEvent=(id)=>{

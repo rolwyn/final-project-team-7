@@ -19,14 +19,14 @@ const setForbiddenErrorResponse = (message, res) => {
 
 export const verifyJwtToken = async (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(" ")[1]
+    const token = req.headers.authorization.split(' ')[1]
     const isOurToken = token.length < 500
 
     let decoded
 
     if(token && isOurToken) {
       decoded = jwt.verify(token, config.secretKey)
-      req.userId = decoded?._id
+      req.userId = decoded?.id
     } else {
       decoded = jwt.decode(token)
       req.userId = decoded?.sub

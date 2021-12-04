@@ -11,6 +11,9 @@ const EventSchema=new Mongoose.Schema({
         //defined required : on error it will say the following
         // required : "Add an image, it will look prettier"
     },
+    "name": {
+        type: String
+    },
     "description" : {
         type : String,
         //defined required : on error it will say the following
