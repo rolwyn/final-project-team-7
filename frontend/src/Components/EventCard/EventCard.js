@@ -1,6 +1,6 @@
 import React from 'react';
 import './EventCard.scss';
-import {likeEvent, deleteEvent} from '../../Actions/events'
+import {likeEvent, deleteEvent, editEvent} from '../../Actions/events'
 import { useDispatch } from 'react-redux';
 
 
@@ -18,7 +18,7 @@ function EventCard(props){
     const handleEdit = (e) => {
         e.preventDefault()
         console.log("Edit clicked")
-        dispatch(deleteEvent(props.event.id))
+        dispatch(editEvent(props.event.id))
     }
 
     const handleDelete = (e) => {
