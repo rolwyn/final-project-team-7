@@ -8,7 +8,10 @@ router.route('/createEvent')
     .post(verifyJwtToken, CardLayoutController.saveEvent);
 router.route('/getEvents')
     .get(CardLayoutController.getAllEvents);
-
+router.route('/:id/like')
+    .patch(verifyJwtToken, CardLayoutController.likeEvent)
+router.route('/:id')
+    .delete(verifyJwtToken, CardLayoutController.deleteEvent)
 // router.route('/events/:id')// parameter name nodejs is gonna use
 //     .get(CardLayoutController.getEvent)
 //     .put(CardLayoutController.updateEvent)

@@ -24,6 +24,20 @@ export const getEvent=(id)=>{
     const promise=Event.findById(id).exec();
     return promise;
 }
+
+export const updateEvent = async (event) => {
+    try {
+        const promise = await Event.findByIdAndUpdate(event.id, event, {new: true})
+        return promise
+    }catch (err){
+        console.log(err)
+    }
+}
+
+export const deleteEvent = async (id) => {
+    const promise = await Event.findByIdAndRemove(id).exec()
+    return promise
+}
 // export const update=(contact)=>{
 //     contact._id=contact.id;
 //     const promise=Event.findByIdAndUpdate(contact.id,contact,{new:true}).exec();

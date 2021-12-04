@@ -1,12 +1,13 @@
 //map all the named exports to the below object
 import { response } from "express";
 import Event from "../../models/CardLayout/Event.js";
+import mongoose from "mongoose";
 import * as CardLayoutService from "../../services/CardLayout.js";
 
 
 //Method to handle errors
-const errorHandler = (message,response)=>{
-    response.status(500);
+const errorHandler = (message,response, errCode=500)=>{
+    response.status(errCode);
     response.json({error:message});
 };
 
@@ -57,6 +58,44 @@ export const getEvent=async (request,response)=>{
         errorHandler(e.message,response);
     }
 };
+
+export const likeEvent = async (req, resp) => {
+    try {
+
+        const { id } = req.params
+        
+        if(!req.userId) return errorHandler("Unauthenticated", resp)
+
+        const event = await CardLayoutService.getEvent(id)
+        const didLike = event.likes.findIndex((id) => id === String(req.userId))
+
+        if(didLike === -1){
+            //Liking the post
+            event.likes.push(req.userId)
+        }else{
+            event.likes = event.likes.filter((id) => id !== String(req.userId))
+        }
+
+        const newEvent = await CardLayoutService.updateEvent(event)
+        setSuccessResponse(newEvent, resp)
+
+    } catch (error) {
+       errorHandler(error.message, resp)
+    }
+}
+
+export const deleteEvent = async (req, resp) => {
+    try {
+        const { id } = req.params
+        if(!mongoose.Types.ObjectId.isValid(id)) return errorHandler(`No post with id ${id}`, resp, 404) 
+
+        const event = await CardLayoutService.deleteEvent(id)
+        setSuccessResponse({message: `Deleted post with id ${id}`}, resp)
+
+    } catch (error) {
+       errorHandler(error.message, resp) 
+    }
+}
 // //update the item 
 // export const updateEvent=async (request,response)=>{
 //     try{
