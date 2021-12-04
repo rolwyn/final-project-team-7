@@ -22,7 +22,8 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
 
 
     return (
-        <nav>
+        <nav> 
+           
             <button className='navbar-username'>
                 <a href="/">
                     Welcome, {user !== null ? user?.profileObj?.name : 'Guest'}
@@ -32,10 +33,12 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
                 <button className='loginbtn' onClick={() => setIsSignup(!isSignup)}>
                     <a href="/auth">Login</a>
                 </button> :
-                <button onClick={logout}>
+                <button className='loginbtn'  onClick={logout}>
                     Logout
                 </button>
             }
+           
+           
         </nav>
     )
 }
