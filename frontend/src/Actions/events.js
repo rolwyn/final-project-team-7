@@ -3,7 +3,6 @@ import * as api from '../Api/index'
 export const getEvents = () => async (dispatch) => {
     try {
        const {data} = await api.getEvents()
-       console.log(data)
        dispatch({ type: 'FETCH_ALL', payload: data })
        
     } catch (error) {
