@@ -1,3 +1,25 @@
+$color: white;
+$bkg-color: #d6492698;
+
+
+@mixin button-style($color, $bkgcolor) {
+  padding: 10px;
+  display: block;
+ // background: black;
+  color: $color;
+  background-color: $bkgcolor;
+  border-radius: 10px;
+  float: right;
+  margin-right: 5px;
+  text-align: center;
+  font-size: 24px;
+  width: max-content;
+  height: max-content;
+  cursor: pointer;;
+  transition: 0.3s;
+  border-radius: 2;
+  
+}
 
 nav{
   top: 0;
@@ -9,48 +31,40 @@ nav{
   border-radius: 5px;
   color:black;
   display: flex;
-  justify-content: space-between;
+  //justify-content: space-between;
   align-items: center;
  
 }
 
 /* Style the "Login" button */
 .loginbtn {
-  padding: 10px;
-  display: block;
-  background: black;
-  color: #ffffff;
-  background-color: #d6492698;
-  border-radius: 10px;
-  float: right;
-  margin-right: 5px;
-  text-align: center;
-  font-size: 24px;
-  width: max-content;
-  cursor: pointer;;
-  transition: 0.3s;
-  border-radius: 2;
+@include button-style($color, $bkg-color)
+}
+
+.addbtn{
+  @include button-style(rgba(0, 0, 0, 0.65),white)
 }
 
 .loginbtn:hover {
   background-color: black;
+ 
 }
 
-.addbtn{
-  background: grey;
-  padding: 10px 50px;
-  margin-right: 10px;
-  height: 40px;
+.addbtn:hover{
+  background-color: $bkg-color ;
+  color: $color;
 }
+
+
 
 .navbar-username {
-  padding: 2%;
-  margin: auto;
- font-size: 21px;
- color: #d64926b2;;
+   padding: 2%;
+   margin: auto;
+  font-size: 21px;
+  color: #d64926b2;
  display: flex;
- width: 15%;
- justify-content: flex-end;
+//  width: 1%;
+ justify-content: center;
 
 
 }
