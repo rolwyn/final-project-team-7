@@ -6,8 +6,9 @@ const baseUrl = axios.create({baseURL:"http://localhost:4200"})
 
 baseUrl.interceptors.request.use((req) => {
     if(localStorage.getItem('userProfile')){
-        req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('userProfile')).tokenId}`
+        req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('userProfile')).token}`
     }
+    return req
 })
 
 /**
@@ -66,7 +67,4 @@ export const createEvent = (eventName, description, img, date, time) => {
 
 }
 //service call for getting all the events in the database
-export const getEvents = () => {
-    return baseUrl.get("/api/events/getEvents")
-
-}
+export const getEvents = () => baseUrl.get("/api/events/getEvents")
