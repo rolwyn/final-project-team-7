@@ -29,8 +29,6 @@ function App() {
             <Navbar user={user} setUser={setUser} isSignup={isSignup} setIsSignup={setIsSignup} />
             <Routes>
                 <Route exact path="/auth" element={<SignUp user={user} />} />
-
-
                 <Route exact path="/" element={
                     <>
                         <CardLayout />
