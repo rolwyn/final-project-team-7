@@ -13,6 +13,11 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
         dispatch({ type: "LOGOUT" })
         navigate('/')
     }
+//need to add logic for create
+    const addEvent = () => {
+        dispatch({ type: "" })
+        navigate('/')
+    }
 
     useEffect(() => {
         const token = user?.token
@@ -34,7 +39,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
                     <a href="/auth">Login</a>
                 </button> :
                 <div>
-                    <button className='addbtn' onClick={logout}>
+                    <button className='addbtn' onClick={addEvent}>
                         Add
                     </button>
                     <button className='loginbtn' onClick={logout}>
