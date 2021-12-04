@@ -4,7 +4,7 @@ import './CardLayout.scss'
 import EventCard from '../EventCard/EventCard.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //import Loader from '../Loader/Loader';
-//import 
+
 function CardLayout(){
 
     const eventData = useSelector((state) => state.events)
