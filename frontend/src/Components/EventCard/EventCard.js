@@ -18,6 +18,7 @@ function EventCard(props){
     const handleEdit = (e) => {
         e.preventDefault()
         console.log("Edit clicked")
+        dispatch(deleteEvent(props.event.id))
     }
 
     const handleDelete = (e) => {
