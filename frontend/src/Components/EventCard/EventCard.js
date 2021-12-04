@@ -1,11 +1,12 @@
 import React from 'react';
 import './EventCard.scss';
-import {likeEvent} from '../../Actions/events'
+import {likeEvent, deleteEvent} from '../../Actions/events'
 import { useDispatch } from 'react-redux';
 
 
 function EventCard(props){
     const dispatch = useDispatch()
+    const user = JSON.parse(localStorage.getItem('userProfile'))
 
 
     const handleLike = (e) => {
@@ -21,7 +22,7 @@ function EventCard(props){
 
     const handleDelete = (e) => {
         e.preventDefault()
-        console.log("Delete clicked")
+        dispatch(deleteEvent(props.event.id))
     }
 
     return (
@@ -33,7 +34,7 @@ function EventCard(props){
             <article>{props.event.description}</article>
             <button onClick={handleLike}>Like</button>
             <button onClick={handleEdit}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+            {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && <button onClick={handleDelete}>Delete</button>}
         </div>
     )
 }

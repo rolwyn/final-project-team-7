@@ -22,22 +22,22 @@ function App() {
 
     useEffect(() => {
         dispatch(getEvents())
-    },[dispatch])
+    }, [dispatch])
 
-    return(
+    return (
         <div>
-            <Navbar user={user} setUser={setUser} isSignup={isSignup} setIsSignup={setIsSignup}/>
-                <Routes>
-                <Route exact path="/auth" element={<SignUp user={user}/>}/> 
+            <Navbar user={user} setUser={setUser} isSignup={isSignup} setIsSignup={setIsSignup} />
+            <Routes>
+                <Route exact path="/auth" element={<SignUp user={user} />} />
 
-         
-                        <Route exact path="/" element={
-                                <>
-                                    <CardLayout/>
-                                    <EventCreation/>
-                                </>
-                            }/>
-                </Routes>
+
+                <Route exact path="/" element={
+                    <>
+                        <CardLayout />
+                        <EventCreation />
+                    </>
+                } />
+            </Routes>
         </div>
     )
 }
