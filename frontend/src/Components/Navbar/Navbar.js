@@ -34,7 +34,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
                     <a href="/auth">Login</a>
                 </button> :
                 <div>
-                    <button className='' onClick={logout}>
+                    <button className='addbtn' onClick={logout}>
                         Add
                     </button>
                     <button className='loginbtn' onClick={logout}>
