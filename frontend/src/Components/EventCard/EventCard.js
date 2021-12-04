@@ -1,12 +1,17 @@
 import React from 'react';
 import './EventCard.scss';
+import {likeEvent} from '../../Actions/events'
+import { useDispatch } from 'react-redux';
 
 
 function EventCard(props){
-   
+    const dispatch = useDispatch()
+
+
     const handleLike = (e) => {
         e.preventDefault()
-        console.log("Like clicked")
+        dispatch(likeEvent(props.event.id))
+        
     }
 
     const handleEdit = (e) => {
