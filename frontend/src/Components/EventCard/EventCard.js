@@ -13,7 +13,7 @@ function EventCard(props){
     const handleLike = (e) => {
         e.preventDefault()
         dispatch(likeEvent(props.event.id))
-        
+        console.log(props.event.likes.length)
     }
 
     const handleEdit = (e) => {
@@ -33,8 +33,8 @@ function EventCard(props){
             by {props.event.name}
             <img className="eventImg" src={props.event.img} alt="event-pic"/>
             <article>{props.event.description}</article>
-            <button onClick={handleLike}><FontAwesomeIcon icon="heart" /></button>
-            <button onClick={handleEdit}><FontAwesomeIcon icon="faEdit" /></button>
+            {(user) && <button onClick={handleLike}><FontAwesomeIcon className={props.event.likes.length !== 0 ? "_liked": ''} icon="heart" /></button>}
+            <button onClick={handleEdit}><FontAwesomeIcon icon="edit" /></button>
             {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && <button onClick={handleDelete}>Delete</button>}
         </div>
     )
