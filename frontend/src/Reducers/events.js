@@ -5,6 +5,7 @@ const eventsReducer = (events = [], action) => {
         case FETCH_ALL:
             return action.payload
         case CREATE:
+            console.log(action.payload)
             return [ ...events, action.payload ]
         
         default:
