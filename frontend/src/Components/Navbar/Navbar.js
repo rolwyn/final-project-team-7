@@ -33,9 +33,15 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
                 <button className='loginbtn' onClick={() => setIsSignup(!isSignup)}>
                     <a href="/auth">Login</a>
                 </button> :
-                <button className='loginbtn'  onClick={logout}>
-                    Logout
-                </button>
+                <div>
+                    <button className='' onClick={logout}>
+                        Add
+                    </button>
+                    <button className='loginbtn' onClick={logout}>
+                        Logout
+                    </button>
+                </div>
+                
             }
            
            
