@@ -150,7 +150,8 @@ function SignUpForm({ user }) {
         console.log('Api calling from frontend');
         try {
             const user = await login(username, password)
-            console.log(user)
+           // console.log(user) 
+           console.log('here FE'); 
             let profileObj = user?.data?.newUser
             let token = user?.data?.tokenId
             try {
@@ -161,6 +162,7 @@ function SignUpForm({ user }) {
             }
         } catch (error) {
             console.log(error.response)
+            setErrorMsg(e.response?.data.message)
         }
     }
 
