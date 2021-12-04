@@ -81,7 +81,7 @@ function CardLayout(){
             eventData.map(event=>(
                 <EventCard
                     key={event.id}
-                    event={event}  
+                    event={event}
                 />
             // <div key ={event.id} className="card">
             //     {flagIcon}
