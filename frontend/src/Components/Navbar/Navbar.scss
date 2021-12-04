@@ -1,7 +1,9 @@
+
 nav{
+ margin-top: 30px;
   display: block;
-  background-color: rgba(163, 224, 226, 0.466);
-  height: 60px;
+  background-color: rgba(238, 156, 156, 0.466);
+  height: 55px;
   width: 100%;
   border-radius: 5px;
   color:black;
@@ -13,11 +15,13 @@ nav{
   display: block;
   background: black;
   color: #ffffff;
-  background-color: #03a9f4;
-  border-color: #03a9f4;
-  float: left;
+  background-color: #d6492698;
+  border-radius: 10px;
+  float: right;
+  margin-right: 5px;
   text-align: center;
-  font-size: 18px;
+  font-size: 24px;
+  width: max-content;
   cursor: pointer;;
   transition: 0.3s;
   border-radius: 2;
@@ -25,4 +29,8 @@ nav{
 
 .loginbtn:hover {
   background-color: black;
+}
+
+.navbar-username {
+  
 }

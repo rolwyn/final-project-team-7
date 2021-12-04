@@ -63,12 +63,14 @@ export const login = async (req, res) => {
          );
  
          if (!passwordIsValid) {
- 
+            console.log('Invalid password');
+            
              return res.status(401).send({
                  token: null,
                  message: "Invalid Password!"
              });
-         } 
+         }
+         console.log('here'); 
         let token = jwt.sign({ id: loginUser?._id }, config.secretKey, {
             // 24 hours
             expiresIn: 86400
