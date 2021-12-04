@@ -3,9 +3,9 @@ import { FETCH_ALL, CREATE } from "../Constants/actionTypes"
 const eventsReducer = (events = [], action) => {
     switch(action.type){
         case FETCH_ALL:
-            console.log(action)
             return action.payload
         case CREATE:
+            console.log(action.payload)
             return [ ...events, action.payload ]
         
         default:
