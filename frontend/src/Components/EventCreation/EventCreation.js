@@ -29,6 +29,7 @@ const EventCreation=()=>{
     //whenever form is submitted
     const submitForm= async (e)=>{
         e.preventDefault();
+        console.log(eventName, description, img, date, time, user?.profileObj?.name)
         // checkIfNull;
         if(!user?.profileObj?.name){
             clearAllFields();
