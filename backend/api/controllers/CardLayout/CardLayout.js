@@ -101,7 +101,7 @@ export const updateEvent=async (request,response)=>{
     try{
         //in route called it as id, sets the params.id with whatever the url had as idd
         const id=request.params.id;
-        const event= {...request.body.id};
+        const event= {...request.body};
         const updatedEvent= await CardLayoutService.updateEvent(event);
         setSuccessResponse(updatedEvent, response);
     }catch(e){
