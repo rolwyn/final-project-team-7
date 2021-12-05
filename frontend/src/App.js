@@ -14,6 +14,8 @@ import { faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit } from '@fortaw
 import { getEvents } from './Actions/events';
 //for displaying map
 import Map from './Components/Map/DisplayMap'
+//import for Footer
+import Footer from './Components/Footer/Footer'
 
 library.add(fab, faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit)
 
@@ -38,6 +40,7 @@ function App() {
                         <CardLayout />
                         <EventCreation />
                         <Map />
+                        <Footer/>
                     </>
                 } />
             </Routes>
