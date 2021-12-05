@@ -16,12 +16,16 @@ html {
 // common body styles
 body {
   padding: 0;
-  margin: 0;  
+  margin: 0;
   height: 100%;
 }
 
 // remove default ul style
-ul {list-style: none;}
+ul {
+  list-style: none;
+}
 
 // remove default fieldset style
-fieldset {margin: 0;}
+fieldset {
+  margin: 0;
+}

@@ -44,8 +44,10 @@ function EventCard(props){
                         <span>{props.event.likes.length}</span>
                     </span>
                 }
-                {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && <button onClick={handleDelete}>Delete</button>}
-                <button className="_editIcon" onClick={handleEdit}><FontAwesomeIcon icon="edit" /></button>
+                {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && 
+                    <button className="_editIcon" onClick={handleEdit}><FontAwesomeIcon icon="edit" /></button>}
+                {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && 
+                    <button className="_editIcon" onClick={handleDelete}><FontAwesomeIcon icon="trash" /></button>}
             </div>
             <div className="overlay"></div>
             <img className="eventImg" src={props.event.img} alt="event-pic"/>
