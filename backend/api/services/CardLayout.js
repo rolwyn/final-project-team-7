@@ -27,7 +27,8 @@ export const getEvent=(id)=>{
 
 export const updateEvent = async (event) => {
     try {
-        const promise = await Event.findByIdAndUpdate(event.id, event, {new: true})
+        event._id=event.id;
+        const promise = await Event.findByIdAndUpdate(event.id, event, {new: true}).exec();
         return promise
     }catch (err){
         console.log(err)
