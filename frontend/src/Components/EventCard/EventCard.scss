@@ -1,29 +1,71 @@
 .card {
+    position: relative;
+    border-radius: 30px;
     margin: 2%;
-    height: fit-content;
-    // width: 20%;
-    border: blur 1px grey;
-    border-radius: 7%;
-    box-shadow: 0 0 5px 5px rgb(248, 236, 236);
-    padding: 2%;
-    cursor: grab;
-    &._large {
-        grid-row: span 3;
-        grid-column: span 3;
+    box-shadow: 0 0 5px 0px #f1f1f1;
+    cursor: pointer;
+    max-height: 300px;
+    height: 300px;
+    overflow: hidden;
+    //property to expand
+    display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transition-duration: 0.3s;
+    transition-property: transform;
+    .iconContainer {
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        z-index: 20;
+        button {
+            margin: 0 5px;
+            font-size: 20px;
+        }
     }
-    &._medium {
-        grid-row: span 2;
-        grid-column: span 2;
+    .overlay {
+        height: 100%;
+        border-radius: 30px;
+        background: #000000;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        opacity: 0.3;
+        position: relative;
+        text-align: center;
+        color: white;
+        width: 100%;
     }
-    &._small {
-        grid-row: span 1;
-        grid-column: span 1;
+    .cardContent {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        color: white;
+        font-weight: 800;
+        text-align: center;
+        padding: 50px 0;
+        width: 100%;
+        .eventTitle {
+            font-size: 17px;
+            font-weight: 700;
+            padding: 10px 0;
+        }
+        .eventDesc {
+            font-weight: 500;
+            padding: 0 10px;
+            font-size: 13px;
+        }
     }
     .eventImg {
         width: 100%;
-        height: auto;
-        max-height: 400px;
+        height: 100%;
         object-fit: cover;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        border-radius: 30px;
     }
     .flag {
         float: right;
@@ -35,21 +77,13 @@
         display: flex;
         float: right;
     }
-    //property to expand
-    display: inline-block;
-    vertical-align: middle;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    -moz-osx-font-smoothing: grayscale;
-    transition-duration: 0.3s;
-    transition-property: transform;
     }
     //property to expand
     .card:hover,
     .card:focus,
     .card:active {
     transform: scale(1.1);
-    box-shadow: 0 0 5px 5px rgb(247, 180, 180);
+    // box-shadow: 0 0 5px 5px rgb(247, 180, 180);
 }
 //property to expand ends
 
