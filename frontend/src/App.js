@@ -32,7 +32,7 @@ function App() {
                 <Route exact path="/" element={
                     <>
                         <CardLayout />
-                        <EventCreation />
+                        <EventCreation details/>
                     </>
                 } />
             </Routes>
