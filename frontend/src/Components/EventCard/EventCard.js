@@ -48,7 +48,8 @@ function EventCard(props){
                     <span>{props.event.likes.length}</span>
                 </span>
             }
-            <button onClick={handleEdit}><FontAwesomeIcon icon="edit" /></button>
+            {/* {if(user?.profileObj?.username===props.event.username)} */}
+            {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && <button onClick={handleEdit}><FontAwesomeIcon icon="edit" /></button>}
             {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && <button onClick={handleDelete}>Delete</button>}
         </div>
     )
