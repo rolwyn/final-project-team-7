@@ -1,18 +1,19 @@
 #form {
-  box-shadow: 0px 0px 5px 5px rgb(255, 121, 188);
+  box-shadow: 0px 0px 5px 5px rgb(247, 180, 180);
   vertical-align: middle;
   text-align: center;
   padding: 2%;
   margin: auto; //0% 1%;
   border: grey;
-  background-image: linear-gradient(
-    to left bottom,
-    #de0651,
-    #ea4376,
-    #f36798,
-    #f987b8,
-    #fda6d4
-  );
+  background-color: black;
+  // background-image: linear-gradient(
+  //   to left bottom,
+  //   #ffffffe1,
+  //   #ebc1ce,
+  //   #eca2bc,
+  //   #f3ccdd,
+  //   #fda6d4
+  // );
   color: white;
   width: fit-content;
   h1 {

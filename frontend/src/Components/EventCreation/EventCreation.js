@@ -7,7 +7,7 @@ import {createEvent} from '../../Actions/events';
 import { useDispatch } from 'react-redux';
 import './EventCreation.scss';
 
-const EventCreation=({details})=>{
+const EventCreation=({props})=>{
     const [eventName, setEventName]=useState("");
     const [description, setDescription]= useState("");
     const [img,setImg]=useState("");
@@ -16,6 +16,7 @@ const EventCreation=({details})=>{
     const dispatch = useDispatch()
     const user = JSON.parse(localStorage.getItem('userProfile'))
 
+    console.log(props);
     //clear all states
     const clearAllFields = async ()=>{
         await setDate("");

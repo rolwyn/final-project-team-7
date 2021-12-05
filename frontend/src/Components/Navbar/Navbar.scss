@@ -1,7 +1,9 @@
 $color: white;
 $bkg-color: #d6492698;
 
-
+div{
+  margin-top: 0;
+}
 @mixin button-style($color, $bkgcolor) {
   top: 0;
   padding: 10px;
