@@ -13,7 +13,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit } from '@fortawesome/free-solid-svg-icons'
 import { getEvents } from './Actions/events';
 //for displaying map
-import WrappedMap from './Components/Map/DisplayMap'
+import Map from './Components/Map/DisplayMap'
 
 library.add(fab, faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit)
 
@@ -37,7 +37,7 @@ function App() {
                     <>
                         <CardLayout />
                         <EventCreation />
-                        <WrappedMap googleMapURL={'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places'} loadingElement={<div/>} containerElement={<div/>} mapElement={<div/>}/>
+                        <Map />
                     </>
                 } />
             </Routes>
