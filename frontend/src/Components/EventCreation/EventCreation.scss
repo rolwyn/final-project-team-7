@@ -1,18 +1,26 @@
 #form {
-  box-shadow: 0px 0px 5px 5px rgb(255, 121, 188);
+  box-shadow: 0px 0px 5px 5px #ee9c9c; // rgb(255, 121, 188);
   vertical-align: middle;
   text-align: center;
   padding: 2%;
   margin: auto; //0% 1%;
   border: grey;
+  // background-image: linear-gradient(
+  //   to left bottom,
+  //   #de0651,
+  //   #ea4376,
+  //   #f36798,
+  //   #f987b8,
+  //   #fda6d4
   background-image: linear-gradient(
     to left bottom,
-    #de0651,
-    #ea4376,
-    #f36798,
-    #f987b8,
-    #fda6d4
+    #ee9c9c,
+    #eb8286,
+    #e76771,
+    #e2475e,
+    #db154c
   );
+
   color: white;
   width: fit-content;
   h1 {
@@ -31,7 +39,8 @@
   button {
     margin: auto;
     display: block;
-    background-color: #03a9f4;
+    //background-color: #03a9f4;
+    background-color: #2f2c23;
     border: white;
     padding: 2% 5%;
     border-radius: 5%;
@@ -46,6 +55,9 @@
     input {
       margin: 1%;
       color: grey;
+      [type="file"] {
+        background-color: #2f2c23;
+      }
     }
     textarea {
       color: grey;

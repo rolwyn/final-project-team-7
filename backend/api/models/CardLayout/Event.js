@@ -35,6 +35,10 @@ const EventSchema=new Mongoose.Schema({
         type : String,
         required : "User is not logged in"
     },
+    "date" : {
+        type : String,
+        required : "Date is required"
+    }
     // "tags" : {
     //     type : [String]
     // }
