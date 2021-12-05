@@ -39,7 +39,7 @@ function App() {
                     <>
                         <CardLayout />
                         <EventCreation />
-                        <Map />
+                        {/* <Map /> */}
                         <Footer/>
                     </>
                 } />
