@@ -6,11 +6,13 @@ li {
 footer {
   height: 5%;
   display: block;
-  background-color: #9e0022;
   color: #feebd6;
+  bottom: 100px;
+  width: 100%;
   .wrapper ul {
     display: flex;
     justify-content: space-between;
+    background-color: #9e0022;
   }
   .copyright {
     background-color: #2f2c23;
