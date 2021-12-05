@@ -36,21 +36,30 @@ function EventCard(props){
 
     return (
         <div className="card">
-            {/* {flagIcon} */}
-            {props.event.eventName}<br/>
-            by {props.event.name}
-            <img className="eventImg" src={props.event.img} alt="event-pic"/>
-            <article>{props.event.description}</article>
-            {(user) ? <button onClick={handleLike}><Hearts /></button>
-            :
+            <div className="iconContainer">
+                {(user) ? <button onClick={handleLike}><Hearts /></button>
+                :
                 <span>
-                    <FontAwesomeIcon className="_liked"icon="heart"/>
-                    <span>{props.event.likes.length}</span>
-                </span>
-            }
-            {/* {if(user?.profileObj?.username===props.event.username)} */}
-            {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && <button onClick={handleEdit}><FontAwesomeIcon icon="edit" /></button>}
-            {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && <button onClick={handleDelete}>Delete</button>}
+                        <FontAwesomeIcon className="_liked"icon="heart"/>
+                        <span>{props.event.likes.length}</span>
+                    </span>
+                }
+                {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && 
+                    <button className="_editIcon" onClick={handleEdit}><FontAwesomeIcon icon="edit" /></button>}
+                {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && 
+                    <button className="_editIcon" onClick={handleDelete}><FontAwesomeIcon icon="trash" /></button>}
+            </div>
+            <div className="overlay"></div>
+            <img className="eventImg" src={props.event.img} alt="event-pic"/>
+            {/* {flagIcon} */}
+            <div className="cardContent">
+                <div className="eventTitle">
+                    {props.event.eventName}
+                    <span> by </span>
+                    {props.event.name}
+                </div>
+                <div className="eventDesc">{props.event.description}</div>
+            </div>
         </div>
     )
 }
