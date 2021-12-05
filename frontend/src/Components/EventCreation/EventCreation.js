@@ -93,7 +93,7 @@ const EventCreation=({details})=>{
                     </div>
                     <div className="formElement">
                         <label> Description</label>
-                        <input type="text" value={description} name="desc" id="desc" onChange={(e)=>change(e,"setDescription")} required/>
+                        <textarea type="text" value={description} name="desc" id="desc" onChange={(e)=>change(e,"setDescription")} placeholder="Tell Everyone what your event is about" required/>
                     </div>
                     <div className="formElement">
                         <label> Date </label>
