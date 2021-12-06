@@ -1,46 +1,3 @@
-// $color: white;
-// $bkg-color: #d6492698;
-
-// @mixin button-style($color, $bkgcolor) {
-//   top: 0;
-//   padding: 10px;
-//   // display: block;
-//   // background: black;
-//   color: $color;
-//   background-color: $bkgcolor;
-//   border-radius: 10px;
-//   float: right;
-//   margin-right: 5px;
-//   text-align: center;
-//   font-size: 24px;
-//   width: max-content;
-//   height: max-content;
-//   cursor: pointer;
-//   //transition: 0.3s;
-//   border-radius: 2;
-// }
-
-// /* Style the "Login" button */
-// .loginbtn {
-//   @include button-style($color, $bkg-color);
-// }
-
-// .addbtn {
-//   @include button-style(rgba(0, 0, 0, 0.65), white);
-// }
-
-
-@mixin hover-effect {
-	size: 30px;
-	background-color: white;
-	color: black;
-	transform: scale(1.2);
-	transition:  0.3s;
-	border-radius: 20px;
-  
-}
-
-
 .navbar_nav {
 	top: 0;
 	position: fixed;
@@ -52,7 +9,7 @@
 	align-items: center;
 	z-index: 9999;
 	background-color: #013A6B;
-	background-image: -webkit-linear-gradient(-30deg, #013A6B 60%, #004E95 50%);
+	background-image: -webkit-linear-gradient(-30deg, #013A6B 75%, #004E95 50%);
 	.nav_container {
 		display: flex;
 		align-items: center;
@@ -61,10 +18,18 @@
 			color: #ffffff;
 			font-size: 16px;
 		}
+		.navbtn {
+			svg {
+				margin: -1px 0;
+			}
+		}
+		.navbtn:hover {
+			color: #d1d1d1;
+		}
 	}
 	.brand_logo {
 		.logo{
-			flex: 1;
+			cursor: pointer;
 			font-size: 20px;
 			align-items: center;
 			padding: 0px 25px;
@@ -74,38 +39,6 @@
 		}
 	}
 }
-
-.loginbtn:hover {
-  @include hover-effect 
-}
-
-.addbtn:hover {
-  @include hover-effect 
-}
-
-// .profilebtn {
-//   @include button-style(rgba(0, 0, 0, 0.65), white);}
-
-.profilebtn:hover {
-  @include hover-effect 
-}
-
-// .navbar-username {
-//   padding: 2%;
-//   margin-left: 0;
-//   margin: auto;
-// }
-
-// .navbar-username {
-//   padding: 2%;
-//   margin: auto;
-//   font-size: 21px;
-//   color: #d64926b2;
-//   display: flex;
-//   width: 35%;
-//   text-align: center;
-//   justify-content: center;
-// }
 
 .container {  
   display: flex;  

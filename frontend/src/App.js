@@ -10,14 +10,14 @@ import { useDispatch } from 'react-redux';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit, faTrash, faPlusCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { getEvents } from './Actions/events';
 //for displaying map
 import Map from './Components/Map/DisplayMap'
 //import for Footer
 import Footer from './Components/Footer/Footer'
 
-library.add(fab, faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit, faTrash)
+library.add(fab, faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit, faTrash, faPlusCircle, faSignOutAlt)
 
 function App() {
     const [isSignup, setIsSignup] = useState(false)

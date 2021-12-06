@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Avatar from 'react-avatar';
 import './Navbar.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
     const location = useLocation()
@@ -49,7 +50,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
             <ul className="nav_container">
                 {user?.profileObj === undefined ?
                     <li>
-                    <button className='loginbtn' onClick={() => setIsSignup(!isSignup)}>
+                    <button className='navbtn' onClick={() => setIsSignup(!isSignup)}>
                         <a href="/auth">Login</a>
                     </button>
                     </li> 
@@ -63,9 +64,9 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
                             </Avatar>
                         </button>
                     </li>
-                    <li><button className='addbtn' onClick={addEvent}>Add</button></li>
-                    <li><button className='addbtn'> Home </button> </li>
-                    <li><button className='loginbtn' onClick={logout}>Logout</button></li>
+                    <li><button className='navbtn' onClick={addEvent}><FontAwesomeIcon icon="plus-circle" />&nbsp;Add</button></li>
+
+                    <li><button className='navbtn' onClick={logout}><FontAwesomeIcon icon="sign-out-alt" />&nbsp;Logout</button></li>
                     </>
                 }
             </ul>
