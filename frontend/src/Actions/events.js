@@ -37,12 +37,3 @@ export const deleteEvent = (id) => async (dispatch) => {
         console.log(e)
     }
 }
-
-export const editEvent = (id) => async (dispatch) => {
-    try{
-        await api.editEvent(id)
-        dispatch({ type: 'EDIT', payload: id })
-    } catch (e) {
-        console.log(e)
-    }
-}

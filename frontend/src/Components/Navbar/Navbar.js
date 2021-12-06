@@ -1,14 +1,7 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './Navbar.scss';
-import EventCreation from '../EventCreation/EventCreation.js'
-// import { Transition } from "@headlessui/react";
-// import { Disclosure, Menu } from '@headlessui/react'
-// import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-
-
-
 
 const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
   const location = useLocation()
