@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Avatar from 'react-avatar';
 import './Navbar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import '../../Utils/Design-Tokens/CommonScssUtil.scss'
 
 const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
     const location = useLocation()
@@ -50,10 +51,10 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
             <ul className="nav_container">
                 {user?.profileObj === undefined ?
                     <li>
-                    <button className='navbtn' onClick={() => setIsSignup(!isSignup)}>
-                        <a href="/auth">Login</a>
-                    </button>
-                    </li> 
+                        <button className='navbtn' onClick={() => setIsSignup(!isSignup)}>
+                            <a href="/auth">Login</a>
+                        </button>
+                    </li>
                     :
                     <>
                     <li> 
