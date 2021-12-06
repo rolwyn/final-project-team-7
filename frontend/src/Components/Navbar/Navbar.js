@@ -38,16 +38,11 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
         navigate('/')
     }
 
-  //const profileImg = user.imageurl;
-  //console.log(user.profileObj, typeof user.profileObj);
-  //console.log(user.profileObj.imageUrl);
-
-
 
 
   return (
     <header>
-        <nav class="navbar_nav">
+        <nav className="navbar_nav">
             <div className="brand_logo" onClick={() => dispatch({ type: "ISNOTSIGNIN" })}>
                 <div className='logo'><img alt="brandlogo" src="assets/images/logo.png"></img></div>
             </div>
@@ -62,8 +57,10 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
                     <>
                     <li> 
                         <button>
-                            <Avatar src={user?.profileObj.imageUrl} type="image" className='rounded-full flex items-center flex-shrink-0 profilebtn' size="50" round={true} onClick={() => dispatch({ type: "ISSIGNIN" })}
-                            />
+                            <Avatar className='rounded-full flex items-center flex-shrink-0 profilebtn' size="50" round={true} alt={user?.profileObj.name.charAt(0)} 
+                                src={user?.profileObj?.imageUrl} name={user.profileObj.givenName + " " + user.profileObj.familyName} maxInitials={2} 
+                                type="button" onClick={() => dispatch({ type: "ISSIGNIN" })}>
+                            </Avatar>
                         </button>
                     </li>
                     <li><button className='addbtn' onClick={addEvent}>Add</button></li>
