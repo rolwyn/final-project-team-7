@@ -15,17 +15,6 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-
-  // const logout = () => {
-  //   dispatch({ type: "LOGOUT" })
-  //   navigate('/')
-  // }
-  // //need to add logic for create
-  // const addEvent = () => {
-  //   console.log('add event is called');
-  //   dispatch({ type: "CREATE" })
-  //   navigate('/')
-  // }
   useEffect(() => {
     const token = user?.token
     setUser(JSON.parse(localStorage.getItem('userProfile')))
