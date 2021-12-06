@@ -39,7 +39,10 @@ function EventCard(props){
     return (
         <div className="card">
             <div className="iconContainer">
-                <button disabled={!user?.profileObj} onClick={handleLike}><Hearts /></button>
+                <span>
+                    <span className="like-counter">{props.event.likes.length}</span>
+                    <button disabled={!user?.profileObj} onClick={handleLike}><Hearts /></button>
+                </span>
                 {/* :
                 <span>
                         <FontAwesomeIcon className="_liked"icon="heart"/>
