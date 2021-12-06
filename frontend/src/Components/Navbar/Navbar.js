@@ -19,7 +19,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
   const logout = () => {
     dispatch({ type: "LOGOUT" })
     navigate('/')
-    // return "/"
+
 
 
   }
@@ -48,17 +48,15 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
   const navigation = [
     { name: 'Hi ' + (userName !== undefined ? userName : 'Guest') },
     { name: 'Dashboard', href: '/', current: true },
-    { name: 'Login', href: '/auth', current: false, onclick: true },
+   // { name: 'Login', href: '/auth', current: false, onclick: true },
   ]
   const loggedInNavigation = [
-
+    { name: 'Hi ' + (userName !== undefined ? userName : 'Guest') },
     { name: 'Dashboard', href: '/', current: true },
     { name: 'My Events', href: '#', current: false },
     { name: 'Create', href: '#', current: false },
     { name: 'Calendar', href: '#', current: false },
-    {
-      name: 'Logout', current: false, onclick: true
-    },
+    // { name: 'Logout', href: '/', current: false},
     // { name: 'Reports', href: '#', current: false },
   ]
 
@@ -79,21 +77,21 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
 
 
         <div className="min-h-full">
-       
+
           <Disclosure as="nav" className="bg-gray-800">
             {({ open }) => (
               <>
-               <div className="flex-shrink-0">
-                        <span className="h-8 w-8 m-8px text-gray-300">
-                          Events Tracker
-                        </span>
-                      </div>
+                <div className="flex-shrink-0 ">
+                  <span className="h-8 ml-2 text-gray-300">
+                    Events Tracker
+                  </span>
+                </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-               
+
                   <div className="flex items-center justify-between h-16">
-             
+
                     <div className="flex items-center">
-                     
+
                       <div className="hidden md:block">
                         <div className="ml-10 flex items-baseline space-x-4">
                           {user?.profileObj === undefined ? <div>
@@ -108,13 +106,19 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
                                   'px-3 py-2 rounded-md text-sm font-medium'
                                 )}
                                 aria-current={item.current ? 'page' : undefined}
-                                onClick={item.onclick ?
-                                  !setIsSignup() : null
-                                }
                               >
                                 {item.name}
                               </a>
                             ))}
+                            <button
+                              type="button"
+                              className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                              onClick={() => setIsSignup(!isSignup)}
+
+                            >
+                              <a href="/auth" className=""> Login</a>
+                              {/* <BellIcon className="h-6 w-6" aria-hidden="true" /> */}
+                            </button>
                           </div>
                             : <div>
                               {loggedInNavigation.map((item) => (
@@ -128,24 +132,33 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
                                     'px-3 py-2 rounded-md text-sm font-medium'
                                   )}
                                   aria-current={item.current ? 'page' : undefined}
-                                  onClick={item.onclick ? logout() : null}
+                                 
                                 >
                                   {item.name}
                                 </a>
+                                
                               ))}
+                                <button
+                              type="button"
+                              className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                              onClick={logout}
+                            >
+                               Logout
+                              {/* <BellIcon className="h-6 w-6" aria-hidden="true" /> */}
+                            </button>
                             </div>
 
                           }
                         </div>
                       </div>
 
-                      <button
+                      {/* <button
                         type="button"
                         className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                       >
                         <span className="sr-only"> login</span>
                         <BellIcon className="h-6 w-6" aria-hidden="true" />
-                      </button>
+                      </button> */}
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-4 flex items-center md:ml-6">
@@ -156,7 +169,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
                           <div>
                             <Menu.Button className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                               {/* <span className="sr-only">Open user menu</span>
-                              <img className="h-8 w-8 rounded-full" src={} alt="" />  */}
+                              <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="img" />   */}
                             </Menu.Button>
                           </div>
                           <Transition
@@ -224,10 +237,10 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
                   <div className="pt-4 pb-3 border-t border-gray-700">
                     <div className="flex items-center px-5">
                       <div className="flex-shrink-0">
-                        {/* <img className="h-10 w-10 rounded-full" src={} alt="" /> */}
+                        {/* <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="img" /> */}
                       </div>
                       <div className="ml-3">
-                        <div className="text-base font-medium leading-none text-white">{user?.profileObj?.name}</div>
+                        <div className="text-base font-medium leading-none text-white">{userName}</div>
                         {/* <div className="text-sm font-medium leading-none text-gray-400">{user.email}</div> */}
                       </div>
                       <button
