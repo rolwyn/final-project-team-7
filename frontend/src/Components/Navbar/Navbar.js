@@ -63,7 +63,6 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
               <li><button className='addbtn' onClick={()=>{
                   dispatch({ type: "ISADD" })
                     openModal()
-            
             }}>Add</button></li>
               <li> <button className='addbtn' onClick={() => dispatch({ type: "ISNOTSIGNIN" })}> Home </button> </li>
               <li><button className='loginbtn' onClick={logout}>Logout

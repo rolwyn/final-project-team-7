@@ -30,6 +30,7 @@ function CardLayout({isSignup, isAddModal, openModal}){
                 <EventCard openModal={openModal}
                     key={event.id}
                     event={event}
+                    
                 />
             
             ))

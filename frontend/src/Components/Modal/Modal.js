@@ -15,6 +15,7 @@ export default function Modal({showModal,openModal,isAddModal, setShowModal} ){
                 {/* {console.log("EditModal true") : */}
                 {isAddModal?<EventCreation></EventCreation>:
                     <h1>Edit modal</h1>
+                    
                 }
                 
             </div>
