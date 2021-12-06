@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import Avatar from 'react-avatar';
 import './Navbar.scss';
 
 const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
@@ -38,33 +39,45 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
   }
 
   //const profileImg = user.imageurl;
+  //console.log(user.profileObj, typeof user.profileObj);
+  //console.log(user.profileObj.imageUrl);
+
+
 
 
   return (
     <nav>
+      <div>
+        <ul className='container'>
+          <li className='logo'>Events Tracker</li>
+        
 
-      <button className='navbar-username'>
-        <div onClick={() => dispatch({ type: "ISNOTSIGNIN" })}>
-          Welcome, {user !== null ? user?.profileObj?.name : 'Guest'}
-        </div>
-      </button>
-      {user?.profileObj === undefined ?
-        <button className='loginbtn' onClick={() => setIsSignup(!isSignup)}>
-          <a href="/auth">Login</a>
-        </button> :
-        <div>
-          <button className='profilebtn' type="button" onClick={() => dispatch({ type: "ISSIGNIN" })}>
-            profile
-          </button>
-          <button className='addbtn' onClick={addEvent}>
-            Add
-          </button>
-          <button className='loginbtn' onClick={logout}>
-            Logout
-          </button>
-        </div>
-
-      }
+          {user?.profileObj === undefined ?
+            <li> 
+              <button className='loginbtn' onClick={() => setIsSignup(!isSignup)}>
+                <a href="/auth">Login</a>
+              </button>
+             </li> :
+            
+            <div>
+              <li> <button>
+              <Avatar className='rounded-full flex items-center flex-shrink-0 profilebtn' size="60" round={true} name={user.profileObj.givenName + " " + user.profileObj.familyName} maxInitials={2} type="button" onClick={() => dispatch({ type: "ISSIGNIN" })}
+              />
+                </button></li>
+              <li>
+                 <button className='addbtn' onClick={addEvent}>
+                Add
+              </button></li>
+              <li> <button className='addbtn' onClick={() => dispatch({ type: "ISNOTSIGNIN" })}> Home </button> </li>
+              <li>
+                <button className='loginbtn' onClick={logout}>
+                  Logout
+                </button>
+              </li>
+            </div>
+          }
+        </ul>
+      </div>
     </nav>
   )
 }
