@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './Navbar.scss';
 
-const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
+const Navbar = ({ user, setUser, isSignup, setIsSignup,  openModal }) => {
   const location = useLocation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -33,6 +33,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
   }
   //need to add logic for create
   const addEvent = () => {
+    // setShowModal(true)
     dispatch({ type: "" })
     navigate('/')
   }
@@ -42,7 +43,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
 
   return (
     <nav>
-
+        
       <button className='navbar-username'>
         <div onClick={() => dispatch({ type: "ISNOTSIGNIN" })}>
           Welcome, {user !== null ? user?.profileObj?.name : 'Guest'}
@@ -56,7 +57,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
           <button className='profilebtn' type="button" onClick={() => dispatch({ type: "ISSIGNIN" })}>
             profile
           </button>
-          <button className='addbtn' onClick={addEvent}>
+          <button className='addbtn' onClick={()=>openModal()}>
             Add
           </button>
           <button className='loginbtn' onClick={logout}>
