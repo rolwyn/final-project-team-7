@@ -6,4 +6,5 @@ export const CREATE = "CREATE"
 export const LIKE = "LIKE"
 export const DELETE = "DELETE"
 
-export const ISSIGNIN = "MYEVENTS"
+export const ISSIGNIN = "ISSIGNIN"
+export const ISNOTSIGNIN = "ISNOTSIGNIN"
