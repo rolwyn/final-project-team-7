@@ -267,10 +267,9 @@ function SignUpForm({ user }) {
         }
     }
 
-    console.log(process.env.REACT_APP_CLIENT_ID)
 
     return (
-        <div className="content_wrapper col-span-3 px-5 py-10">
+        <div className="content_wrapper col-span-3 px-5 py-10 ">
             {/* Title */}
             <header className="content_title mb-5">
                 <h2 className="text-4xl mb-2">{isSignIn ? 'Login' : 'Create an account'} to get started</h2>
@@ -381,7 +380,7 @@ function SignUpForm({ user }) {
                         <button id="create-user" type="submit">{isSignIn ? 'Sign In' : 'Sign Up'}</button>
                         <span className="_orSeparator mx-3">- OR -</span>
                         <GoogleLogin
-                            clientId="168488668480-hmla08j8tjo5dfq1571gfil3r0n36qig.apps.googleusercontent.com"
+                            clientId={process.env.REACT_APP_CLIENT_ID}
                             className="googleLogin"
                             buttonText="Login with Google"
                             onSuccess={handleSuccess}
