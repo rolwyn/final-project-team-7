@@ -8,7 +8,6 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-
     const logout = () => {
         dispatch({ type: "LOGOUT" })
         navigate('/')
@@ -18,6 +17,13 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
         dispatch({ type: "" })
         navigate('/')
     }
+
+    // const loadUserEvents = () => {
+    //     dispatch({type: "ISNOTSIGNIN"})
+    //     console.log(issignin)
+    //     console.log("reached here")
+        
+    // }
 
     useEffect(() => {
         const token = user?.token
@@ -30,15 +36,16 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
         <nav> 
            
             <button className='navbar-username'>
-                <a href="/">
+                <div onClick={() => dispatch({type: "ISNOTSIGNIN"})}>
                     Welcome, {user !== null ? user?.profileObj?.name : 'Guest'}
-                </a>
+                </div>
             </button>
             {user?.profileObj === undefined ?
                 <button className='loginbtn' onClick={() => setIsSignup(!isSignup)}>
                     <a href="/auth">Login</a>
                 </button> :
                 <div>
+                    <button type="button" onClick={() => dispatch({type: "ISSIGNIN"})}>hello</button>
                     <button className='addbtn' onClick={addEvent}>
                         Add
                     </button>
