@@ -36,6 +36,11 @@ function EventCard(props){
         dispatch(deleteEvent(props.event.id))
     }
 
+    const handleSchedule = (e) => {
+        e.preventDefault()
+        console.log("Scheduled", props.event.id)
+    }
+
     return (
         <div className="card">
             <div className="iconContainer">
@@ -49,6 +54,8 @@ function EventCard(props){
                         <span>{props.event.likes.length}</span>
                     </span>
                 } */}
+                
+                <button className="_editIcon" onClick={handleSchedule}>Schedule</button>
                 {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && 
                     <button className="_editIcon" onClick={handleEdit}><FontAwesomeIcon icon="edit" /></button>}
                 {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && 
