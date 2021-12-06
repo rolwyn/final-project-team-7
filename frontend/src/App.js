@@ -16,6 +16,8 @@ import { getEvents } from './Actions/events';
 import Map from './Components/Map/DisplayMap'
 //import for Footer
 import Footer from './Components/Footer/Footer'
+//import for PopUP
+import PopUp from './Components/Navbar/PopUp'
 
 library.add(fab, faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit, faTrash)
 

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import EventCreation  from '../EventCreation/EventCreation';
 import './PopUp.scss';
 
-function PopUp(){
+export default function PopUp(){
     const [showModal, setShowModal]= useState(false);
 
     const openModal=()=>{
@@ -10,12 +10,12 @@ function PopUp(){
     }
     return (
         <>
-        <Container>
+        <div>
             {/* <ModelWrapper showModal={showModal}> */}
             <button onClick={openModal}>Add</button>
             <EventCreation showModal={showModal} setShowModal={setShowModal}></EventCreation>
             {/* </ModelWrapper> */}
-        </Container>
+        </div>
         </>
     );
 }
