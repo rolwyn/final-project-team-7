@@ -38,7 +38,8 @@ function App() {
                 <Route exact path="/" element={
                     <>
                         <CardLayout />
-                        <EventCreation />
+                        <PopUp/>
+                        {/* <EventCreation /> */}
                         {/* <Map /> */}
                         <Footer/>
                     </>
