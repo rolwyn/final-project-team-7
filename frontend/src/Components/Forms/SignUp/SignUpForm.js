@@ -115,7 +115,7 @@ function SignUpForm({ user }) {
         }
     }
 
-    const handleFailure = (error) => {
+    const handleFailure = async (error) => {
         console.log(error)
     }
 
@@ -267,6 +267,8 @@ function SignUpForm({ user }) {
         }
     }
 
+    console.log(process.env.REACT_APP_CLIENT_ID)
+
     return (
         <div className="content_wrapper col-span-3 px-5 py-10">
             {/* Title */}
@@ -379,7 +381,7 @@ function SignUpForm({ user }) {
                         <button id="create-user" type="submit">{isSignIn ? 'Sign In' : 'Sign Up'}</button>
                         <span className="_orSeparator mx-3">- OR -</span>
                         <GoogleLogin
-                            clientId={process.env.REACT_APP_CLIENT_ID}
+                            clientId="168488668480-hmla08j8tjo5dfq1571gfil3r0n36qig.apps.googleusercontent.com"
                             className="googleLogin"
                             buttonText="Login with Google"
                             onSuccess={handleSuccess}

@@ -14,7 +14,7 @@ function EventCard(props){
         if(props.event.likes.length > 0){
             return props.event.likes.find((like) => like === (user?.result?.googleId || user?.result?._id)) ? 
             (<><FontAwesomeIcon className='_liked' icon="heart" /></>) : 
-            (<><FontAwesomeIcon className='_liked' icon="heart" /></>)
+            (<><FontAwesomeIcon icon="heart" /></>)
         } 
         return (<><FontAwesomeIcon icon="heart" /></>)
     }
