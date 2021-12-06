@@ -17,7 +17,7 @@ import Map from './Components/Map/DisplayMap'
 //import for Footer
 import Footer from './Components/Footer/Footer'
 //import for PopUP
-import PopUp from './Components/Navbar/PopUp'
+//import PopUp from './Components/Navbar/PopUp'
 import Modal from './Components/Modal/Modal.js'
 
 library.add(fab, faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit, faTrash)
@@ -28,8 +28,9 @@ function App() {
     const dispatch = useDispatch()
 
     const [showModal, setShowModal]= useState(false);
-    // const [buttonClicked, setButtonClicked]=useState("");
-    const openModal=(callFrom)=>{
+    //Setting button clicked true in case Add Event is clicked.
+    const [buttonClicked, setButtonClicked]=useState(false);
+    const openModal=()=>{
         // if(callFrom==="add")
         // {
         //     setButtonClicked("add");
@@ -42,6 +43,7 @@ function App() {
         //     setButtonClicked("");
         // }
         // console.log("i am in modal")
+        
         setShowModal(prevModal=>!prevModal);
         
 
@@ -55,16 +57,16 @@ function App() {
     return (
         <div>
             {/* {showModal? <Modal openModal={openModal} buttonClicked={buttonClicked}/>: null} */}
-            {showModal? <Modal openModal={openModal} />: null}
+            {showModal? <Modal openModal={openModal} buttonClicked={buttonClicked} />: null}
             
-            <Navbar user={user} setUser={setUser}  showModal={showModal}  openModal={openModal}isSignup={isSignup} setIsSignup={setIsSignup} />
+            <Navbar user={user} setUser={setUser}  showModal={showModal}  openModal={openModal} setButtonClicked={setButtonClicked} isSignup={isSignup} setIsSignup={setIsSignup} />
             <Routes>
                 <Route exact path="/auth" element={<SignUp user={user} />} />
         
 
                 <Route exact path="/" element={
                     <>
-                        <CardLayout openModal={openModal}/>
+                        <CardLayout openModal={openModal} setButtonClicked={setButtonClicked}/>
                         
                         {/* <EventCreation /> */}
                         {/* <Map /> */}

@@ -3,7 +3,7 @@ import EventCreation  from '../EventCreation/EventCreation';
 import './Modal.scss'
 
 
-export default function PopUp({showModal,setShowModal,buttonClicked} ){
+export default function Modal({showModal,setShowModal,buttonClicked} ){
     // const [renderEventEditOrAdd, setRender]=useState();
     // if(buttonClicked==="add")
     // {
@@ -16,15 +16,15 @@ export default function PopUp({showModal,setShowModal,buttonClicked} ){
 
     return (
 
-        <div class="modal_fade">
+        <div className="modal_fade">
        
-            <div class="modal-body">
+            <div className="modal-body">
                 jadbhajsdbjha
                 
-                {/* {renderEventEditOrAdd?<EventCreation showModal={showModal} setShowModal={setShowModal}></EventCreation>: null} */}
+                {buttonClicked?<EventCreation showModal={showModal} setShowModal={setShowModal}></EventCreation>: console.log("Button clicked is false")}
                 
             </div>
-            <div class="modal-close">
+            <div className="modal-close">
                      <img src="assets/images/close.png"/>
             </div>
             

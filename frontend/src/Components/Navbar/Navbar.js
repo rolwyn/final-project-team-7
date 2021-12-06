@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './Navbar.scss';
 
-const Navbar = ({ user, setUser, isSignup, setIsSignup,  openModal }) => {
+const Navbar = ({ user, setUser, isSignup, setIsSignup,  setButtonClicked, openModal }) => {
   const location = useLocation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -58,7 +58,10 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup,  openModal }) => {
             profile
           </button>
           {/* <button className='addbtn' onClick={()=>openModal("add")}> */}
-          <button className='addbtn' onClick={()=>openModal()}>
+          <button className='addbtn' onClick={()=>{
+              openModal()
+              setButtonClicked(true);
+            }}>
             Add
           </button>
           <button className='loginbtn' onClick={logout}>
