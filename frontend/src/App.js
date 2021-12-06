@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { Route, Routes } from "react-router-dom";
 import SignUp from './Views/SignUp/SignUp';
@@ -30,25 +31,18 @@ function App() {
     const [showModal, setShowModal]= useState(false);
     //Setting button clicked true in case Add Event is clicked.
     const [buttonClicked, setButtonClicked]=useState(false);
+    const isAddModal = useSelector((state) => state.modal)
+
     const openModal=()=>{
-        // if(callFrom==="add")
-        // {
-        //     setButtonClicked("add");
-        // }
-        // else if (callFrom==="edit")
-        // {
-        //     setButtonClicked("edit");
-        // }
-        // else{
-        //     setButtonClicked("");
-        // }
-        // console.log("i am in modal")
-        
         setShowModal(prevModal=>!prevModal);
-        
 
     }
 
+
+    useEffect(() => {
+    },[isAddModal]);
+
+    
     useEffect(() => {
         dispatch(getEvents())
     }, [dispatch])
@@ -57,7 +51,7 @@ function App() {
     return (
         <div>
             {/* {showModal? <Modal openModal={openModal} buttonClicked={buttonClicked}/>: null} */}
-            {showModal? <Modal openModal={openModal} buttonClicked={buttonClicked} />: null}
+            {showModal? <Modal openModal={openModal} isAddModal={isAddModal} setShowModal={setShowModal}/>: null}
             
             <Navbar user={user} setUser={setUser}  showModal={showModal}  openModal={openModal} setButtonClicked={setButtonClicked} isSignup={isSignup} setIsSignup={setIsSignup} />
             <Routes>
@@ -66,7 +60,7 @@ function App() {
 
                 <Route exact path="/" element={
                     <>
-                        <CardLayout openModal={openModal} setButtonClicked={setButtonClicked}/>
+                        <CardLayout openModal={openModal} />
                         
                         {/* <EventCreation /> */}
                         {/* <Map /> */}

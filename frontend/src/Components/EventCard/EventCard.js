@@ -4,7 +4,7 @@ import {likeEvent, deleteEvent} from '../../Actions/events'
 import { useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-function EventCard(props){
+function EventCard(props, {openModal}){
     const dispatch = useDispatch()
     const user = JSON.parse(localStorage.getItem('userProfile'))
     // const [isEventLiked, setIsEventLiked] = useState(isLiked(props, user))
@@ -26,8 +26,10 @@ function EventCard(props){
         dispatch(likeEvent(props.event.id))
     }
 
+    // onClick={handleEdit}
     const handleEdit = (e) => {
         e.preventDefault()
+        
         console.log("Edit clicked")
     }
 
@@ -50,7 +52,12 @@ function EventCard(props){
                     </span>
                 } */}
                 {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && 
-                    <button className="_editIcon" onClick={handleEdit}><FontAwesomeIcon icon="edit" /></button>}
+                    <button className="_editIcon" onClick={()=>{
+                        dispatch({ type: "ISEDIT" })
+                        openModal()
+                  }}
+                     >
+                    <FontAwesomeIcon icon="edit" /></button>}
                 {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && 
                     <button className="_editIcon" onClick={handleDelete}><FontAwesomeIcon icon="trash" /></button>}
             </div>

@@ -3,17 +3,8 @@ import EventCreation  from '../EventCreation/EventCreation';
 import './Modal.scss'
 
 
-export default function Modal({showModal,setShowModal,buttonClicked} ){
-    // const [renderEventEditOrAdd, setRender]=useState();
-    // if(buttonClicked==="add")
-    // {
-    //     setRender(true)
-    // }
-    // else 
-    // {
-    //     setRender(false)
-    // }
-
+export default function Modal({showModal,openModal,isAddModal, setShowModal} ){
+    
     return (
 
         <div className="modal_fade">
@@ -21,11 +12,15 @@ export default function Modal({showModal,setShowModal,buttonClicked} ){
             <div className="modal-body">
                 jadbhajsdbjha
                 
-                {buttonClicked?<EventCreation showModal={showModal} setShowModal={setShowModal}></EventCreation>: console.log("Button clicked is false")}
+                {/* {console.log("EditModal true") : */}
+                {isAddModal?<EventCreation></EventCreation>:
+                    <h1>Edit modal</h1>
+                }
                 
             </div>
-            <div className="modal-close">
-                     <img src="assets/images/close.png"/>
+            {/* onClick={setShowModal(false)} */}
+            <div className="modal-close" >
+                <img src="assets/images/close.png"/>
             </div>
             
           

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import './CardLayout.scss'
 import EventCard from '../EventCard/EventCard.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-function CardLayout({isSignup}){
+function CardLayout({isSignup, isAddModal, openModal}){
 
     const eventData = useSelector((state) => state.events)
     const isNotHomePage = useSelector((state) => state.profile)
@@ -27,7 +27,7 @@ function CardLayout({isSignup}){
             <div className="cards_container">    
         { 
             eventData.filter((event) => event.creator === user?.profileObj?._id || event.creator === user?.profileObj?.googleId).map(event=>(
-                <EventCard
+                <EventCard openModal={openModal}
                     key={event.id}
                     event={event}
                 />
@@ -42,6 +42,7 @@ function CardLayout({isSignup}){
         { 
             eventData.map(event=>(
                 <EventCard
+                    openModal={openModal}
                     key={event.id}
                     event={event}
                 />

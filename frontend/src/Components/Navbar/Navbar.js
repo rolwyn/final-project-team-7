@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Avatar from 'react-avatar';
 import './Navbar.scss';
 
-const Navbar = ({ user, setUser, isSignup, setIsSignup,  setButtonClicked, openModal }) => {
+const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
   const location = useLocation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -61,9 +61,10 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup,  setButtonClicked, openM
                 </Avatar>
               </button></li>
               <li><button className='addbtn' onClick={()=>{
-              openModal()
-              setButtonClicked(true);
-            }}></button></li>
+                  dispatch({ type: "ISADD" })
+                    openModal()
+            
+            }}>Add</button></li>
               <li> <button className='addbtn' onClick={() => dispatch({ type: "ISNOTSIGNIN" })}> Home </button> </li>
               <li><button className='loginbtn' onClick={logout}>Logout
               </button>

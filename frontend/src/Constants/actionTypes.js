@@ -8,3 +8,6 @@ export const DELETE = "DELETE"
 
 export const ISSIGNIN = "ISSIGNIN"
 export const ISNOTSIGNIN = "ISNOTSIGNIN"
+
+export const ISADD = "ISADD"
+export const ISEDIT = "ISEDIT"
