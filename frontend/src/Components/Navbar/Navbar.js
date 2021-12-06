@@ -42,9 +42,9 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
   const navigation = [
     { name: 'Hi ' + (userName !== undefined ? userName : 'Guest') },
     { name: 'Dashboard', href: '/', current: true },
-   // { name: 'Login', href: '/auth', current: false, onclick: true },
+    // { name: 'Login', href: '/auth', current: false, onclick: true },
   ]
-  
+
   const loggedInNavigation = [
     { name: 'Hi ' + (userName !== undefined ? userName : 'Guest') },
     { name: 'Dashboard', href: '/', current: true },
@@ -64,6 +64,8 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
+
+  const profileImg = user.imageurl;
 
   function Nav() {
 
@@ -127,20 +129,20 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
                                     'px-3 py-2 rounded-md text-sm font-medium'
                                   )}
                                   aria-current={item.current ? 'page' : undefined}
-                                 
+
                                 >
                                   {item.name}
                                 </a>
-                                
+
                               ))}
-                                <button
-                              type="button"
-                              className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                              onClick={logout}
-                            >
-                               Logout
-                              {/* <BellIcon className="h-6 w-6" aria-hidden="true" /> */}
-                            </button>
+                              <button
+                                type="button"
+                                className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                                onClick={logout}
+                              >
+                                Logout
+                                {/* <BellIcon className="h-6 w-6" aria-hidden="true" /> */}
+                              </button>
                             </div>
 
                           }
@@ -163,8 +165,8 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
                         <Menu as="div" className="ml-3 relative">
                           <div>
                             <Menu.Button className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                              {/* <span className="sr-only">Open user menu</span>
-                              <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="img" />   */}
+                              <span className="sr-only">Open user menu</span>
+                              <img className="h-8 w-8 rounded-full" src={profileImg} alt="img" />
                             </Menu.Button>
                           </div>
                           <Transition
