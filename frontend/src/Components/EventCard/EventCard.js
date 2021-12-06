@@ -7,6 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function EventCard(props){
     const dispatch = useDispatch()
     const user = JSON.parse(localStorage.getItem('userProfile'))
+    let gapi = window.gapi
+    const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
+    const API_KEY = process.env.REACT_APP_KUSH_CALENDER_API_KEY
+    let DISCOVERY_DOCS =  ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
+    let SCOPES = "https://www.googleapis.com/auth/calender.events"
     // const [isEventLiked, setIsEventLiked] = useState(isLiked(props, user))
 
     const Hearts = () => {
@@ -38,7 +43,21 @@ function EventCard(props){
 
     const handleSchedule = (e) => {
         e.preventDefault()
-        console.log("Scheduled", props.event.id)
+
+        gapi.load('client:auth2', () => {
+            console.log('loaded client')
+            gapi.client.init({
+                apiKey: API_KEY,
+                clientId: CLIENT_ID,
+                discoveryDocs: DISCOVERY_DOCS,
+                scope: SCOPES,
+            })
+            console.log(API_KEY, CLIENT_ID)
+            gapi.client.load('calendar', 'v3', () => console.log("loaded calendar"))
+
+            gapi.auth2.getAuthInstance().signIn()
+        })
+        
     }
 
     return (
