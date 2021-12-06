@@ -7,7 +7,7 @@ import {createEvent} from '../../Actions/events';
 import { useDispatch } from 'react-redux';
 import './EventCreation.scss';
 
-const EventCreation=({props})=>{
+const EventCreation=()=>{
     const [eventName, setEventName]=useState("");
     const [description, setDescription]= useState("");
     const [img,setImg]=useState("");
@@ -16,7 +16,6 @@ const EventCreation=({props})=>{
     const dispatch = useDispatch()
     const user = JSON.parse(localStorage.getItem('userProfile'))
 
-    console.log(props);
     //clear all states
     const clearAllFields = async ()=>{
         await setDate("");
@@ -64,11 +63,6 @@ const EventCreation=({props})=>{
         
         
     }
-    const handleClose = () => {
-        console.log('close triggered');
-        
-    };
-
     const onFileUpload = (base64) =>{
         if(base64)
         {
@@ -81,11 +75,7 @@ const EventCreation=({props})=>{
     // }
     //render() { 
         // const close = <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="white"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        return (<div className="popup" > 
-        <div className="box">
-          
-            <span className="close-icon" onClick={handleClose}>x</span>
-         
+        return (<div>
             <Form onSubmit={(event)=>submitForm(event)} id="form">
             {/* <button className="closeAdd" onClick={()=>closeAdd}>{close}</button> */}
                     <h1 className="star"> Create an Event</h1>
@@ -115,7 +105,6 @@ const EventCreation=({props})=>{
        
                 
             </Form>
-        </div>
         </div>
     )
 }
