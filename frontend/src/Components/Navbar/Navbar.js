@@ -50,29 +50,23 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
       <div>
         <ul className='container'>
           <li className='logo'>Events Tracker</li>
-        
+
 
           {user?.profileObj === undefined ?
-            <li> 
+            <li>
               <button className='loginbtn' onClick={() => setIsSignup(!isSignup)}>
                 <a href="/auth">Login</a>
               </button>
-             </li> :
-            
+            </li> :
             <div>
               <li> <button>
-              <Avatar className='rounded-full flex items-center flex-shrink-0 profilebtn' size="60" round={true} name={user.profileObj.givenName + " " + user.profileObj.familyName} maxInitials={2} type="button" onClick={() => dispatch({ type: "ISSIGNIN" })}
-              />
-                </button></li>
-              <li>
-                 <button className='addbtn' onClick={addEvent}>
-                Add
+                <Avatar className='rounded-full flex items-center flex-shrink-0 profilebtn' size="50" round={true} name={user.profileObj.givenName + " " + user.profileObj.familyName} maxInitials={2} type="button" onClick={() => dispatch({ type: "ISSIGNIN" })}
+                />
               </button></li>
+              <li><button className='addbtn' onClick={addEvent}>Add</button></li>
               <li> <button className='addbtn' onClick={() => dispatch({ type: "ISNOTSIGNIN" })}> Home </button> </li>
-              <li>
-                <button className='loginbtn' onClick={logout}>
-                  Logout
-                </button>
+              <li><button className='loginbtn' onClick={logout}>Logout
+              </button>
               </li>
             </div>
           }
