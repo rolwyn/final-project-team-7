@@ -11,11 +11,13 @@ function EventCard(props) {
 
     const Hearts = () => {
         console.log(props.event.likes)
-        if (props.event.likes.length > 0) {
-            return props.event.likes.find((like) => like === (user?.result?.googleId || user?.result?._id)) ?
-                (<><FontAwesomeIcon className='_liked' icon="heart" /></>) :
-                (<><FontAwesomeIcon className='_liked' icon="heart" /></>)
-        }
+        if(props.event.likes.length > 0){
+            console.log("IN HERE")
+            if(props.event.likes.find((id) => id === user?.profileObj?.googleId || id === user?.profileObj?._id) !== undefined){
+                return (<><FontAwesomeIcon className='_liked' icon="heart" /></>)
+            } 
+            return (<><FontAwesomeIcon icon="heart" /></>)
+        } 
         return (<><FontAwesomeIcon icon="heart" /></>)
     }
 
@@ -38,13 +40,13 @@ function EventCard(props) {
     return (
         <div className="card">
             <div className="iconContainer">
-                {(user) ? <button onClick={handleLike}><Hearts /></button>
-                :
+                <button disabled={!user?.profileObj} onClick={handleLike}><Hearts /></button>
+                {/* :
                 <span>
                         <FontAwesomeIcon className="_liked"icon="heart"/>
                         <span>{props.event.likes.length}</span>
                     </span>
-                }
+                } */}
                 {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && 
                     <button className="_editIcon" onClick={handleEdit}><FontAwesomeIcon icon="edit" /></button>}
                 {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && 

@@ -1,0 +1,28 @@
+li {
+  display: inline-block;
+  padding: 20px;
+}
+
+footer {
+  height: 5%;
+  display: block;
+  color: #feebd6;
+  bottom: 100px;
+  width: 100%;
+  .wrapper ul {
+    display: flex;
+    justify-content: space-between;
+    background-color: #9e0022;
+  }
+  .copyright {
+    background-color: #2f2c23;
+    padding: 20px;
+    color: #feebd6;
+    display: flex;
+    flex-basis: 100%;
+    font-size: 12px;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 1%;
+  }
+}
