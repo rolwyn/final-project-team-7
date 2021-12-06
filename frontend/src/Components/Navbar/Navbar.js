@@ -65,7 +65,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
     return classes.filter(Boolean).join(' ')
   }
 
-  const profileImg = user.imageurl;
+  //const profileImg = user.imageurl;
 
   function Nav() {
 
@@ -166,7 +166,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
                           <div>
                             <Menu.Button className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                               <span className="sr-only">Open user menu</span>
-                              <img className="h-8 w-8 rounded-full" src={profileImg} alt="img" />
+                              {/* <img className="h-8 w-8 rounded-full" src={profileImg} alt="img" /> */}
                             </Menu.Button>
                           </div>
                           <Transition
