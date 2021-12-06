@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './Navbar.scss';
 
 const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
     const location = useLocation()
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
-    const issignin = useSelector((state) => state.profile)
 
     const logout = () => {
         dispatch({ type: "LOGOUT" })
