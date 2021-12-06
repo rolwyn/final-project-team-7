@@ -1,14 +1,14 @@
 $color: white;
 $bkg-color: #d6492698;
 
-div{
+div {
   margin-top: 0;
 }
 @mixin button-style($color, $bkgcolor) {
   top: 0;
   padding: 10px;
- // display: block;
- // background: black;
+  // display: block;
+  // background: black;
   color: $color;
   background-color: $bkgcolor;
   border-radius: 10px;
@@ -18,13 +18,12 @@ div{
   font-size: 24px;
   width: max-content;
   height: max-content;
-  cursor: pointer;;
+  cursor: pointer;
   //transition: 0.3s;
   border-radius: 2;
-  
 }
 
-nav{
+nav {
   top: 0;
   position: fixed;
   display: block;
@@ -32,44 +31,43 @@ nav{
   height: 70px;
   width: 100%;
   border-radius: 5px;
-  color:black;
+  color: black;
   display: flex;
   //justify-content: space-between;
   align-items: center;
- 
 }
 
 /* Style the "Login" button */
 .loginbtn {
-@include button-style($color, $bkg-color)
+  @include button-style($color, $bkg-color);
 }
 
-.addbtn{
-  @include button-style(rgba(0, 0, 0, 0.65),white)
+.addbtn {
+  @include button-style(rgba(0, 0, 0, 0.65), white);
 }
 
 .loginbtn:hover {
   background-color: black;
- 
 }
-
-.addbtn:hover{
-  background-color: $bkg-color ;
+.addbtn:hover {
+  background-color: $bkg-color;
   color: $color;
 }
 
-
+.profilebtn {
+  @include button-style(rgba(0, 0, 0, 0.65), white);
+}
+.profilebtn:hover {
+  background-color: black;
+}
 
 .navbar-username {
-   padding: 2%;
-   margin: auto;
+  padding: 2%;
+  margin: auto;
   font-size: 21px;
   color: #d64926b2;
- display: flex;
+  display: flex;
   width: 35%;
   text-align: center;
- justify-content: center;
-
-
-
+  justify-content: center;
 }
