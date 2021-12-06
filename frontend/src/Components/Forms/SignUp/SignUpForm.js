@@ -269,7 +269,7 @@ function SignUpForm({ user }) {
 
 
     return (
-        <div className="content_wrapper col-span-3 px-5 py-10">
+        <div className="content_wrapper col-span-3 px-5 py-10 ">
             {/* Title */}
             <header className="content_title mb-5">
                 <h2 className="text-4xl mb-2">{isSignIn ? 'Login' : 'Create an account'} to get started</h2>
