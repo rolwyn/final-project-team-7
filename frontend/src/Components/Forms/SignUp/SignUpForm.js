@@ -59,7 +59,16 @@ const nameIsValid = (value) => {
         )
     }
 }
+const passwordIsWrong = (value) => {
+    if (value['message']==="Invalid Password!") {
+        this.state.flag =1;
+        
+    } else {
+        this.state.flag=2;
+        
+    }
 
+}
 const passwordIsValid = (value) => {
     if (value.length < 8 || value.length > 25) {
         return (
@@ -150,8 +159,8 @@ function SignUpForm({ user }) {
         console.log('Api calling from frontend');
         try {
             const user = await login(username, password)
-           // console.log(user) 
-           console.log('here FE'); 
+            // console.log(user) 
+            console.log('here FE');
             let profileObj = user?.data?.newUser
             let token = user?.data?.tokenId
             try {
@@ -159,10 +168,14 @@ function SignUpForm({ user }) {
                 navigate('/')
             } catch (error) {
                 console.log(error)
+                setErrorMsg(e.response?.data.message)
+                passwordIsWrong(e.response)
             }
         } catch (error) {
             console.log(error.response)
             setErrorMsg(e.response?.data.message)
+           
+
         }
     }
 
@@ -323,7 +336,8 @@ function SignUpForm({ user }) {
                                     value={familyname}
                                     data-state="setFamilyname"
                                     onChange={onChangeValue}
-                                    validations={[required, nameIsValid]}
+                                    validations={[required, nameIsValid]
+                                }
                                 />
                             </fieldset>
                         </div>
@@ -374,7 +388,8 @@ function SignUpForm({ user }) {
                             data-state="setPassword"
                             onChange={onChangeValue}
                             validations={[required, passwordIsValid]}
-                        />
+                        /> 
+
                     </fieldset>
                     {/* <!-- submit button for creating a user --> */}
                     <div className="btn_wrapper">

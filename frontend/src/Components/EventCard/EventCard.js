@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './EventCard.scss';
-import {likeEvent, deleteEvent} from '../../Actions/events'
-import { useDispatch } from 'react-redux'
+import { likeEvent, deleteEvent, editEvent } from '../../Actions/events'
+import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-function EventCard(props){
+function EventCard(props) {
     const dispatch = useDispatch()
     const user = JSON.parse(localStorage.getItem('userProfile'))
     // const [isEventLiked, setIsEventLiked] = useState(isLiked(props, user))
@@ -20,7 +20,7 @@ function EventCard(props){
         } 
         return (<><FontAwesomeIcon icon="heart" /></>)
     }
-    
+
     const handleLike = (e) => {
         e.preventDefault()
         dispatch(likeEvent(props.event.id))
@@ -29,6 +29,7 @@ function EventCard(props){
     const handleEdit = (e) => {
         e.preventDefault()
         console.log("Edit clicked")
+        dispatch(editEvent(props.event.id))
     }
 
     const handleDelete = (e) => {
