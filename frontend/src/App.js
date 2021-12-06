@@ -18,6 +18,7 @@ import Map from './Components/Map/DisplayMap'
 import Footer from './Components/Footer/Footer'
 //import for PopUP
 import PopUp from './Components/Navbar/PopUp'
+import Modal from './Components/Modal/Modal.js'
 
 library.add(fab, faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit, faTrash)
 
@@ -26,21 +27,33 @@ function App() {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('userProfile')))
     const dispatch = useDispatch()
 
+    const [showModal, setShowModal]= useState(false);
+
+    const openModal=(typeOfPopUp)=>{
+        if(typeOfPopUp==="add")
+        console.log("i am in modal")
+        setShowModal(prevModal=>!prevModal);
+
+    }
+
     useEffect(() => {
         dispatch(getEvents())
     }, [dispatch])
 
+
     return (
         <div>
-            <Navbar user={user} setUser={setUser} isSignup={isSignup} setIsSignup={setIsSignup} />
+            {showModal? <Modal openModal={openModal}/>: null}
+            
+            <Navbar user={user} setUser={setUser}  showModal={showModal}  openModal={openModal}isSignup={isSignup} setIsSignup={setIsSignup} />
             <Routes>
                 <Route exact path="/auth" element={<SignUp user={user} />} />
-
+        
 
                 <Route exact path="/" element={
                     <>
-                        <CardLayout />
-                        <PopUp/>
+                        <CardLayout openModal={openModal}/>
+                        
                         {/* <EventCreation /> */}
                         {/* <Map /> */}
                         <Footer/>
