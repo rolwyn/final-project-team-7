@@ -40,6 +40,7 @@ nav {
 /* Style the "Login" button */
 .loginbtn {
   @include button-style($color, $bkg-color);
+ 
 }
 
 .addbtn {
@@ -64,6 +65,7 @@ nav {
 
 .navbar-username {
   padding: 2%;
+  margin-left: 0 ;
   margin: auto;
   font-size: 21px;
   color: #d64926b2;
