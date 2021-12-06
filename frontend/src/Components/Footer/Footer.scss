@@ -1,6 +1,6 @@
 li {
   display: inline-block;
-  padding: 20px;
+  padding: 10px;
 }
 
 footer {
@@ -9,6 +9,11 @@ footer {
   color: #feebd6;
   bottom: 100px;
   width: 100%;
+  height: fit-content;
+  position: fixed;
+  bottom: 0px;
+  margin-bottom: 0px;
+
   .wrapper ul {
     display: flex;
     justify-content: space-between;
@@ -16,13 +21,12 @@ footer {
   }
   .copyright {
     background-color: #2f2c23;
-    padding: 20px;
+    padding: 1px;
     color: #feebd6;
     display: flex;
     flex-basis: 100%;
-    font-size: 12px;
+    font-size: 10px;
     justify-content: space-between;
     flex-direction: column;
-    height: 1%;
   }
 }
