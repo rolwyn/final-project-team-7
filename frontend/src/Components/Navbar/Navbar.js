@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './Navbar.scss';
 
 const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
@@ -8,8 +8,11 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    const isLoggedIn = useSelector((state) => state.profile)
+
     const logout = () => {
         dispatch({ type: "LOGOUT" })
+        dispatch({ type: "ISNOTSIGNIN" })
         navigate('/')
     }
 //need to add logic for create
