@@ -39,17 +39,12 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
   const userName = user?.profileObj?.name
 
 
-  const displayName = (user) => {
-    const userName = user?.profileObj?.name
-    let name = user !== null ? userName : 'Guest'
-    return name
-  };
-
   const navigation = [
     { name: 'Hi ' + (userName !== undefined ? userName : 'Guest') },
     { name: 'Dashboard', href: '/', current: true },
    // { name: 'Login', href: '/auth', current: false, onclick: true },
   ]
+  
   const loggedInNavigation = [
     { name: 'Hi ' + (userName !== undefined ? userName : 'Guest') },
     { name: 'Dashboard', href: '/', current: true },
