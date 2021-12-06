@@ -26,6 +26,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
     }, [location])
 
 
+
     return (
         <nav> 
            

@@ -1,17 +1,16 @@
-div {
+Container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
-button {
-    min-width: 100px;
-    padding: 16px 32px;
-    border-radius: 1%;
-    background-color: #2f2c23;
-    color : #FEEBD6 ;
-    font-size: 24px;
-    cursor: pointer;
-  
-  }
+Button{
+  min-width: 100px;
+  padding: 16px 32px;
+  border-radius: 1%;
+  background-color: #2f2c23;
+  color: #feebd6;
+  font-size: 24px;
+  cursor: pointer;
+}
