@@ -3,44 +3,33 @@ import EventCreation  from '../EventCreation/EventCreation';
 import './Modal.scss'
 
 
-export default function PopUp(){
-    const [showModal, setShowModal]= useState(false);
-
-    const openModal=()=>{
-        setShowModal(prevModal=>!prevModal);
-    }
-    
+export default function PopUp({showModal,setShowModal,buttonClicked} ){
+    // const [renderEventEditOrAdd, setRender]=useState();
+    // if(buttonClicked==="add")
+    // {
+    //     setRender(true)
+    // }
+    // else 
+    // {
+    //     setRender(false)
+    // }
 
     return (
 
         <div class="modal_fade">
-        {/* <div class="modal_dialog">
-          
-            
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-             */}
+       
             <div class="modal-body">
-                <EventCreation showModal={showModal} setShowModal={setShowModal}></EventCreation>
+                jadbhajsdbjha
+                
+                {/* {renderEventEditOrAdd?<EventCreation showModal={showModal} setShowModal={setShowModal}></EventCreation>: null} */}
+                
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div class="modal-close">
+                     <img src="assets/images/close.png"/>
             </div>
-          {/* </div>
-        </div> */}
+            
+          
       </div>
-        // <>
-        // {/* <div> */}
-        //     {/* <ModelWrapper showModal={showModal}> */}
-        //     <button onClick={openModal}>Add</button>
-        //     {/* <div className="Background">
-        //         <div className="ModalWrapper"> */}
-        //             <EventCreation showModal={showModal} setShowModal={setShowModal}></EventCreation>
-        //             {/* <div className="CloseModalButton" onClick={()=>setShowModal(prev=>!prev)}></div> */}
-        //         {/* </div>
-        //     </div> */}
-        // {/* </div> */}
-        // </>
+      
     );
 }

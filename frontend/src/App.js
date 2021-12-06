@@ -28,11 +28,22 @@ function App() {
     const dispatch = useDispatch()
 
     const [showModal, setShowModal]= useState(false);
-
-    const openModal=(typeOfPopUp)=>{
-        if(typeOfPopUp==="add")
-        console.log("i am in modal")
+    // const [buttonClicked, setButtonClicked]=useState("");
+    const openModal=(callFrom)=>{
+        // if(callFrom==="add")
+        // {
+        //     setButtonClicked("add");
+        // }
+        // else if (callFrom==="edit")
+        // {
+        //     setButtonClicked("edit");
+        // }
+        // else{
+        //     setButtonClicked("");
+        // }
+        // console.log("i am in modal")
         setShowModal(prevModal=>!prevModal);
+        
 
     }
 
@@ -43,7 +54,8 @@ function App() {
 
     return (
         <div>
-            {showModal? <Modal openModal={openModal}/>: null}
+            {/* {showModal? <Modal openModal={openModal} buttonClicked={buttonClicked}/>: null} */}
+            {showModal? <Modal openModal={openModal} />: null}
             
             <Navbar user={user} setUser={setUser}  showModal={showModal}  openModal={openModal}isSignup={isSignup} setIsSignup={setIsSignup} />
             <Routes>
