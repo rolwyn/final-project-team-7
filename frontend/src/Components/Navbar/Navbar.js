@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './Navbar.scss';
 import EventCreation from '../EventCreation/EventCreation.js'
 // import { Transition } from "@headlessui/react";
@@ -16,10 +16,10 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
   const dispatch = useDispatch()
 
 
-  const logout = () => {
-    dispatch({ type: "LOGOUT" })
-    navigate('/')
-  }
+  // const logout = () => {
+  //   dispatch({ type: "LOGOUT" })
+  //   navigate('/')
+  // }
   // //need to add logic for create
   // const addEvent = () => {
   //   console.log('add event is called');
@@ -32,18 +32,28 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
   }, [location])
 
   //need to add logic for create
-  const addEvent = () => {
-    dispatch({ type: "" })
-    navigate('/')
-  }
+  // const addEvent = () => {
+  //   dispatch({ type: "" })
+  //   navigate('/')
+  // }
 
   // const loadUserEvents = () => {
   //     dispatch({type: "ISNOTSIGNIN"})
   //     console.log(issignin)
   //     console.log("reached here")
 
-  // }
-  //const userName = user?.profileObj?.name
+  const isLoggedIn = useSelector((state) => state.profile)
+
+  const logout = () => {
+    dispatch({ type: "LOGOUT" })
+    dispatch({ type: "ISNOTSIGNIN" })
+    navigate('/')
+  }
+  //need to add logic for create
+  const addEvent = () => {
+    dispatch({ type: "" })
+    navigate('/')
+  }
 
   //const profileImg = user.imageurl;
 
