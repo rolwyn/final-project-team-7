@@ -71,8 +71,8 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
           <a href="/auth">Login</a>
         </button> :
         <div>
-          <button type="profilebtn" onClick={() => dispatch({ type: "ISSIGNIN" })}>
-            hello
+          <button className='profilebtn' type="button" onClick={() => dispatch({ type: "ISSIGNIN" })}>
+            profile
           </button>
           <button className='addbtn' onClick={addEvent}>
             Add
