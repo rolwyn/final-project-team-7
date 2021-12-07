@@ -10,6 +10,15 @@ export const getEvents = () => async (dispatch) => {
     }
 }
 
+export const getEventsBySearch = (searchQuery) => async (dispatch) => {
+    try {
+        const { data } = await api.searchEvents(searchQuery)
+        console.log(data)
+    } catch(e) {
+        console.log(e)
+    }
+}
+
 export const createEvent = (eventName, location, description, img, date, time, endTime, name) => async (dispatch) => {
     try {
         const {data} = await api.createEvent(eventName, location, description, img, date, time, endTime, name)

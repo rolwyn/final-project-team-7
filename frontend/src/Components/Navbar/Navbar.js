@@ -50,6 +50,9 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 		navigate('/')
 	}
 
+    /**
+     * Search post using dispatch
+     */
     const searchEvent = () => {
         if (search.trim()) {
             // do dispatch
@@ -58,12 +61,12 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
         }
     }
 
-    // const handleKeyPress = (e) => {
-    //     // enter key is pressed
-    //     if (e.keyCode === 13) {
-            
-    //     }
-    // }
+    const handleKeyPress = (e) => {
+        // enter key is pressed
+        if (e.keyCode === 13) {
+            searchEvent()
+        }
+    }
 
 	return (
 		<header>
