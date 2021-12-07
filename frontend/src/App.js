@@ -62,8 +62,7 @@ function App() {
                 <Route exact path="/" element={
                     <>
                         <CardLayout openModal={openModal} />
-                        
-                        {/* <EventCreation /> */}
+    
                         {/* <Map /> */}
                         <Footer/>
                     </>
