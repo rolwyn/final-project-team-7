@@ -6,10 +6,10 @@ import './Navbar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../Utils/Design-Tokens/CommonScssUtil.scss'
 
-const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
-    const location = useLocation()
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
+const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
     useEffect(() => {
     const token = user?.token
@@ -29,16 +29,17 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
 
     const isLoggedIn = useSelector((state) => state.profile)
 
-    const logout = () => {
-        dispatch({ type: "LOGOUT" })
-        dispatch({ type: "ISNOTSIGNIN" })
-        navigate('/')
-    }
-    //need to add logic for create
-    const addEvent = () => {
-        dispatch({ type: "" })
-        navigate('/')
-    }
+  const logout = () => {
+    dispatch({ type: "LOGOUT" })
+    dispatch({ type: "ISNOTSIGNIN" })
+    navigate('/')
+  }
+  //need to add logic for create
+  const addEvent = () => {
+    // setShowModal(true)
+    dispatch({ type: "" })
+    navigate('/')
+  }
 
 
 
@@ -65,7 +66,14 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
                             </Avatar>
                         </button>
                     </li>
-                    <li><button className='navbtn' onClick={addEvent}><FontAwesomeIcon icon="plus-circle" />&nbsp;Add</button></li>
+                    <li>
+                    <button className='addbtn' onClick={()=>{
+                        dispatch({ type: "ISADD" })
+                        openModal()
+                    }}>
+                        <FontAwesomeIcon icon="plus-circle" />&nbsp;Add
+                    </button>
+                    </li>
 
                     <li><button className='navbtn' onClick={logout}><FontAwesomeIcon icon="sign-out-alt" />&nbsp;Logout</button></li>
                     </>
