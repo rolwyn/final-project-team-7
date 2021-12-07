@@ -100,7 +100,6 @@ function EventCard(props){
         })
         
     }
-    console.log(props.event)
     return (
         <div className="card">
             <div className="iconContainer">
