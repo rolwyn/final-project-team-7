@@ -37,3 +37,12 @@ export const deleteEvent = (id) => async (dispatch) => {
         console.log(e)
     }
 }
+
+export const updateEvent = (id, event) => async (dispatch) => {
+    try {
+        const { data } = await api.updateEvent(id, event)
+        dispatch({ type: 'UPDATE', payload: data })
+    } catch (e) {
+        console.log(e.message)
+    }
+}
