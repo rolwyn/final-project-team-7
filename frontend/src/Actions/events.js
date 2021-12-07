@@ -15,7 +15,7 @@ export const getEventsBySearch = (searchQuery) => async (dispatch) => {
         const { data } = await api.searchEvents(searchQuery)
         console.log(data)
     } catch(e) {
-        console.log(e)
+        console.log(e.message)
     }
 }
 

@@ -30,6 +30,19 @@ export const getAllEvents=async (request,response)=>{
 
 }
 
+// get events by search
+export const getEventsBySearch = async (req, resp) => {
+    try {
+        // i is ignore case
+        const { searchQuery }  = req.query
+        const eventName = new RegExp(searchQuery, 'i')
+        const events = await CardLayoutService.searchEventsByQuery(eventName)
+        resp.json(events)
+    } catch (e) {
+        resp.status(404).json({message: e.message})
+    }
+}
+
 //Method used to save data when POST is executed
 export const saveEvent= async (request,response)=>{
     try{

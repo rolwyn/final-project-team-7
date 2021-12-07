@@ -13,12 +13,12 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 	const dispatch = useDispatch()
     const [search, setSearch] = useState('')
 
-    function searchQuery() {
+    function useQuery() {
         return new URLSearchParams(location.search);
     }
     
-    // const query = useQuery()
-    // const searchQuery = query.get('searchQuery')
+    const query = useQuery()
+    const searchQuery = query.get('searchQuery')
 
     useEffect(() => {
     const token = user?.token

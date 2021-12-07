@@ -10,6 +10,11 @@ export const searchEvent =(params={})=>{
     return promise;
 };
 
+// searches event by query i.e title in this case
+export const searchEventsByQuery = (eventName) => {
+    return Event.find({eventName: eventName}).exec();
+}
+
 //takes contact, and saves it
 export const createEvent=async (event)=>{
     try { 
