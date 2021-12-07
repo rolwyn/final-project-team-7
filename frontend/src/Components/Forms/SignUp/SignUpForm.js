@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux'
 import Form from "react-validation/build/form"
 import Input from "react-validation/build/input"
 import CheckFieldsButton from "react-validation/build/button"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import FileBase from 'react-file-base64'
 // import jwt from 'jsonwebtoken'
 

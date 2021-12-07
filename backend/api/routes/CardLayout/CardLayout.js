@@ -8,8 +8,12 @@ router.route('/createEvent')
     .post(verifyJwtToken, CardLayoutController.saveEvent);
 router.route('/getEvents')
     .get(CardLayoutController.getAllEvents);
+router.route('/search')
+    .get(CardLayoutController.getEventsBySearch)
 router.route('/:id/like')
     .patch(verifyJwtToken, CardLayoutController.likeEvent)
+router.route('/:id/schedule')
+    .patch(verifyJwtToken, CardLayoutController.scheduleEvent)
 router.route('/:id')
     .delete(verifyJwtToken, CardLayoutController.deleteEvent)
     .put(CardLayoutController.updateEvent)

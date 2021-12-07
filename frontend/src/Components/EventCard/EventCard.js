@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './EventCard.scss';
-import {likeEvent, deleteEvent} from '../../Actions/events'
+import {likeEvent, deleteEvent, scheduleEvent} from '../../Actions/events'
 import { useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -43,8 +43,14 @@ function EventCard(props){
         dispatch(deleteEvent(props.event.id))
     }
 
+    const handleRsvpd = (e) => {
+        e.preventDefault()
+        alert("ALREADY SCHEDULED")
+    }
+
     const handleSchedule = (e) => {
         e.preventDefault()
+        dispatch(scheduleEvent(props.event.id))
 
         gapi.load('client:auth2', () => {
             console.log('loaded client')
@@ -68,7 +74,7 @@ function EventCard(props){
                       'timeZone': 'America/Los_Angeles'
                     },
                     'end': {
-                      'dateTime': `${props.event.date}T${props.event.time}:50-00:00`,
+                      'dateTime': `${props.event.date}T${props.event.endTime}:50-00:00`,
                       'timeZone': 'America/Los_Angeles'
                     },
                     'recurrence': [
@@ -100,7 +106,6 @@ function EventCard(props){
         })
         
     }
-    console.log(props.event)
     return (
         <div className="card">
             <div className="iconContainer">
@@ -115,7 +120,15 @@ function EventCard(props){
                     </span>
                 } */}
                 
-                <button className="_editIcon" onClick={handleSchedule}>Schedule</button>
+                {user?.profileObj ? <span>
+                    <span className="like-counter">{props.event.scheduled.length}</span>
+                    {props.event.scheduled.find((id) => id === user?.profileObj?.googleId || id === user?.profileObj?._id) !== undefined ? 
+                    <button className="_editIcon" onClick={handleRsvpd}>RSVPD</button> :
+                    <button className="_editIcon" onClick={handleSchedule}>Schedule</button> }
+                </span> : 
+                <span>
+                    <span className="like-counter">{props.event.scheduled.length} Attending</span>    
+                </span>}
                 {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && 
                     <button className="_editIcon" onClick={()=>{
                         dispatch({ type: "ISEDIT"})
