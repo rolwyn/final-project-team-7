@@ -79,7 +79,7 @@ const EventUpdate=({event})=>{
         return (<div> 
             <Form onSubmit={(event)=>submitForm(event)} className="form">
             {/* <button className="closeAdd" onClick={()=>closeAdd}>{close}</button> */}
-                    <h1 className="star"> Create an Event</h1>
+                    <h1 className="star"> Edit {eventName}</h1>
                     <div className="formElement">
                         <label> Event Name</label>
                         <input type="text" name="eventName" value={eventName} id="eventName" onChange={(event)=>change(event, "setEventName")} required/>
@@ -95,12 +95,16 @@ const EventUpdate=({event})=>{
                     <div className="formElement">
                         <label> Time</label>
                         <input type="time" value={time} name="time" id="time" onChange={(e)=>change(e,"setTime")} required/>
-                    </div>                 
+                    </div>        
+                    <div className="formElement">
+                        <label> Location</label>
+                        <input type="time" value={loca} name="time" id="time" onChange={(e)=>change(e,"setTime")} required/>
+                    </div>            
                     <div className="formElement right">
                         <label> Image </label>
                         {/* <Input type="file"  accept="image/*" name="image" id="file" /> */}
                         
-                        <FileBase type="file" multiple={false} onDone={(base64)=>onFileUpload(base64)}/>
+                        <FileBase value= {img } type="file" multiple={false} onDone={(base64)=>onFileUpload(base64)}/>
                     </div>    
                     <button id="save" type="submit">Add</button>
        
