@@ -56,7 +56,7 @@ export const login = (username, password) => {
  * @param {*} time 
  * @returns a promise which resolves to a response object or error
  */
-export const createEvent = (eventName, location, description, img, date, time, endTime, name) => {
+export const createEvent = (eventName, location, description, img, date, time, endTime, name, chips) => {
     return baseUrl.post("/api/events/createEvent", {
         eventName: eventName,
         location: location,
@@ -65,7 +65,8 @@ export const createEvent = (eventName, location, description, img, date, time, e
         date: date,
         time: time,
         endTime: endTime,
-        name: name
+        name: name,
+        chips: chips
     });
 
 }
