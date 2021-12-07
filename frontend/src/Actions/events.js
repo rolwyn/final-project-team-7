@@ -10,9 +10,9 @@ export const getEvents = () => async (dispatch) => {
     }
 }
 
-export const createEvent = (eventName, description, img, date, time, name) => async (dispatch) => {
+export const createEvent = (eventName, location, description, img, date, time, name) => async (dispatch) => {
     try {
-        const {data} = await api.createEvent(eventName, description, img, date, time, name)
+        const {data} = await api.createEvent(eventName, location, description, img, date, time, name)
         dispatch({ type: 'CREATE', payload: data })
 
     } catch (error) {
@@ -38,12 +38,11 @@ export const deleteEvent = (id) => async (dispatch) => {
     }
 }
 
-
-// export const updateEvent = (event) => async (dispatch) => {
-//     try{
-//         await api.updateEvent(event)
-//         dispatch({ type: 'UPDATE', payload: event })
-//     } catch (e) {
-//         console.log(e)
-//     }
-// }
+export const updateEvent = (id, event) => async (dispatch) => {
+    try {
+        const { data } = await api.updateEvent(id, event)
+        dispatch({ type: 'UPDATE', payload: data })
+    } catch (e) {
+        console.log(e.message)
+    }
+}

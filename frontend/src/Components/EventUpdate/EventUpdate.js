@@ -98,7 +98,7 @@ const EventUpdate=({event})=>{
                     </div>        
                     <div className="formElement">
                         <label> Location</label>
-                        <input type="time" value={loca} name="time" id="time" onChange={(e)=>change(e,"setTime")} required/>
+                        <input type="time" value={} name="time" id="time" onChange={(e)=>change(e,"setTime")} required/>
                     </div>            
                     <div className="formElement right">
                         <label> Image </label>

@@ -32,11 +32,11 @@ function EventCard(props){
     }
 
     // onClick={handleEdit}
-    const handleEdit = (e) => {
-        e.preventDefault()
+    // const handleEdit = (e) => {
+    //     e.preventDefault()
         
-        console.log("Edit clicked")
-    }
+    //     console.log("Edit clicked")
+    // }
 
     const handleDelete = (e) => {
         e.preventDefault()
