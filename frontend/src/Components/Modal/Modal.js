@@ -1,21 +1,18 @@
 import React, {useState} from 'react';
+import { useSelector } from 'react-redux';
 import EventCreation  from '../EventCreation/EventCreation';
 import './Modal.scss'
 
 
-export default function Modal({showModal,openModal,isAddModal, setShowModal} ){
-    
+export default function Modal({openModal} ){
+    const isAddModal = useSelector((state) => state.modal)
     return (
 
         <div className="modal_fade">
        
             <div className="modal-body">
-                jadbhajsdbjha
-                
-                {/* {console.log("EditModal true") : */}
                 {isAddModal?<EventCreation></EventCreation>:
-                    <h1>Edit modal</h1>
-                    
+                    <h1>Edit modal</h1>    
                 }
                 
             </div>

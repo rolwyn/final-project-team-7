@@ -8,16 +8,14 @@ import CardLayout from './Components/CardLayout/CardLayout.js'
 import EventCreation from './Components/EventCreation/EventCreation';
 import Navbar from './Components/Navbar/Navbar';
 import { useDispatch } from 'react-redux';
-
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit, faTrash, faPlusCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { getEvents } from './Actions/events';
 //for displaying map
-import Map from './Components/Map/DisplayMap'
+//import Map from './Components/Map/DisplayMap'
 //import for Footer
 import Footer from './Components/Footer/Footer'
-//import for PopUP
 //import PopUp from './Components/Navbar/PopUp'
 import Modal from './Components/Modal/Modal.js'
 
@@ -50,7 +48,7 @@ function App() {
     return (
         <div>
             {/* {showModal? <Modal openModal={openModal} buttonClicked={buttonClicked}/>: null} */}
-            {showModal? <Modal openModal={openModal} isAddModal={isAddModal} setShowModal={setShowModal}/>: null}
+            {showModal? <Modal openModal={openModal} setShowModal={setShowModal}/>: null}
             
             <Navbar user={user} setUser={setUser}  showModal={showModal}  openModal={openModal} setButtonClicked={setButtonClicked} isSignup={isSignup} setIsSignup={setIsSignup} />
             <Routes>
