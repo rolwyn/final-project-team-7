@@ -29,6 +29,15 @@ export const likeEvent = (id) => async (dispatch) => {
     }
 }
 
+export const scheduleEvent = (id) => async (dispatch) => {
+    try {
+        const {data} = await api.scheduleEvent(id)
+        dispatch({ type: 'SCHEDULE', payload: data })
+    } catch (error) {
+       console.log(error.message) 
+    }
+}
+
 export const deleteEvent = (id) => async (dispatch) => {
     try{
         await api.deleteEvent(id)
