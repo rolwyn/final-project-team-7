@@ -5,7 +5,6 @@ import Form from "react-validation/build/form";
 import FileBase from 'react-file-base64';
 import {createEvent} from '../../Actions/events';
 import { useDispatch } from 'react-redux';
-import ReactChipInput from "react-chip-input"
 import './EventCreation.scss';
 
 const EventCreation=()=>{
@@ -16,6 +15,7 @@ const EventCreation=()=>{
     const [time,setTime]=useState("");
     const [endTime, setEndTime] = useState("")
     const [location, setLocation] = useState("")
+    const [chips, setChips] = useState([])
     const dispatch = useDispatch()
     const user = JSON.parse(localStorage.getItem('userProfile'))
 
@@ -80,6 +80,16 @@ const EventCreation=()=>{
         }
              
     }
+
+    const addChips = (val) => {
+        setChips([...chips, val])
+    }
+
+    const removeChips = (idx) => {
+        setChips(chips => {
+            chips.splice(idx, 1)
+        })
+    }
     // const closeAdd={
 
     // }
@@ -112,7 +122,8 @@ const EventCreation=()=>{
                     <div className="formElement">
                         <label>End Time</label>
                         <input type="time" value={endTime} name="endTime" id="endTime" onChange={(e)=>change(e,"setEndTime")} required/>
-                    </div>                 
+                    </div>
+                           
                     <div className="formElement right">
                         <label> Image </label>
                         {/* <Input type="file"  accept="image/*" name="image" id="file" /> */}
