@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './EventCard.scss';
 import {likeEvent, deleteEvent, scheduleEvent} from '../../Actions/events'
 import { useDispatch } from 'react-redux'
@@ -69,7 +69,7 @@ function EventCard(props){
                       'timeZone': 'America/Los_Angeles'
                     },
                     'end': {
-                      'dateTime': `${props.event.date}T${props.event.time}:50-00:00`,
+                      'dateTime': `${props.event.date}T${props.event.endTime}:50-00:00`,
                       'timeZone': 'America/Los_Angeles'
                     },
                     'recurrence': [

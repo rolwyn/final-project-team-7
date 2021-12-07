@@ -110,7 +110,7 @@ const EventCreation=()=>{
                     </div> 
                     <div className="formElement">
                         <label>End Time</label>
-                        <input type="endTime" value={endTime} name="endTime" id="endTime" onChange={(e)=>change(e,"setEndTime")} required/>
+                        <input type="time" value={endTime} name="endTime" id="endTime" onChange={(e)=>change(e,"setEndTime")} required/>
                     </div>                 
                     <div className="formElement right">
                         <label> Image </label>

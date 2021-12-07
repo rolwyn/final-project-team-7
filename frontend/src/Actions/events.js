@@ -12,7 +12,7 @@ export const getEvents = () => async (dispatch) => {
 
 export const createEvent = (eventName, location, description, img, date, time, endTime, name) => async (dispatch) => {
     try {
-        const {data} = await api.createEvent(eventName, location, description, img, date, time, endTime name)
+        const {data} = await api.createEvent(eventName, location, description, img, date, time, endTime, name)
         dispatch({ type: 'CREATE', payload: data })
 
     } catch (error) {
