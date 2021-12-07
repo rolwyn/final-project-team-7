@@ -12,6 +12,3 @@ export const ISNOTSIGNIN = "ISNOTSIGNIN"
 
 export const ISADD = "ISADD"
 export const ISEDIT = "ISEDIT"
-
-export const UPDATE ="UPDATE"
-export const FETCH_ONE="FETCH_ONE"

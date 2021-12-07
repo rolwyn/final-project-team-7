@@ -89,13 +89,13 @@ const EventCreation=()=>{
                         <input type="text" name="eventName" value={eventName} id="eventName" onChange={(event)=>change(event, "setEventName")} required/>
                     </div>
                     <div className="formElement">
-                        <label> Location</label>
-                        <input type="text" name="location" value={location} id="location" onChange={(event)=>change(event, "setLocation")} required/>
-                    </div>
-                    <div className="formElement">
                         <label> Description</label>
                         <textarea type="text" value={description} name="desc" id="desc" onChange={(e)=>change(e,"setDescription")} placeholder="Tell Everyone what your event is about" required/>
                     </div>
+                    <div className="formElement">
+                        <label> Location</label>
+                        <input type="text" value={location} name="location" id="location" onChange={(e)=>change(e,"setLocation")} required/>
+                    </div> 
                     <div className="formElement">
                         <label> Date </label>
                         <input type="date" value={date} name="date" id="date" onChange={(e)=>change(e,"setDate")} required/>

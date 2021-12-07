@@ -14,6 +14,7 @@ const EventUpdate=({event})=>{
     const [img,setImg]=useState(event.img);
     const [date,setDate]=useState(event.date);
     const [time,setTime]=useState(event.time);
+    const [location, setLocation] = useState(event.location);
     const dispatch = useDispatch()
     const user = JSON.parse(localStorage.getItem('userProfile'))
 
@@ -24,6 +25,7 @@ const EventUpdate=({event})=>{
         await setImg("");
         await setEventName("");
         await setTime("");
+        await setLocation("");
     }
 
    
@@ -49,6 +51,9 @@ const EventUpdate=({event})=>{
         switch(property){
             case 'setEventName' :
                 setEventName(oneElement.target.value);
+                break;
+            case 'setLocation':
+                setLocation(oneElement.target.value);
                 break;
             case 'setDescription' :
                 setDescription(oneElement.target.value);
@@ -98,15 +103,15 @@ const EventUpdate=({event})=>{
                     </div>        
                     <div className="formElement">
                         <label> Location</label>
-                        <input type="time" value={} name="time" id="time" onChange={(e)=>change(e,"setTime")} required/>
+                        <input type="text" value={location} name="location" id="location" onChange={(e)=>change(e,"setLocation")} required/>
                     </div>            
                     <div className="formElement right">
                         <label> Image </label>
                         {/* <Input type="file"  accept="image/*" name="image" id="file" /> */}
                         
-                        <FileBase value= {img } type="file" multiple={false} onDone={(base64)=>onFileUpload(base64)}/>
+                        <FileBase value= {img} type="file" multiple={false} onDone={(base64)=>onFileUpload(base64)}/>
                     </div>    
-                    <button id="save" type="submit">Add</button>
+                    <button id="save" type="submit">Update</button>
        
                 
             </Form>
