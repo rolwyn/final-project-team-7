@@ -8,6 +8,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup }) => {
   const location = useLocation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
+ // const [isCreate, setIsCreate] = useState(false) //default
 
   useEffect(() => {
     const token = user?.token
