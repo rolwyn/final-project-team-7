@@ -7,7 +7,7 @@ import Form from "react-validation/build/form";
 import FileBase from 'react-file-base64';
 import {createEvent} from '../../Actions/events';
 import { useDispatch } from 'react-redux';
-import './EventCreateUpdate.scss';
+import './EventCreation.scss';
 
 const EventCreateUpdate=({event})=>{
     //states describing the event and marking changes in the event.
