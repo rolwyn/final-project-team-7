@@ -4,8 +4,17 @@ li {
 }
 
 footer {
-  height: 5%;
-  display: block;
+  
+   // position:inherit;
+    // height: 50px;
+    // background-color: red;
+    // bottom: 0px;
+    // left: 0px;
+    // right: 0px;
+    // margin-bottom: 0px;
+
+  height: 1%;
+ // display: block;
   color: white;
   bottom: 100px;
   width: 100%;
@@ -15,16 +24,14 @@ footer {
   margin-bottom: 0px;
 
   .wrapper ul {
-    display: flex;
+   // display: flex;
     justify-content: space-between;
     background-color: #596277;
   }
   .copyright {
     background-color: #404756;
     padding: 1px;
-
-    display: flex;
-    flex-basis: 100%;
+    //flex-basis: 100%;
     font-size: 10px;
     justify-content: space-between;
     flex-direction: column;
