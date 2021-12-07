@@ -1,28 +1,39 @@
 import React, {useState} from 'react';
-//import ReactDOM from 'react-dom';
+import { useSelector } from 'react-redux';
 import Form from "react-validation/build/form";
-//import Input from "react-validation/build/input";
 import FileBase from 'react-file-base64';
 import {createEvent} from '../../Actions/events';
 import { useDispatch } from 'react-redux';
 import './EventCreation.scss';
 
-const EventCreation=()=>{
+const EventCreation=(event)=>{
     const [eventName, setEventName]=useState("");
     const [description, setDescription]= useState("");
     const [img,setImg]=useState("");
     const [date,setDate]=useState("");
     const [time,setTime]=useState("");
     const [location, setLocation] = useState("")
+    const isAddModal = useSelector((state) => state.modal)
     const dispatch = useDispatch()
     const user = JSON.parse(localStorage.getItem('userProfile'))
-
+    
+    if(event)
+    {
+        setEventName(event.eventName);
+        setDescription(event.description);
+        setImg(event.img);
+        setDate(event.date);
+        setTime(event.time);
+        setLocation(event.location);
+    }
+    
+        
     //clear all states
     const clearAllFields = async ()=>{
-        await setDate("");
+        await setEventName("");
         await setDescription("");
         await setImg("");
-        await setEventName("");
+        await setDate("");
         await setTime("");
         await setLocation("")
     }
@@ -83,7 +94,7 @@ const EventCreation=()=>{
         return (<div> 
             <Form onSubmit={(event)=>submitForm(event)} className="form">
             {/* <button className="closeAdd" onClick={()=>closeAdd}>{close}</button> */}
-                    <h1 className="star"> Create an Event</h1>
+                    {isAddModal?<h1 className="star"> Create an Event</h1> : <h1 className="star"> Edit {eventName}</h1>}
                     <div className="formElement">
                         <label> Event Name</label>
                         <input type="text" name="eventName" value={eventName} id="eventName" onChange={(event)=>change(event, "setEventName")} required/>

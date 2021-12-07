@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import './EventUpdate.scss';
 
 const EventUpdate=({event})=>{
-    console.log(event.eventName);
+   
     const [eventName, setEventName]=useState(event.eventName);
     const [description, setDescription]= useState(event.description);
     const [img,setImg]=useState(event.img);
