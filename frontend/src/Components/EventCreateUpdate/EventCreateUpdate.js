@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import './EventCreateUpdate.scss';
 
 const EventCreateUpdate=({event})=>{
-    
+    //states describing the event and marking changes in the event.
     const [eventName, setEventName]=useState("");
     const [description, setDescription]= useState("");
     const [img,setImg]=useState("");
@@ -18,6 +18,7 @@ const EventCreateUpdate=({event})=>{
     const dispatch = useDispatch()
     const user = JSON.parse(localStorage.getItem('userProfile'))
     
+    //in case of edit, event prop exists, set states with events fields
     useEffect(() => {
         if(event)
     {
@@ -30,9 +31,7 @@ const EventCreateUpdate=({event})=>{
         setLocation(event.location);
     }
     },[]);
-    
-    
-        
+       
     //clear all states
     const clearAllFields = async ()=>{
         await setEventName("");
@@ -54,7 +53,7 @@ const EventCreateUpdate=({event})=>{
             return alert("You have to sign in to make a event")
             
         }
-        
+        //dispatch call for create event
         dispatch(createEvent(eventName, location, description, img, date, time, user?.profileObj?.name))   
 
         clearAllFields();
@@ -84,6 +83,7 @@ const EventCreateUpdate=({event})=>{
         
         
     }
+    //on fileUpload
     const onFileUpload = (base64) =>{
         if(base64)
         {
@@ -91,14 +91,10 @@ const EventCreateUpdate=({event})=>{
         }
              
     }
-    // const closeAdd={
-
-    // }
-    //render() { 
-        // const close = <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="white"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+    
         return (<div> 
             <Form onSubmit={(event)=>submitForm(event)} className="form">
-            {/* <button className="closeAdd" onClick={()=>closeAdd}>{close}</button> */}
+                    {/* depending on which button is clicked(add/edit) change heading */}
                     {isAddModal?<h1 className="star"> Create an Event</h1> : <h1 className="star"> Edit {eventName}</h1>}
                     <div className="formElement">
                         <label> Event Name</label>
@@ -122,8 +118,6 @@ const EventCreateUpdate=({event})=>{
                     </div>                 
                     <div className="formElement right">
                         <label> Image </label>
-                        {/* <Input type="file"  accept="image/*" name="image" id="file" /> */}
-                        
                         <FileBase type="file" multiple={false} onDone={(base64)=>onFileUpload(base64)}/>
                     </div>    
                     <button id="save" type="submit">Add</button>

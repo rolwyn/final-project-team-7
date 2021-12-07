@@ -1,23 +1,23 @@
+//this class describes the form's styling
 .form {
-  box-shadow: 0px 0px 5px 5px #A4ABBD;//#ee9c9c; // rgb(255, 121, 188);
+  box-shadow: 0px 0px 5px 5px #a4abbd; //#ee9c9c; // rgb(255, 121, 188);
   vertical-align: middle;
   text-align: center;
   padding: 2%;
   margin: auto; //0% 1%;
   border: grey;
-
-  // background-image: linear-gradient(
-  //   to left bottom,
-  //   #ee9c9c,
-  //   #eb8286,
-  //   #e76771,
-  //   #e2475e,
-  //   #db154c
-  // );
-  background-image: linear-gradient(to left bottom, #2c92fa, #6098eb, #7d9edc, #92a4cc, #a4abbd);
-
+  //gradient background colour
+  background-image: linear-gradient(
+    to left bottom,
+    #2c92fa,
+    #6098eb,
+    #7d9edc,
+    #92a4cc,
+    #a4abbd
+  );
   color: white;
   width: fit-content;
+  //the heading of the form is styled below
   h1 {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-size: 24px;
@@ -31,19 +31,24 @@
     text-transform: none;
     margin: 5%;
   }
+  // for any button in the form
   button {
     margin: auto;
     display: block;
-    //background-color: #03a9f4;
     background-color: #2f2c23;
     border: white;
     padding: 2% 5%;
     border-radius: 5%;
   }
+  //close button should appear on the right
   .closeAdd {
     float: right;
   }
+  //every form element
   .formElement {
+    display: flex;
+    justify-content: space-between;
+    margin: 1%;
     label {
       margin: 1%;
     }
@@ -53,14 +58,9 @@
     }
     input [type="file"] {
       color: white;
-      //display: none;
     }
     textarea {
       color: grey;
     }
-
-    display: flex;
-    justify-content: space-between;
-    margin: 1%;
   }
 }
