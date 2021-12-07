@@ -28,12 +28,15 @@ function App() {
 
     const [showModal, setShowModal]= useState(false);
     //Setting button clicked true in case Add Event is clicked.
-    const [buttonClicked, setButtonClicked]=useState(false);
+    const [event, setEvent]=useState();
     const isAddModal = useSelector((state) => state.modal)
 
-    const openModal=()=>{
+    const openModal=(eventOfCard)=>{
         setShowModal(prevModal=>!prevModal);
-
+        if(eventOfCard)
+        {
+            setEvent(eventOfCard);
+        }
     }
 
     useEffect(() => {
@@ -48,9 +51,9 @@ function App() {
     return (
         <div>
             {/* {showModal? <Modal openModal={openModal} buttonClicked={buttonClicked}/>: null} */}
-            {showModal? <Modal openModal={openModal} setShowModal={setShowModal}/>: null}
+            {showModal? <Modal openModal={openModal} event={event} setShowModal={setShowModal}/>: null}
             
-            <Navbar user={user} setUser={setUser}  showModal={showModal}  openModal={openModal} setButtonClicked={setButtonClicked} isSignup={isSignup} setIsSignup={setIsSignup} />
+            <Navbar user={user} setUser={setUser}  showModal={showModal}  openModal={openModal}  isSignup={isSignup} setIsSignup={setIsSignup} />
             <Routes>
                 <Route exact path="/auth" element={<SignUp user={user} />} />
         

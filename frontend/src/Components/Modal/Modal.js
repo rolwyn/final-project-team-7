@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 import EventCreation  from '../EventCreation/EventCreation';
+import EventUpdate from '../EventUpdate/EventUpdate'
 import './Modal.scss'
 
 
-export default function Modal({openModal} ){
+export default function Modal({openModal, event} ){
     const isAddModal = useSelector((state) => state.modal)
     return (
 
@@ -12,7 +13,7 @@ export default function Modal({openModal} ){
        
             <div className="modal-body">
                 {isAddModal?<EventCreation></EventCreation>:
-                    <h1>Edit modal</h1>    
+                    <EventUpdate event={event}></EventUpdate>    
                 }
                 
             </div>
