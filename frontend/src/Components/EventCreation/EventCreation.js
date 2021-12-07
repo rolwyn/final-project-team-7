@@ -5,6 +5,7 @@ import Form from "react-validation/build/form";
 import FileBase from 'react-file-base64';
 import {createEvent} from '../../Actions/events';
 import { useDispatch } from 'react-redux';
+import ReactChipInput from "react-chip-input"
 import './EventCreation.scss';
 
 const EventCreation=()=>{
