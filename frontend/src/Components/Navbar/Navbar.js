@@ -5,7 +5,7 @@ import Avatar from 'react-avatar';
 import './Navbar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../Utils/Design-Tokens/CommonScssUtil.scss'
-
+import { getEventsBySearch } from '../../Actions/events'
 
 const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 	const location = useLocation()
@@ -17,8 +17,8 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
         return new URLSearchParams(location.search);
     }
     
-    const query = useQuery()
-    const searchQuery = query.get('searchQuery')
+    // const query = useQuery()
+    // const searchQuery = query.get('searchQuery')
 
     useEffect(() => {
     const token = user?.token
@@ -56,6 +56,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
     const searchEvent = () => {
         if (search.trim()) {
             // do dispatch
+			dispatch(getEventsBySearch({ search }))
         } else {
             navigate('/')
         }
