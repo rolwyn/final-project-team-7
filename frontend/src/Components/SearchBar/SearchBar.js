@@ -5,7 +5,7 @@ import Avatar from 'react-avatar';
 import './Navbar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../Utils/Design-Tokens/CommonScssUtil.scss'
-import { getEvents, getEventsBySearch } from '../../Actions/events'
+import { getEventsBySearch } from '../../Actions/events'
 
 const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 	const location = useLocation()
@@ -57,11 +57,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
         if (search.trim()) {
             // do dispatch
 			dispatch(getEventsBySearch({ search }))
-			// navigate to the url to get only the relevant events
-			navigate('/')
-			
         } else {
-			dispatch(getEvents())
             navigate('/')
         }
     }
@@ -82,7 +78,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 				</div>
 				<div className="actionWrapper">
 					<div className="searchBar">
-						<input name="search" placeholder="Search Events" value={search}
+						<input name="search" placeholder="Search Events" value={search} 
                             onKeyPress={handleKeyPress}
                             onChange={(e)=> {setSearch(e.target.value)}}>
                         </input>
