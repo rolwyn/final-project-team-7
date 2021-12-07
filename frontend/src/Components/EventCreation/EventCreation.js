@@ -49,11 +49,10 @@ const EventCreation=()=>{
             return alert("You have to sign in to make a event")
             
         }
-        chips.split(" ")
-        
-        dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chips))   
+        let chipsArr = chips.split(" ")
+        console.log(chipsArr) 
+        dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))   
 
-        chips.toString()
         clearAllFields();
         
     }
