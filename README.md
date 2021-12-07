@@ -16,8 +16,8 @@ All have access to the listed events on the website.
 
 ### 2. Login, Signup and Login/Signup using Google 
 Users have the felixibility to register or login the site using google directly. 
-#### 1. Login/Signup with Google 
-#### 2. Upload Profile picture on signup 
+ 1. Login/Signup with Google 
+ 2. Upload Profile picture on signup
 
 ### 3. Create Events
 User must login or register on the website inorder to create events for everyone to see them.
@@ -37,14 +37,14 @@ A user can add events to their google calendar. The user must be logged in the w
 
 
 ## Front End
-### React
-### Redux
-### Tailwind
-### SCSS
++ React
++ Redux
++ Tailwind
++ SCSS
 
 
 ## Back End
-### API - Axios
-### Database - MongoDB, Atlas 
-### Password Encription - bcryptjs
-### Authorization and Authentication - JWT
++ API - Axios
++ Database - MongoDB, Atlas 
++ Password Encription - bcryptjs
++ Authorization and Authentication - JWT
