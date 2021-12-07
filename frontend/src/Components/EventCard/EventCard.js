@@ -60,31 +60,31 @@ function EventCard(props){
             gapi.auth2.getAuthInstance().signIn()
             .then(() => {
                 let event = {
-                    'summary': 'Awesome Event!',
-                    'location': '800 Howard St., San Francisco, CA 94103',
-                    'description': 'Really great refreshments',
+                    'summary': props.event.eventName,
+                    'location': props.event.location,
+                    'description': props.event.description,
                     'start': {
-                      'dateTime': '2020-06-28T09:00:00-07:00',
+                      'dateTime': `${props.event.date}T${props.event.time}:00-00:00`,
                       'timeZone': 'America/Los_Angeles'
                     },
                     'end': {
-                      'dateTime': '2020-06-28T17:00:00-07:00',
+                      'dateTime': `${props.event.date}T${props.event.time}:50-00:00`,
                       'timeZone': 'America/Los_Angeles'
                     },
                     'recurrence': [
                       'RRULE:FREQ=DAILY;COUNT=2'
                     ],
-                    'attendees': [
-                      {'email': 'lpage@example.com'},
-                      {'email': 'sbrin@example.com'}
-                    ],
-                    'reminders': {
-                      'useDefault': false,
-                      'overrides': [
-                        {'method': 'email', 'minutes': 24 * 60},
-                        {'method': 'popup', 'minutes': 10}
-                      ]
-                    }
+                    // 'attendees': [
+                    //   {'email': 'lpage@example.com'},
+                    //   {'email': 'sbrin@example.com'}
+                    // ],
+                    // 'reminders': {
+                    //   'useDefault': false,
+                    //   'overrides': [
+                    //     {'method': 'email', 'minutes': 24 * 60},
+                    //     {'method': 'popup', 'minutes': 10}
+                    //   ]
+                    // }
                 }
 
                 let req = gapi.client.calendar.events.insert({
@@ -100,7 +100,7 @@ function EventCard(props){
         })
         
     }
-
+    console.log(props.event)
     return (
         <div className="card">
             <div className="iconContainer">
