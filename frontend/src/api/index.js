@@ -71,7 +71,7 @@ export const createEvent = (eventName, location, description, img, date, time, n
 //service call for getting all the events in the database
 export const getEvents = () => baseUrl.get("/api/events/getEvents")
 
-export const updateEvent = (id, updatedPost) => baseUrl.patch(`/api/events/${id}/like`, updatedPost)
+export const updateEvent = (id, updatedEvent) => baseUrl.patch(`/api/events/${id}/like`, updatedEvent)
 
 export const likeEvent = (id) => baseUrl.patch(`/api/events/${id}/like`)
 
