@@ -9,7 +9,7 @@ import {createEvent} from '../../Actions/events';
 import { useDispatch } from 'react-redux';
 import './EventCreation.scss';
 
-const EventCreateUpdate=({event})=>{
+const EventCreateUpdate=({event, setShowModal})=>{
     //states describing the event and marking changes in the event.
     const [eventName, setEventName]=useState("");
     const [description, setDescription]= useState("");
@@ -67,6 +67,7 @@ const EventCreateUpdate=({event})=>{
         dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))   
 
         clearAllFields();
+        setShowModal((previousState=>!previousState));
         
     }
     //whenever fields are updated
@@ -162,7 +163,7 @@ const EventCreateUpdate=({event})=>{
                         <label> Image </label>
                         <FileBase type="file" multiple={false} onDone={(base64)=>onFileUpload(base64)}/>
                    </div>    
-                    <button className="save" type="submit">Add</button>
+                    <button className="save" type="submit">{isAddModal?"Create":"Update"}</button>
        
                 
             </Form>

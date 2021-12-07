@@ -13,8 +13,8 @@ export default function Modal({openModal, event, setShowModal} ){
        
             <div className="modal-body">
                 { 
-                isAddModal?<EventCreation></EventCreation>:
-                    <EventCreation event={event}></EventCreation>    
+                isAddModal?<EventCreation setShowModal={setShowModal}></EventCreation>:
+                    <EventCreation setShowModal={setShowModal} event={event}></EventCreation>    
                 }
                 
             </div>
