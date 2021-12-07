@@ -135,9 +135,9 @@ const EventCreation=()=>{
                         <label> Image </label>
                         {/* <Input type="file"  accept="image/*" name="image" id="file" /> */}
                         
-    //                     <FileBase type="file" multiple={false} onDone={(base64)=>onFileUpload(base64)}/>
-    //                 </div>    
-    //                 <button className="save" type="submit">Add</button>
+                        <FileBase type="file" multiple={false} onDone={(base64)=>onFileUpload(base64)}/>
+                   </div>    
+                    <button className="save" type="submit">Add</button>
        
                 
             </Form>
