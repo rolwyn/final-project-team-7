@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import ReactDOM from 'react-dom';
-import Modal from 'react-modal';
+// import ReactDOM from 'react-dom';
+// import Modal from 'react-modal';
 //import ReactDOM from 'react-dom';
 import Form from "react-validation/build/form";
 //import Input from "react-validation/build/input";
@@ -17,6 +17,7 @@ const EventCreation=()=>{
     const [time,setTime]=useState("");
     const [endTime, setEndTime] = useState("")
     const [location, setLocation] = useState("")
+    const [chips, setChips] = useState("")
     const dispatch = useDispatch()
     //for modal
     const user = JSON.parse(localStorage.getItem('userProfile'))
@@ -35,6 +36,7 @@ const EventCreation=()=>{
         await setTime("");
         await setLocation("")
         await setEndTime("")
+        await setChips("")
     }
 
    
@@ -47,8 +49,9 @@ const EventCreation=()=>{
             return alert("You have to sign in to make a event")
             
         }
-        
-        dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name))   
+        let chipsArr = chips.split(" ")
+        console.log(chipsArr) 
+        dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))   
 
         clearAllFields();
         
@@ -75,6 +78,9 @@ const EventCreation=()=>{
             case 'setEndTime':
                 setEndTime(oneElement.target.value)
                 break
+            case 'setChips':
+                setChips(oneElement.target.value)
+                break
             default : break;
         }
         
@@ -88,16 +94,25 @@ const EventCreation=()=>{
              
     }
 
-    const customStyles = {
-        content: {
-          top: '50%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          marginRight: '-50%',
-          transform: 'translate(-50%, -50%)',
-        },
-      };
+    // const addChips = (val) => {
+    //     setChips([...chips, val])
+    // }
+
+    // const removeChips = (idx) => {
+    //     setChips(chips => {
+    //         chips.splice(idx, 1)
+    //     })
+    // }
+    // const customStyles = {
+    //     content: {
+    //       top: '50%',
+    //       left: '50%',
+    //       right: 'auto',
+    //       bottom: 'auto',
+    //       marginRight: '-50%',
+    //       transform: 'translate(-50%, -50%)',
+    //     },
+    //   };
     // const closeAdd={
 
     // }
@@ -130,7 +145,11 @@ const EventCreation=()=>{
                     <div className="formElement">
                         <label>End Time</label>
                         <input type="time" value={endTime} name="endTime" id="endTime" onChange={(e)=>change(e,"setEndTime")} required/>
-                    </div>                 
+                    </div>
+                    <div className="formElement">
+                        <label>Tags (Space separated)</label>
+                        <input type="text" name="chips" value={chips} id="eventName" onChange={(event)=>change(event, "setChips")} required/>
+                    </div>       
                     <div className="formElement right">
                         <label> Image </label>
                         {/* <Input type="file"  accept="image/*" name="image" id="file" /> */}

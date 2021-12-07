@@ -31,6 +31,10 @@ const EventSchema=new Mongoose.Schema({
         type : String,
         required : "End Time is a required field" 
     },
+    "chips": {
+        type: [String],
+        default: []
+    },
     "creationDate" : {
         type : Date,
         default : new Date()
