@@ -43,6 +43,11 @@ function EventCard(props){
         dispatch(deleteEvent(props.event.id))
     }
 
+    const handleRsvpd = (e) => {
+        e.preventDefault()
+        alert("ALREADY SCHEDULED")
+    }
+
     const handleSchedule = (e) => {
         e.preventDefault()
         dispatch(scheduleEvent(props.event.id))
@@ -117,7 +122,9 @@ function EventCard(props){
                 
                 {user?.profileObj ? <span>
                     <span className="like-counter">{props.event.scheduled.length}</span>
-                    <button disabled={props.event.scheduled.find((id) => id === user?.profileObj?.googleId || id === user?.profileObj?._id) !== undefined} className="_editIcon" onClick={handleSchedule}>Schedule</button> 
+                    {props.event.scheduled.find((id) => id === user?.profileObj?.googleId || id === user?.profileObj?._id) !== undefined ? 
+                    <button className="_editIcon" onClick={handleRsvpd}>RSVPD</button> :
+                    <button className="_editIcon" onClick={handleSchedule}>Schedule</button> }
                 </span> : 
                 <span>
                     <span className="like-counter">{props.event.scheduled.length} Attending</span>    
