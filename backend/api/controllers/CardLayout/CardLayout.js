@@ -34,7 +34,7 @@ export const getAllEvents=async (request,response)=>{
 export const getEventsBySearch = async (req, resp) => {
     try {
         // i is ignore case
-        const { searchQuery }  = req.query
+        const { searchQuery, chips }  = req.query
         const eventName = new RegExp(searchQuery, 'i')
         const events = await CardLayoutService.searchEventsByQuery(eventName)
         resp.json(events)
