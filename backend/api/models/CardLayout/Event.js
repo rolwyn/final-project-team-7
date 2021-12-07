@@ -31,7 +31,7 @@ const EventSchema=new Mongoose.Schema({
         type : Date,
         default : new Date()
     },
-    "scheduled"{
+    "scheduled":{
         type: [String],
         default:[]
     },
