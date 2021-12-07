@@ -12,7 +12,7 @@ export const searchEvent =(params={})=>{
 
 // searches event by query i.e title in this case
 export const searchEventsByQuery = (eventName) => {
-    return Event.find({eventName: eventName}).exec();
+    return Event.find({ $or:[{eventName: eventName}, {chips: { $in:eventName}}] }).exec();
 }
 
 //takes contact, and saves it
