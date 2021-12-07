@@ -17,8 +17,8 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
         return new URLSearchParams(location.search);
     }
     
-    // const query = useQuery()
-    // const searchQuery = query.get('searchQuery')
+    const query = useQuery()
+    const searchQuery = query.get('searchQuery')
 
     useEffect(() => {
     const token = user?.token
