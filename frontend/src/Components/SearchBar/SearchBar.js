@@ -2,8 +2,9 @@ import React, {useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import '../../Utils/Design-Tokens/CommonScssUtil.scss'
 import { getEvents, getEventsBySearch } from '../../Actions/events'
+import '../../Utils/Design-Tokens/CommonScssUtil.scss'
+import  '../SearchBar/SearchBar.scss'
 
 const SearchBar = () => {
 	const location = useLocation()
@@ -44,7 +45,7 @@ const SearchBar = () => {
                 onKeyPress={handleKeyPress}
                 onChange={(e)=> {setSearch(e.target.value)}}>
             </input>
-            <button onClick={searchEvent} type="button">Search</button>
+            <button className="searchBtn" onClick={searchEvent} type="button"><FontAwesomeIcon icon="search"/></button>
         </div>
   	)
 }

@@ -48,7 +48,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 				<div className="brand_logo" onClick={() => dispatch({ type: "ISNOTSIGNIN" })}>
 					<div className='logo'><img alt="brandlogo" src="assets/images/logo.png"></img></div>
 				</div>
-				<div className="actionWrapper">
+				<div className="navBtnWrapper w-5/12">
 					<SearchBar />
 					<ul className="nav_container">
 						{user?.profileObj === undefined ?
