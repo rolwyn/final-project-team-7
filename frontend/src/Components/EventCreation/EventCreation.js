@@ -15,6 +15,7 @@ const EventCreation=()=>{
     const [img,setImg]=useState("");
     const [date,setDate]=useState("");
     const [time,setTime]=useState("");
+    const [endTime, setEndTime] = useState("")
     const [location, setLocation] = useState("")
     const dispatch = useDispatch()
     //for modal
@@ -33,13 +34,13 @@ const EventCreation=()=>{
         await setEventName("");
         await setTime("");
         await setLocation("")
+        await setEndTime("")
     }
 
    
     //whenever form is submitted
     const submitForm= async (e)=>{
         e.preventDefault();
-        console.log(eventName, location, description, img, date, time, user?.profileObj?.name)
         // checkIfNull;
         if(!user?.profileObj?.name){
             clearAllFields();
@@ -47,7 +48,7 @@ const EventCreation=()=>{
             
         }
         
-        dispatch(createEvent(eventName, location, description, img, date, time, user?.profileObj?.name))   
+        dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name))   
 
         clearAllFields();
         
@@ -71,6 +72,9 @@ const EventCreation=()=>{
             case 'setTime' :
                 setTime(oneElement.target.value);
                 break;
+            case 'setEndTime':
+                setEndTime(oneElement.target.value)
+                break
             default : break;
         }
         
@@ -122,6 +126,10 @@ const EventCreation=()=>{
                     <div className="formElement">
                         <label> Time</label>
                         <input type="time" value={time} name="time" id="time" onChange={(e)=>change(e,"setTime")} required/>
+                    </div> 
+                    <div className="formElement">
+                        <label>End Time</label>
+                        <input type="time" value={endTime} name="endTime" id="endTime" onChange={(e)=>change(e,"setEndTime")} required/>
                     </div>                 
                     <div className="formElement right">
                         <label> Image </label>

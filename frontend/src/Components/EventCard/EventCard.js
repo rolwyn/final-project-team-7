@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './EventCard.scss';
-import {likeEvent, deleteEvent} from '../../Actions/events'
+import {likeEvent, deleteEvent, scheduleEvent} from '../../Actions/events'
 import { useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -45,6 +45,7 @@ function EventCard(props){
 
     const handleSchedule = (e) => {
         e.preventDefault()
+        dispatch(scheduleEvent(props.event.id))
 
         gapi.load('client:auth2', () => {
             console.log('loaded client')
@@ -60,31 +61,31 @@ function EventCard(props){
             gapi.auth2.getAuthInstance().signIn()
             .then(() => {
                 let event = {
-                    'summary': 'Awesome Event!',
-                    'location': '800 Howard St., San Francisco, CA 94103',
-                    'description': 'Really great refreshments',
+                    'summary': props.event.eventName,
+                    'location': props.event.location,
+                    'description': props.event.description,
                     'start': {
-                      'dateTime': '2020-06-28T09:00:00-07:00',
+                      'dateTime': `${props.event.date}T${props.event.time}:00-00:00`,
                       'timeZone': 'America/Los_Angeles'
                     },
                     'end': {
-                      'dateTime': '2020-06-28T17:00:00-07:00',
+                      'dateTime': `${props.event.date}T${props.event.endTime}:50-00:00`,
                       'timeZone': 'America/Los_Angeles'
                     },
                     'recurrence': [
                       'RRULE:FREQ=DAILY;COUNT=2'
                     ],
-                    'attendees': [
-                      {'email': 'lpage@example.com'},
-                      {'email': 'sbrin@example.com'}
-                    ],
-                    'reminders': {
-                      'useDefault': false,
-                      'overrides': [
-                        {'method': 'email', 'minutes': 24 * 60},
-                        {'method': 'popup', 'minutes': 10}
-                      ]
-                    }
+                    // 'attendees': [
+                    //   {'email': 'lpage@example.com'},
+                    //   {'email': 'sbrin@example.com'}
+                    // ],
+                    // 'reminders': {
+                    //   'useDefault': false,
+                    //   'overrides': [
+                    //     {'method': 'email', 'minutes': 24 * 60},
+                    //     {'method': 'popup', 'minutes': 10}
+                    //   ]
+                    // }
                 }
 
                 let req = gapi.client.calendar.events.insert({
@@ -100,7 +101,6 @@ function EventCard(props){
         })
         
     }
-
     return (
         <div className="card">
             <div className="iconContainer">
@@ -115,7 +115,13 @@ function EventCard(props){
                     </span>
                 } */}
                 
-                <button className="_editIcon" onClick={handleSchedule}>Schedule</button>
+                {user?.profileObj ? <span>
+                    <span className="like-counter">{props.event.scheduled.length}</span>
+                    <button disabled={props.event.scheduled.find((id) => id === user?.profileObj?.googleId || id === user?.profileObj?._id) !== undefined} className="_editIcon" onClick={handleSchedule}>Schedule</button> 
+                </span> : 
+                <span>
+                    <span className="like-counter">{props.event.scheduled.length} Attending</span>    
+                </span>}
                 {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && 
                     <button className="_editIcon" onClick={()=>{
                         dispatch({ type: "ISEDIT" })

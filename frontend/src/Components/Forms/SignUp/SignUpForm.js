@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux'
 import Form from "react-validation/build/form"
 import Input from "react-validation/build/input"
 import CheckFieldsButton from "react-validation/build/button"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import FileBase from 'react-file-base64'
 // import jwt from 'jsonwebtoken'
 
@@ -146,7 +146,7 @@ function SignUpForm({ user }) {
     // Login Logic
     const handleSignInSubmit = async (e) => {
         e.preventDefault()
-
+        formElement.current.validateAll()
         console.log('Api calling from frontend');
         try {
             const user = await login(username, password)
@@ -205,16 +205,6 @@ function SignUpForm({ user }) {
 
         // Clear all fields
     }
-
-    // const handleImageContent = async (base64) => {
-    //     console.log(base64)
-    //     if (base64) {
-    //         setImageurl(base64)
-    //         setShowProfile(true)
-    //     } else {
-    //         setShowProfile(false)
-    //     }
-    // }
 
     /**
      * Handles all logic for file upload i.e size, type, file convert to base64

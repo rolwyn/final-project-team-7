@@ -10,9 +10,9 @@ export const getEvents = () => async (dispatch) => {
     }
 }
 
-export const createEvent = (eventName, location, description, img, date, time, name) => async (dispatch) => {
+export const createEvent = (eventName, location, description, img, date, time, endTime, name) => async (dispatch) => {
     try {
-        const {data} = await api.createEvent(eventName, location, description, img, date, time, name)
+        const {data} = await api.createEvent(eventName, location, description, img, date, time, endTime, name)
         dispatch({ type: 'CREATE', payload: data })
 
     } catch (error) {
@@ -29,11 +29,29 @@ export const likeEvent = (id) => async (dispatch) => {
     }
 }
 
+export const scheduleEvent = (id) => async (dispatch) => {
+    try {
+        const {data} = await api.scheduleEvent(id)
+        dispatch({ type: 'SCHEDULE', payload: data })
+    } catch (error) {
+       console.log(error.message) 
+    }
+}
+
 export const deleteEvent = (id) => async (dispatch) => {
     try{
         await api.deleteEvent(id)
         dispatch({ type: 'DELETE', payload: id })
     } catch (e) {
         console.log(e)
+    }
+}
+
+export const updateEvent = (id, event) => async (dispatch) => {
+    try {
+        const { data } = await api.updateEvent(id, event)
+        dispatch({ type: 'UPDATE', payload: data })
+    } catch (e) {
+        console.log(e.message)
     }
 }
