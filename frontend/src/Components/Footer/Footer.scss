@@ -1,28 +1,32 @@
 li {
   display: inline-block;
-  padding: 20px;
+  padding: 10px;
 }
 
 footer {
   height: 5%;
   display: block;
-  color: #feebd6;
+  color: white;
   bottom: 100px;
   width: 100%;
+  height: fit-content;
+  position: fixed;
+  bottom: 0px;
+  margin-bottom: 0px;
+
   .wrapper ul {
     display: flex;
     justify-content: space-between;
-    background-color: #c20d07c0;
+    background-color: #596277;
   }
   .copyright {
-    background-color: #02020B;
-    padding: 20px;
-    color: #feebd6;
+    background-color: #404756;
+    padding: 1px;
+
     display: flex;
     flex-basis: 100%;
-    font-size: 12px;
+    font-size: 10px;
     justify-content: space-between;
     flex-direction: column;
-    height: 1%;
   }
 }
