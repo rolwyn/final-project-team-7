@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import SignUp from './Views/SignUp/SignUp';
 import './App.scss';
 import CardLayout from './Components/CardLayout/CardLayout.js'
-import EventCreation from './Components/EventCreation/EventCreation';
+import EventCreation from './Components/EventCreateUpdate/EventCreateUpdate';
 import Navbar from './Components/Navbar/Navbar';
 import { useDispatch } from 'react-redux';
 import { library } from '@fortawesome/fontawesome-svg-core'

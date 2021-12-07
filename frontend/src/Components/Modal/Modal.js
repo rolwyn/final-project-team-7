@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
-import EventCreation  from '../EventCreation/EventCreation';
-import EventUpdate from '../EventUpdate/EventUpdate'
+import EventCreation  from '../EventCreateUpdate/EventCreateUpdate';
 import './Modal.scss'
 
 

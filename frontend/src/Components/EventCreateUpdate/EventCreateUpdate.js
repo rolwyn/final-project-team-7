@@ -4,9 +4,9 @@ import Form from "react-validation/build/form";
 import FileBase from 'react-file-base64';
 import {createEvent} from '../../Actions/events';
 import { useDispatch } from 'react-redux';
-import './EventCreation.scss';
+import './EventCreateUpdate.scss';
 
-const EventCreation=({event})=>{
+const EventCreateUpdate=({event})=>{
     
     const [eventName, setEventName]=useState("");
     const [description, setDescription]= useState("");
@@ -135,5 +135,5 @@ const EventCreation=({event})=>{
     )
 }
  
-export default EventCreation;
+export default EventCreateUpdate;
 
