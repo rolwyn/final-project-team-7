@@ -6,7 +6,7 @@ li {
 footer {
   height: 5%;
   display: block;
-  color: #feebd6;
+  color: white;
   bottom: 100px;
   width: 100%;
   height: fit-content;
@@ -17,12 +17,12 @@ footer {
   .wrapper ul {
     display: flex;
     justify-content: space-between;
-    background-color: #9e0022;
+    background-color: #596277;
   }
   .copyright {
-    background-color: #2f2c23;
+    background-color: #404756;
     padding: 1px;
-    color: #feebd6;
+
     display: flex;
     flex-basis: 100%;
     font-size: 10px;
