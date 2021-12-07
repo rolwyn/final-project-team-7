@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import ReactDOM from 'react-dom';
+import Modal from 'react-modal';
 //import ReactDOM from 'react-dom';
 import Form from "react-validation/build/form";
 //import Input from "react-validation/build/input";
@@ -16,8 +18,14 @@ const EventCreation=()=>{
     const [endTime, setEndTime] = useState("")
     const [location, setLocation] = useState("")
     const dispatch = useDispatch()
+    //for modal
     const user = JSON.parse(localStorage.getItem('userProfile'))
 
+   
+    
+     
+    
+     
     //clear all states
     const clearAllFields = async ()=>{
         await setDate("");
@@ -79,6 +87,17 @@ const EventCreation=()=>{
         }
              
     }
+
+    const customStyles = {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+        },
+      };
     // const closeAdd={
 
     // }
@@ -117,8 +136,8 @@ const EventCreation=()=>{
                         {/* <Input type="file"  accept="image/*" name="image" id="file" /> */}
                         
                         <FileBase type="file" multiple={false} onDone={(base64)=>onFileUpload(base64)}/>
-                    </div>    
-                    <button id="save" type="submit">Add</button>
+                   </div>    
+                    <button className="save" type="submit">Add</button>
        
                 
             </Form>
@@ -126,6 +145,7 @@ const EventCreation=()=>{
         </div>
     )
 }
+
  
 export default EventCreation;
 
