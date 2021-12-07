@@ -5,7 +5,7 @@ import EventUpdate from '../EventUpdate/EventUpdate'
 import './Modal.scss'
 
 
-export default function Modal({openModal, event} ){
+export default function Modal({openModal, event, setShowModal} ){
     const isAddModal = useSelector((state) => state.modal)
     return (
 
@@ -17,9 +17,9 @@ export default function Modal({openModal, event} ){
                 }
                 
             </div>
-            {/* onClick={setShowModal(false)} */}
+            {/*  */}
             <div className="modal-close" >
-                <img src="assets/images/close.png"/>
+                <img src="assets/images/close.png" onClick={()=>setShowModal(prev=>!prev)}/>
             </div>
             
           
