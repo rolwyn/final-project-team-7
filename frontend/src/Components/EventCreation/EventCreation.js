@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+// import ReactDOM from 'react-dom';
+import Modal from 'react-modal';
 //import ReactDOM from 'react-dom';
 import Form from "react-validation/build/form";
 //import Input from "react-validation/build/input";
@@ -15,10 +17,16 @@ const EventCreation=()=>{
     const [time,setTime]=useState("");
     const [endTime, setEndTime] = useState("")
     const [location, setLocation] = useState("")
-    const [chips, setChips] = useState([])
+    const [chips, setChips] = useState("")
     const dispatch = useDispatch()
+    //for modal
     const user = JSON.parse(localStorage.getItem('userProfile'))
 
+   
+    
+     
+    
+     
     //clear all states
     const clearAllFields = async ()=>{
         await setDate("");
@@ -28,6 +36,7 @@ const EventCreation=()=>{
         await setTime("");
         await setLocation("")
         await setEndTime("")
+        await setChips("")
     }
 
    
@@ -81,15 +90,25 @@ const EventCreation=()=>{
              
     }
 
-    const addChips = (val) => {
-        setChips([...chips, val])
-    }
+    // const addChips = (val) => {
+    //     setChips([...chips, val])
+    // }
 
-    const removeChips = (idx) => {
-        setChips(chips => {
-            chips.splice(idx, 1)
-        })
-    }
+    // const removeChips = (idx) => {
+    //     setChips(chips => {
+    //         chips.splice(idx, 1)
+    //     })
+    // }
+    // const customStyles = {
+    //     content: {
+    //       top: '50%',
+    //       left: '50%',
+    //       right: 'auto',
+    //       bottom: 'auto',
+    //       marginRight: '-50%',
+    //       transform: 'translate(-50%, -50%)',
+    //     },
+    //   };
     // const closeAdd={
 
     // }
@@ -123,14 +142,17 @@ const EventCreation=()=>{
                         <label>End Time</label>
                         <input type="time" value={endTime} name="endTime" id="endTime" onChange={(e)=>change(e,"setEndTime")} required/>
                     </div>
-                           
+                    <div className="formElement">
+                        <label>Tags (Space separated)</label>
+                        <input type="text" name="chips" value={chips} id="eventName" onChange={(event)=>change(event, "setChips")} required/>
+                    </div>       
                     <div className="formElement right">
                         <label> Image </label>
                         {/* <Input type="file"  accept="image/*" name="image" id="file" /> */}
                         
                         <FileBase type="file" multiple={false} onDone={(base64)=>onFileUpload(base64)}/>
-                    </div>    
-                    <button id="save" type="submit">Add</button>
+                   </div>    
+                    <button className="save" type="submit">Add</button>
        
                 
             </Form>
@@ -138,6 +160,7 @@ const EventCreation=()=>{
         </div>
     )
 }
+
  
 export default EventCreation;
 
