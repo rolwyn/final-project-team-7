@@ -84,6 +84,22 @@ export const likeEvent = async (req, resp) => {
     }
 }
 
+export const scheduleEvent = async (req, resp) => {
+    try {
+        const { id } = req.params
+
+        if(!req.userId) return errorHandler("Unauthenticated", resp)
+
+        const event = await CardLayoutService.getEvent(id)
+        event.scheduled.push(req.userId)
+
+        const newEvent = await CardLayoutService.updateEvent(event)
+        setSuccessResponse(newEvent, resp)
+    } catch (error) {
+       errorHandler(error.message, resp) 
+    }
+}
+
 export const deleteEvent = async (req, resp) => {
     try {
         const { id } = req.params

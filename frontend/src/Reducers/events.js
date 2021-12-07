@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE, UPDATE, LIKE, DELETE } from "../Constants/actionTypes"
+import { FETCH_ALL, CREATE, UPDATE, LIKE, DELETE, SCHEDULE } from "../Constants/actionTypes"
 
 const eventsReducer = (events = [], action) => {
     switch(action.type){
@@ -9,6 +9,8 @@ const eventsReducer = (events = [], action) => {
         case UPDATE:
             return events.map((event) => event._id === action.payload._id ? action.payload : event)
         case LIKE:
+            return events.map((event) => (event._id === action.payload._id ? action.payload : event))
+        case SCHEDULE:
             return events.map((event) => (event._id === action.payload._id ? action.payload : event))
         case DELETE:
             return events.filter((event) => event.id !== action.payload)
