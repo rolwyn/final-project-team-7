@@ -27,6 +27,10 @@ const EventSchema=new Mongoose.Schema({
         type : String,
         required : "Time is a required field"
     },
+    "endTime": {
+        type : String,
+        required : "End Time is a required field" 
+    },
     "creationDate" : {
         type : Date,
         default : new Date()
