@@ -21,8 +21,8 @@ Users have the felixibility to register or login the site using google directly.
 
 ### 3. Create Events
 User must login or register on the website inorder to create events for everyone to see them.
-#### 1. Upload Event Picture
-#### 2. Add Location of the event 
+ 1. Upload Event Picture
+ 2. Add Location of the event 
 
 
 ### 4. Update and Delete Events

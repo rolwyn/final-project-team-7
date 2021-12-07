@@ -1,56 +1,146 @@
-.form {
-  box-shadow: 0px 0px 5px 5px #ee9c9c; // rgb(255, 121, 188);
-  vertical-align: middle;
-  text-align: center;
-  padding: 2%;
-  margin: auto; //0% 1%;
-  border: rgb(255, 255, 255);
-  
- 
-  color: black;
-  width: fit-content;
-  h1 {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    font-size: 24px;
-    letter-spacing: -1.6px;
-    word-spacing: 2px;
-    color: black;
-    font-weight: normal;
-    text-decoration: none;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
-    margin: 5%;
-  }
-  button {
-    margin: auto;
-    display: block;
-    background-color: #03a9f4;
-    border: white;
-    padding: 2% 5%;
-    border-radius: 5%;
-  }
-  .closeAdd {
-    float: right;
-  }
-  .formElement {
-    label {
-      margin: 1%;
-    }
-    input {
-      margin: 1%;
-      color: grey;
-    }
-    input [type="file"] {
-      color: white;
-      //display: none;
-    }
-    textarea {
-      color: grey;
-    }
+@import '../../Utils/Design-Tokens/CommonScssUtil.scss';
 
-    display: flex;
-    justify-content: space-between;
-    margin: 1%;
+
+// // .form {
+// //   box-shadow: 0px 0px 5px 5px #ee9c9c; 
+// //   vertical-align: middle;
+// //   text-align: center;
+// //   padding: 2%;
+// //   margin: auto; //0% 1%;
+// //   // border: rgb(255, 255, 255);
+// //   color: black;
+// //   width: fit-content;
+// //   h1 {
+// //     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+// //     font-size: 24px;
+// //     letter-spacing: -1.6px;
+// //     word-spacing: 2px;
+// //     color: black;
+// //     font-weight: normal;
+// //     text-decoration: none;
+// //     font-style: normal;
+// //     font-variant: normal;
+// //     text-transform: none;
+// //     margin: 5%;
+// //   }
+// //   button {
+// //     margin: auto;
+// //     display: block;
+// //     background-color: #03a9f4;
+// //     border: white;
+// //     padding: 2% 5%;
+// //     border-radius: 5%;
+// //   }
+// //   .closeAdd {
+// //     float: right;
+// //   }
+// //   .formElement {
+// //     label {
+// //       margin: 1%;
+// //     }
+// //     input {
+// //       border-color: black;
+// //       margin: 1%;
+// //       width: 100%;
+// //       color: grey;
+// //     }
+// //     input [type="file"] {
+// //       color: black;
+// //       //display: none;
+// //     }
+// //     textarea {
+// //       color: grey;
+// //     }
+
+// //     display: flex;
+// //     justify-content: space-between;
+// //     margin: 1%;
+// //   }
+// // }
+.tagline {
+  text-align: center;
+  color: palevioletred;
+}
+
+.save{
+  width: 100%;
+  background-color: #0888c3;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.form{
+   div.containr {
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px;
+   
   }
 }
+label{
+  text-align: center;
+}
+
+input, .desc{
+  
+  align-items: center;
+  width: 100%;
+  border-color: black;
+  //margin: 5px;
+}
+input[type=text], .desc{
+ 
+  width: 100%;
+ // padding: 12px 20px;
+ // margin: 4px 0;
+ 
+}
+input[type=text], select, .desc {
+  width: 100%;
+  padding: 12px 20px;
+ // margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.column_fieldset {
+  margin-bottom: 10px;
+  position: relative;
+  @include flex-mixin(column, unset, unset);
+  label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #8f8f8f;
+      position: absolute;
+      top: 9px;
+      background: white;
+      left: 13px;
+      padding: 0px 5px 0px 5px;
+  }
+  input {
+      padding: 10px;
+      border: 1px solid #bdbdbd;
+      border-radius: 10px;
+      outline-color: #ecd9b9;
+      width: 100%;
+      margin-top: 20px;
+      &.is-invalid-input {
+          border: 1px solid #eb2e24;
+      }
+  }
+  .profileImg {
+      width: 115px;
+      height: 110px;
+      border: 1px solid #b9b9b9;
+      border-radius: 70px;
+      object-fit: cover;
+      object-position: top;
+  }
+}
+

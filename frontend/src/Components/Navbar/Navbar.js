@@ -48,7 +48,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
     <header>
         <nav className="navbar_nav">
             <div className="brand_logo" onClick={() => dispatch({ type: "ISNOTSIGNIN" })}>
-                <div className='logo'><img alt="brandlogo" src="assets/images/logo.png"></img></div>
+                <div className='logo'><img alt="brandlogo" src="assets/images/EventLogo.png"></img></div>
             </div>
             <ul className="nav_container">
                 {user?.profileObj === undefined ?
