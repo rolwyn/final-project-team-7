@@ -36,6 +36,7 @@ function App() {
         if(eventOfCard)
         {
             setEvent(eventOfCard);
+            
         }
     }
 

@@ -7,12 +7,14 @@ import './Modal.scss'
 
 export default function Modal({openModal, event, setShowModal} ){
     const isAddModal = useSelector((state) => state.modal)
+    console.log(event)
     return (
 
         <div className="modal_fade">
        
             <div className="modal-body">
-                {isAddModal?<EventCreation></EventCreation>:
+                { 
+                isAddModal?<EventCreation></EventCreation>:
                     <EventCreation event={event}></EventCreation>    
                 }
                 

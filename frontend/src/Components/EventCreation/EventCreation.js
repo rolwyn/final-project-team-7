@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useSelector } from 'react-redux';
 import Form from "react-validation/build/form";
 import FileBase from 'react-file-base64';
@@ -6,7 +6,8 @@ import {createEvent} from '../../Actions/events';
 import { useDispatch } from 'react-redux';
 import './EventCreation.scss';
 
-const EventCreation=(event)=>{
+const EventCreation=({event})=>{
+    
     const [eventName, setEventName]=useState("");
     const [description, setDescription]= useState("");
     const [img,setImg]=useState("");
@@ -17,8 +18,10 @@ const EventCreation=(event)=>{
     const dispatch = useDispatch()
     const user = JSON.parse(localStorage.getItem('userProfile'))
     
-    if(event)
+    useEffect(() => {
+        if(event)
     {
+        
         setEventName(event.eventName);
         setDescription(event.description);
         setImg(event.img);
@@ -26,6 +29,8 @@ const EventCreation=(event)=>{
         setTime(event.time);
         setLocation(event.location);
     }
+    },[]);
+    
     
         
     //clear all states
