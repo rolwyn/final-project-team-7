@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 // import ReactDOM from 'react-dom';
-import Modal from 'react-modal';
+// import Modal from 'react-modal';
 //import ReactDOM from 'react-dom';
 import Form from "react-validation/build/form";
 //import Input from "react-validation/build/input";
@@ -49,9 +49,11 @@ const EventCreation=()=>{
             return alert("You have to sign in to make a event")
             
         }
+        chips.split(" ")
         
-        dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name))   
+        dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chips))   
 
+        chips.toString()
         clearAllFields();
         
     }
@@ -76,6 +78,9 @@ const EventCreation=()=>{
                 break;
             case 'setEndTime':
                 setEndTime(oneElement.target.value)
+                break
+            case 'setChips':
+                setChips(oneElement.target.value)
                 break
             default : break;
         }
