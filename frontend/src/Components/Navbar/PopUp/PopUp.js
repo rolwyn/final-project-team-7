@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import EventCreation  from '../EventCreation/EventCreation';
+import EventCreation  from '../../EventCreation/EventCreation';
 import styled from 'styled-components'
 import { MdClose } from 'react-icons/md';
 import './PopUp.scss';

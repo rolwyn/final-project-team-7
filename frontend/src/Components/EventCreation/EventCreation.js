@@ -15,6 +15,7 @@ const EventCreation=()=>{
     const [img,setImg]=useState("");
     const [date,setDate]=useState("");
     const [time,setTime]=useState("");
+    const [location, setLocation] = useState("")
     const dispatch = useDispatch()
     //for modal
     const user = JSON.parse(localStorage.getItem('userProfile'))
@@ -31,13 +32,14 @@ const EventCreation=()=>{
         await setImg("");
         await setEventName("");
         await setTime("");
+        await setLocation("")
     }
 
    
     //whenever form is submitted
     const submitForm= async (e)=>{
         e.preventDefault();
-        console.log(eventName, description, img, date, time, user?.profileObj?.name)
+        console.log(eventName, location, description, img, date, time, user?.profileObj?.name)
         // checkIfNull;
         if(!user?.profileObj?.name){
             clearAllFields();
@@ -45,7 +47,7 @@ const EventCreation=()=>{
             
         }
         
-        dispatch(createEvent(eventName, description, img, date, time, user?.profileObj?.name))   
+        dispatch(createEvent(eventName, location, description, img, date, time, user?.profileObj?.name))   
 
         clearAllFields();
         
@@ -56,6 +58,9 @@ const EventCreation=()=>{
         switch(property){
             case 'setEventName' :
                 setEventName(oneElement.target.value);
+                break;
+            case 'setLocation':
+                setLocation(oneElement.target.value);
                 break;
             case 'setDescription' :
                 setDescription(oneElement.target.value);
@@ -101,6 +106,10 @@ const EventCreation=()=>{
                     <div className="formElement">
                         <label> Event Name</label>
                         <input type="text" name="eventName" value={eventName} id="eventName" onChange={(event)=>change(event, "setEventName")} required/>
+                    </div>
+                    <div className="formElement">
+                        <label> Location</label>
+                        <input type="text" name="location" value={location} id="location" onChange={(event)=>change(event, "setLocation")} required/>
                     </div>
                     <div className="formElement">
                         <label> Description</label>
