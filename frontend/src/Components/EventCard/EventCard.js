@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './EventCard.scss';
-import {likeEvent, deleteEvent} from '../../Actions/events'
+import {likeEvent, deleteEvent, scheduleEvent} from '../../Actions/events'
 import { useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -45,6 +45,7 @@ function EventCard(props){
 
     const handleSchedule = (e) => {
         e.preventDefault()
+        dispatch(scheduleEvent(props.event.id))
 
         gapi.load('client:auth2', () => {
             console.log('loaded client')
@@ -114,7 +115,10 @@ function EventCard(props){
                     </span>
                 } */}
                 
-                <button disabled={props.event.scheduled.find((id) => id === user?.profileObj?.googleId || id === user?.profileObj?._id) !== undefined} className="_editIcon" onClick={handleSchedule}>Schedule</button>
+                <span>
+                    <span className="like-counter">{props.event.scheduled.length}</span>
+                    <button disabled={props.event.scheduled.find((id) => id === user?.profileObj?.googleId || id === user?.profileObj?._id) !== undefined} className="_editIcon" onClick={handleSchedule}>Schedule</button> 
+                </span>
                 {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && 
                     <button className="_editIcon" onClick={()=>{
                         dispatch({ type: "ISEDIT" })
