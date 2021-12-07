@@ -5,20 +5,12 @@ import Avatar from 'react-avatar';
 import './Navbar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../Utils/Design-Tokens/CommonScssUtil.scss'
-import { getEvents, getEventsBySearch } from '../../Actions/events'
+import SearchBar from '../SearchBar/SearchBar'
 
 const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 	const location = useLocation()
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
-    const [search, setSearch] = useState('')
-
-    function useQuery() {
-        return new URLSearchParams(location.search);
-    }
-    
-    const query = useQuery()
-    const searchQuery = query.get('searchQuery')
 
     useEffect(() => {
     const token = user?.token
@@ -50,30 +42,6 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 		navigate('/')
 	}
 
-    /**
-     * Search post using dispatch
-     */
-    const searchEvent = () => {
-        if (search.trim()) {
-            // do dispatch
-			dispatch(getEventsBySearch({ search }))
-			// navigate to the url to get only the relevant events
-			navigate('/')
-			
-        } else {
-			dispatch(getEvents())
-            navigate('/')
-        }
-    }
-
-    const handleKeyPress = (e) => {
-		// enter key is pressed
-        if (e.charCode === 13) {
-			console.log("enter key is pressed")
-            searchEvent()
-        }
-    }
-
 	return (
 		<header>
 			<nav className="navbar_nav">
@@ -81,13 +49,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 					<div className='logo'><img alt="brandlogo" src="assets/images/logo.png"></img></div>
 				</div>
 				<div className="actionWrapper">
-					<div className="searchBar">
-						<input name="search" placeholder="Search Events" value={search}
-                            onKeyPress={handleKeyPress}
-                            onChange={(e)=> {setSearch(e.target.value)}}>
-                        </input>
-                        <button onClick={searchEvent} type="button">Search</button>
-					</div>
+					<SearchBar />
 					<ul className="nav_container">
 						{user?.profileObj === undefined ?
 							<li>
