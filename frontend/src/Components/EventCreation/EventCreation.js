@@ -20,20 +20,29 @@ const EventCreation=({event, setShowModal})=>{
     const [location, setLocation] = useState("")
     const isAddModal = useSelector((state) => state.modal)
     const [chips, setChips] = useState("")
+    const [eventData, setEventData]=useState();
     const dispatch = useDispatch()
     //for modal
     const user = JSON.parse(localStorage.getItem('userProfile'))
+    const handleUpdate = () => {
+        dispatch(updateEvent(event.id))
+    }
+    
     
     //in case of edit, event prop exists, set states with events fields
     useEffect(() => {
         if(event)
         {
+            const chipsSpaced=event.chips.join(' ');
             setEventName(event.eventName);
             setDescription(event.description);
             setImg(event.img);
             setDate(event.date);
             setTime(event.time);
             setLocation(event.location);
+            setEndTime(event.endTime);
+            setChips(chipsSpaced);
+            setEventData(event);
         }
     },[event]);
  
@@ -62,9 +71,29 @@ const EventCreation=({event, setShowModal})=>{
         }
         let chipsArr = chips.split(" ")
         console.log(chipsArr) 
-         //dispatch call for create event
-         isAddModal?dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr)):dispatch(updateEvent(event.id, event))  
-
+        //dispatch call for edit event
+        if(!isAddModal)
+        {
+            setEventData({
+                ...eventData,
+                eventName : eventName,
+                location : location,
+                description : description,
+                img : img,
+                date : date,
+                time : time,
+                endTime : endTime,
+                chips : chipsArr 
+            })
+            dispatch(updateEvent(eventData.id, eventData);
+        }
+        else{
+            //dispatch call for create event
+            dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr)) 
+        }
+         
+        
+        //handleUpdate();
         clearAllFields();
         setShowModal((previousState=>!previousState));
         
