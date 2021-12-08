@@ -89,7 +89,7 @@ export const likeEvent = async (req, resp) => {
             event.likes = event.likes.filter((id) => id !== String(req.userId))
         }
 
-        const newEvent = await CardLayoutService.updateEvent(event)
+        const newEvent = await CardLayoutService.updateEvent(id, event)
         setSuccessResponse(newEvent, resp)
 
     } catch (error) {
@@ -106,7 +106,7 @@ export const scheduleEvent = async (req, resp) => {
         const event = await CardLayoutService.getEvent(id)
         event.scheduled.push(req.userId)
 
-        const newEvent = await CardLayoutService.updateEvent(event)
+        const newEvent = await CardLayoutService.updateEvent(id, event)
         setSuccessResponse(newEvent, resp)
     } catch (error) {
        errorHandler(error.message, resp) 
@@ -132,7 +132,7 @@ export const updateEvent=async (request,response)=>{
         const {id}=request.params;
         
         if (!mongoose.Types.ObjectId.isValid(id)) return response.errorHandler(`No post with id ${id}`, response, 404);
-        const event = {...request.body, creator: request.userId}
+        const event = {...request.body, creator: request.userId, chips: request.body.chipsArr}
         const updatedEvent= await CardLayoutService.updateEvent(id, event);
         setSuccessResponse(updatedEvent, response);
     }catch(e){

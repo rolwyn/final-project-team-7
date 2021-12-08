@@ -13,7 +13,6 @@ export const getEvents = () => async (dispatch) => {
 export const getEventsBySearch = (searchQuery) => async (dispatch) => {
     try {
         const { data } = await api.searchEvents(searchQuery)
-        console.log(data)
         dispatch({ type: 'FETCH_BY_SEARCH', payload: data })
     } catch(e) {
         console.log(e.message)
@@ -60,7 +59,6 @@ export const deleteEvent = (id) => async (dispatch) => {
 export const updateEvent = (id, eventName, location, description, img, date, time, endTime, name, chipsArr) => async (dispatch) => {
     try {
         const { data } = await api.updateEvent(id, eventName, location, description, img, date, time, endTime, name, chipsArr)
-        console.log(data)
         dispatch({ type: 'UPDATE', payload: data })
     } catch (e) {
         console.log(e.message)
