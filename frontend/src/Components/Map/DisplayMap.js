@@ -21,17 +21,7 @@ function Map(){
         libraries,
     });
 
-    // const onMapClick=((previousMarkers)=>[...previousMarkers]
-        
-    // });
-    // const onMapClick= (marker)=>{
-    //     setCoordinates({
-    //         latitude : marker.latlng.lat(),
-    //         longitude : marker.latlng.lng()
-    //     });
-    //     console.log(coordinates);
-    // }
-    //console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
+   
     if(loadError) return "Error Loading maps";
     if(!isLoaded) return "Loading maps";
     return ((

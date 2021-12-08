@@ -96,10 +96,8 @@ const EventCreation=({event, setShowModal})=>{
      */
     const handleImageContent = (e) => {
         setErrorMsg("")
-        console.log(e)
         let file = e.target.files[0]
         let files = []
-        // console.log(file)
         let reader = new FileReader()
 
         if (file !== undefined) {
@@ -113,7 +111,6 @@ const EventCreation=({event, setShowModal})=>{
                     file: file,
                 };
                 files.push(fileData)
-                console.log(files)
                 if (!(Math.round(file.size / 1000) > 15000)) {
                     if (fileData.base64) {
                         setImg(fileData.base64)
