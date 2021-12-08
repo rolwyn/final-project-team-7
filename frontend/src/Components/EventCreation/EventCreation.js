@@ -20,7 +20,7 @@ const EventCreation=({event, setShowModal})=>{
     const [location, setLocation] = useState("")
     const isAddModal = useSelector((state) => state.modal)
     const [chips, setChips] = useState("")
-    const [eventData, setEventData]=useState({});
+    const [eventData, setEventData]=useState({event});
     const dispatch = useDispatch()
     //for modal
     const user = JSON.parse(localStorage.getItem('userProfile'))
@@ -40,7 +40,7 @@ const EventCreation=({event, setShowModal})=>{
           };
     },[event]);
  
-    const setStateIfEvent = () => {
+    const setStateIfEvent = async () => {
         const chipsSpaced=event.chips.join(' ');
         setEventName(event.eventName);
         setDescription(event.description);
@@ -76,11 +76,12 @@ const EventCreation=({event, setShowModal})=>{
             
         }
         let chipsArr = chips.split(" ")
-        console.log(chipsArr) 
         //dispatch call for edit event
         if(!isAddModal)
         {
-            await setEventData({
+            console.log('WHY AM I HERE')
+            setEventData(eventData => ({
+                ...eventData,
                 name : user?.profileObj?.name,
                 eventName : eventName,
                 location : location,
@@ -91,8 +92,9 @@ const EventCreation=({event, setShowModal})=>{
                 endTime : endTime,
                 chips : chipsArr 
                 
-            })
-            dispatch(updateEvent(eventData.id, eventData))
+            }))
+            console.log(eventData.id)
+            dispatch(updateEvent(eventData.id, eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))
         }
         else{
             //dispatch call for create event
@@ -143,25 +145,7 @@ const EventCreation=({event, setShowModal})=>{
         }
              
     }
-    // const addChips = (val) => {
-    //     setChips([...chips, val])
-    // }
-
-    // const removeChips = (idx) => {
-    //     setChips(chips => {
-    //         chips.splice(idx, 1)
-    //     })
-    // }
-    // const customStyles = {
-    //     content: {
-    //       top: '50%',
-    //       left: '50%',
-    //       right: 'auto',
-    //       bottom: 'auto',
-    //       marginRight: '-50%',
-    //       transform: 'translate(-50%, -50%)',
-    //     },
-    //   };
+  
         return (<div> 
             <Form onSubmit={(event)=>submitForm(event)} className="form">
                     {/* depending on which button is clicked(add/edit) change heading */}
