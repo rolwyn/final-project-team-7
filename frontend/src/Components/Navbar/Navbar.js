@@ -52,11 +52,11 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 								</button>
 							</li>
               <li>
-                <button className='addbtn' onClick={() => {
-                  dispatch({ type: "ISFAV" })
-                  dispatch({ type: "ISNOTSIGNIN"})
+                <button className='addbtn _favourites' onClick={() => {
+					dispatch({ type: "ISFAV" })
+					dispatch({ type: "ISNOTSIGNIN"})
                 }}>
-                 Favourites 
+                <FontAwesomeIcon icon="heart" />&nbsp;Favourites
                 </button>
               </li>
 							<li>
