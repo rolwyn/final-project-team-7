@@ -31,10 +31,9 @@ export const getEvent=(id)=>{
     return promise;
 }
 //takes event and updates it in the events collection
-export const updateEvent = async (event) => {
+export const updateEvent = async (id, event) => {
     try {
-        event._id=event.id;
-        const promise = await Event.findByIdAndUpdate(event.id, event, {new: true}).exec();
+        const promise = await Event.findByIdAndUpdate(id, event, {new: true}).exec();
         return promise
     }catch (err){
         console.log(err)

@@ -25,23 +25,27 @@
     position: relative;
     z-index: 10;
     border-radius: 10px;
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+     
   }
   .modal-close {
     cursor: pointer;
     position: absolute;
-    top: 65px;
-    left: 100px;
-    right: 20px;
+    top: 55px;
+    right: 270px;
     width: 32px;
     height: 32px;
     padding: 0;
     z-index: 10;
-    color: white;
+    color: black;
   }
 }
 
 .popup{
   width: 852px;
-  height: 70%;
+  height: 90%;
   margin: 0 auto;
+  max-height: 100%;
+  overflow-y: scroll;
 }

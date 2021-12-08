@@ -11,17 +11,12 @@ function CardLayout({isSignup, isAddModal, openModal}){
     const user = JSON.parse(localStorage.getItem('userProfile'))
 
     useEffect(() => {
-        console.log()
     },[isNotHomePage, isFavPage]);
 
     useEffect(() => {
     },[eventData])
 
-    // eventData.reverse()
-    // console.log(eventData[0].creationDate)
-    // eventData.sort((a,b) => dates.compare(a.creationDate, b.creationDate))
     return (
-        // !eventData ? <div className="page_loader"><FontAwesomeIcon spin={true} icon="spinner"/></div> : <>Hi</>
         
         isNotHomePage || isFavPage ?
         (isNotHomePage ?

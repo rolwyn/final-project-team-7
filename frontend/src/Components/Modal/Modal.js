@@ -10,7 +10,7 @@ export default function Modal({ openModal, event, setShowModal }) {
 
         <div className="modal_fade">
             <div className='popup'>
-                <div className="modal-body">
+                <div className="modal-body" >
                     {
                         isAddModal ? <EventCreation setShowModal={setShowModal}></EventCreation> :
                             <EventCreation setShowModal={setShowModal} event={event}></EventCreation>

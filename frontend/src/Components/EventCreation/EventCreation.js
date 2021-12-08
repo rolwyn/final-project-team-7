@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 //import ReactDOM from 'react-dom';
 import Form from "react-validation/build/form";
 import FileBase from 'react-file-base64';
-import { createEvent } from '../../Actions/events';
+import {createEvent, updateEvent} from '../../Actions/events';
 import { useDispatch } from 'react-redux';
 import './EventCreation.scss';
 import Input from "react-validation/build/input"
@@ -15,7 +15,7 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const EventCreateUpdate = ({ event, setShowModal }) => {
+const EventCreation=({event, setShowModal})=>{
     //states describing the event and marking changes in the event.
     const [eventName, setEventName] = useState("");
     const [description, setDescription] = useState("");
@@ -27,9 +27,38 @@ const EventCreateUpdate = ({ event, setShowModal }) => {
     const [location, setLocation] = useState("")
     const isAddModal = useSelector((state) => state.modal)
     const [chips, setChips] = useState("")
+    const [eventData, setEventData]=useState({event});
     const dispatch = useDispatch()
     //for modal
     const user = JSON.parse(localStorage.getItem('userProfile'))
+    const handleUpdate = () => {
+        dispatch(updateEvent(event.id))
+    }
+    
+    
+    //in case of edit, event prop exists, set states with events fields
+    useEffect(() => {
+        if(event)
+        {
+            setStateIfEvent()
+        }
+        return () => {
+            setEventData({}); // This worked for me
+          };
+    },[event]);
+ 
+    const setStateIfEvent = async () => {
+        const chipsSpaced=event.chips.join(' ');
+        setEventName(event.eventName);
+        setDescription(event.description);
+        setImg(event.img);
+        setDate(event.date);
+        setTime(event.time);
+        setLocation(event.location);
+        setEndTime(event.endTime);
+        setChips(chipsSpaced);
+        setEventData(event);
+    } 
     /**
      * Variables for validation on form
      */
@@ -144,20 +173,48 @@ const EventCreateUpdate = ({ event, setShowModal }) => {
     //whenever form is submitted
     const submitForm = async (e) => {
         e.preventDefault();
-        formElement.current.validateAll()
-        // checkIfNull;
-        if (chkbuttonElement.current.context._errors.length === 0) {
-            if (!user?.profileObj?.name) {
-                clearAllFields();
-                return alert("You have to sign in to make a event")
-            }
-            let chipsArr = chips.split(" ")
-            console.log(chipsArr)
+        
+        
+        let chipsArr = chips.split(" ")
+        //dispatch call for edit event
+        if(!isAddModal)
+        {
+            setEventData(eventData => ({
+                ...eventData,
+                name : user?.profileObj?.name,
+                eventName : eventName,
+                location : location,
+                description : description,
+                img : img,
+                date : date,
+                time : time,
+                endTime : endTime,
+                chips : chipsArr 
+                
+            }))
+            dispatch(updateEvent(eventData.id, eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))
+        }
+        else{
+            //dispatch call for create event
+            formElement.current.validateAll()
+            // checkIfNull;
+            if (chkbuttonElement.current.context._errors.length === 0) {
+                if (!user?.profileObj?.name) {
+                    clearAllFields();
+                    return 
+                }
             //dispatch call for create event
             dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))
             clearAllFields();
             setShowModal((previousState => !previousState));
+            }
         }
+         
+        
+        //handleUpdate();
+        clearAllFields();
+        setShowModal((previousState=>!previousState));
+        
     }
     //whenever fields are updated
     const change = (oneElement) => {
@@ -332,6 +389,6 @@ const EventCreateUpdate = ({ event, setShowModal }) => {
     )
 }
 
-
-export default EventCreateUpdate;
+ 
+export default EventCreation;
 
