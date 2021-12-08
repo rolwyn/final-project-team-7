@@ -61,6 +61,13 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 									</Avatar>
 								</button>
 							</li>
+              <li>
+                <button className='addbtn' onClick={() => {
+                  console.log("wishlist")
+                }}>
+                 Favourites 
+                </button>
+              </li>
 							<li>
 							<button className='addbtn' onClick={()=>{
 								dispatch({ type: "ISADD" })
