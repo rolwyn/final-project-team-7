@@ -12,5 +12,8 @@ export const FETCH_BY_SEARCH = "FETCH_BY_SEARCH"
 export const ISSIGNIN = "ISSIGNIN"
 export const ISNOTSIGNIN = "ISNOTSIGNIN"
 
+export const ISFAV = "ISFAV"
+export const ISNOTFAV = "ISNOTFAV"
+
 export const ISADD = "ISADD"
 export const ISEDIT = "ISEDIT"
