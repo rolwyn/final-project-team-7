@@ -39,7 +39,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 	return (
 		<header>
 			<nav className="navbar_nav">
-				<div className="brand_logo" onClick={() => dispatch({ type: "ISNOTSIGNIN" })}>
+				<div className="brand_logo" onClick={() => {dispatch({ type: "ISNOTSIGNIN" }); dispatch({type: "ISNOTFAV"})}}>
 					<div className='logo'><img alt="brandlogo" src="assets/images/logo.png"></img></div>
 				</div>
 				<div className="navBtnWrapper w-5/12">
@@ -61,6 +61,14 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 									</Avatar>
 								</button>
 							</li>
+              <li>
+                <button className='addbtn' onClick={() => {
+                  console.log("wishlist")
+                  dispatch({ type: "ISFAV" })
+                }}>
+                 Favourites 
+                </button>
+              </li>
 							<li>
 							<button className='addbtn' onClick={()=>{
 								dispatch({ type: "ISADD" })

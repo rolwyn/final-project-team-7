@@ -1,7 +1,7 @@
-import { ISSIGNIN, ISNOTSIGNIN } from "../Constants/actionTypes"
+import { ISSIGNIN, ISNOTSIGNIN, ISFAV, ISNOTFAV } from "../Constants/actionTypes"
 
 
-const profileReducer = (isSignIn = false, action) => {
+export const profileReducer = (isSignIn = false, action) => {
     switch(action.type){
         case ISSIGNIN:
             return isSignIn = true
@@ -12,4 +12,13 @@ const profileReducer = (isSignIn = false, action) => {
     }
 }
 
-export default profileReducer
+export const favReducer = (isFavPage = false, action) => {
+    switch(action.type){
+        case ISFAV:
+            return isFavPage = true
+        case ISNOTFAV:
+            return isFavPage = false
+        default:
+            return isFavPage
+    }
+}
