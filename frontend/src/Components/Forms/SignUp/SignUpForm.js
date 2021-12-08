@@ -277,42 +277,18 @@ function SignUpForm({ user }) {
                 <Form onSubmit={isSignIn ? handleSignInSubmit : handleSignUpSubmit} id="signup-form" ref={formElement} className="add_signup_form">
                     {!isSignIn ? <><fieldset className="column_fieldset">
                         <label>Email</label>
-                        <Input
-                            id="add-email"
-                            type="text"
-                            className="_inputField"
-                            name="emailid"
-                            value={email}
-                            data-state="setEmail"
-                            onChange={onChangeValue}
-                            validations={[required, emailIsValid]}
+                        <Input id="add-email" type="text" className="_inputField" name="emailid" value={email} data-state="setEmail" onChange={onChangeValue} validations={[required, emailIsValid]}
                         />
                     </fieldset>
                         <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
                             <fieldset className="column_fieldset">
                                 <label>First Name</label>
-                                <Input
-                                    id="add-firstname"
-                                    type="text"
-                                    className="_inputField"
-                                    name="firstname"
-                                    value={givenname}
-                                    data-state="setGivenname"
-                                    onChange={onChangeValue}
-                                    validations={[required, nameIsValid]}
+                                <Input id="add-firstname" type="text" className="_inputField" name="firstname" value={givenname} data-state="setGivenname" onChange={onChangeValue} validations={[required, nameIsValid]}
                                 />
                             </fieldset>
                             <fieldset className="column_fieldset">
                                 <label>Last Name</label>
-                                <Input
-                                    id="add-lastname"
-                                    type="text"
-                                    className="_inputField"
-                                    name="lastname"
-                                    value={familyname}
-                                    data-state="setFamilyname"
-                                    onChange={onChangeValue}
-                                    validations={[required, nameIsValid]}
+                                <Input id="add-lastname" type="text" className="_inputField" name="lastname" value={familyname} data-state="setFamilyname" onChange={onChangeValue} validations={[required, nameIsValid]}
                                 />
                             </fieldset>
                         </div>
@@ -323,11 +299,7 @@ function SignUpForm({ user }) {
                                 multiple={false}
                                 onDone={({ base64 }) => handleImageContent(base64)}
                             /> */}
-                            <input
-                                type="file"
-                                ref={uploadBtnElement}
-                                onChange={handleImageContent}
-                                onClick={() => setErrorMsg("")}
+                            <input type="file" ref={uploadBtnElement} onChange={handleImageContent} onClick={() => setErrorMsg("")}
                             />
                         </fieldset>
                         {showprofile ?
@@ -341,28 +313,12 @@ function SignUpForm({ user }) {
                     }
                     <fieldset className="column_fieldset">
                         <label>Username</label>
-                        <Input
-                            id="add-username"
-                            type="text"
-                            className="_inputField"
-                            name="username"
-                            value={username}
-                            data-state="setUsername"
-                            onChange={onChangeValue}
-                            validations={[required, userNameIsValid]}
+                        <Input id="add-username" type="text" className="_inputField" name="username" value={username} data-state="setUsername" onChange={onChangeValue} validations={[required, userNameIsValid]}
                         />
                     </fieldset>
                     <fieldset className="column_fieldset">
                         <label>Password</label>
-                        <Input
-                            id="add-password"
-                            type="password"
-                            className="_inputField"
-                            name="password"
-                            value={password}
-                            data-state="setPassword"
-                            onChange={onChangeValue}
-                            validations={[required, passwordIsValid]}
+                        <Input id="add-password" type="password" className="_inputField" name="password" value={password} data-state="setPassword" onChange={onChangeValue} validations={[required, passwordIsValid]}
                         />
                     </fieldset>
                     {/* <!-- submit button for creating a user --> */}
