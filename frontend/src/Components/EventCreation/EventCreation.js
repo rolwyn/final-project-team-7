@@ -43,8 +43,8 @@ const EventCreateUpdate = ({ event, setShowModal }) => {
     const required = (value) => {
         if (!value) {
             return (
-                <div className='text-red-500 text-sm italic mt-2'> This field is required!<sup>*</sup>
-                </div>
+                <p className='text-red-500 text-sm italic mt-2'><sup>*</sup> This field is required!
+                </p>
             )
         }
     }
@@ -132,45 +132,47 @@ const EventCreateUpdate = ({ event, setShowModal }) => {
         e.preventDefault();
         formElement.current.validateAll()
         // checkIfNull;
-
-        if (!user?.profileObj?.name) {
+        if (chkbuttonElement.current.context._errors.length === 0) {
+            if (!user?.profileObj?.name) {
+                clearAllFields();
+                return alert("You have to sign in to make a event")
+            }
+            let chipsArr = chips.split(" ")
+            console.log(chipsArr)
+            //dispatch call for create event
+            dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))
             clearAllFields();
-            return alert("You have to sign in to make a event")
+            setShowModal((previousState => !previousState));
         }
-        let chipsArr = chips.split(" ")
-        console.log(chipsArr)
-        //dispatch call for create event
-        dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))
-        clearAllFields();
-        setShowModal((previousState => !previousState));
-
     }
     //whenever fields are updated
-    const change = (oneElement, property) => {
+    const change = (oneElement) => {
+        let value = oneElement.target.value;
         setErrorMsg("")
-        switch (property) {
+        switch (oneElement.target.dataset.state) {
             case 'setEventName':
-                setEventName(oneElement.target.value);
+                setEventName(value);
                 break;
             case 'setLocation':
-                setLocation(oneElement.target.value);
+                setLocation(value);
                 break;
             case 'setDescription':
-                setDescription(oneElement.target.value);
+                setDescription(value);
                 break;
             case 'setDate':
-                setDate(oneElement.target.value);
+                setDate(value);
                 break;
             case 'setTime':
-                setTime(oneElement.target.value);
+                setTime(value);
                 break;
             case 'setEndTime':
-                setEndTime(oneElement.target.value)
+                setEndTime(value)
                 break
             case 'setChips':
-                setChips(oneElement.target.value)
+                setChips(value)
                 break
-            default: break;
+            default:
+                return null
         }
     }
     //on fileUpload
@@ -196,33 +198,83 @@ const EventCreateUpdate = ({ event, setShowModal }) => {
 
                     <fieldset className="column_fieldset">
                         <label> Event Name</label>
-                        <input type="text" name="eventName" value={eventName} className="eventName" id="eventName" onChange={(event) => change(event, "setEventName")} required />
+                        <Input
+                            id="eventName"
+                            type="text"
+                            name="eventName"
+                            value={eventName}
+                            className="_inputField"
+                            data-state='setEventName'
+                            onChange={change}
+                            validations={[required]}
+                        />
                     </fieldset>
                     <fieldset className="column_fieldset">
                         <label> Location</label>
-                        <input type="text" name="location" value={location} id="location" onChange={(e) => change(e, "setLocation")} required />
+                        <Input
+                            id="location"
+                            type="text"
+                            name="location"
+                            className="_inputField"
+                            value={location}
+                            data-state='setLocation'
+                            onChange={change}
+                            validations={[required]} />
                     </fieldset>
                     <fieldset className="column_fieldset">
                         <label> Description</label>
-                        <input type="textarea" value={description} name="desc" className="desc" onChange={(e) => change(e, "setDescription")} placeholder="What's the event about?" required />
+                        <Input
+                            id="description"
+                            type="textarea"
+                            name="description"
+                            className='_inputField'
+                            value={description}
+                            data-state='setDescription'
+                            onChange={change}
+                            validations={[required]}
+                            placeholder="What's the event about?" />
                     </fieldset>
                     <div className=''>
                         <fieldset className="column_fieldset col-span-1">
                             <label> Date </label>
-                            <input type="date" value={date} name="date" className="desc" onChange={(e) => change(e, "setDate")} required />
+                            <Input
+                                id='date'
+                                type="date"
+                                name='date'
+                                className='_inputField'
+                                value={date}
+                                data-state='setDate'
+                                validations={[required]}
+                                onChange={change}
+                            />
                         </fieldset>
                         <fieldset className="column_fieldset col-span-2">
                             <label> Time</label>
-                            <input type="time" value={time} name="time" className="desc" onChange={(e) => change(e, "setTime")} />
+                            <Input
+                                id='time'
+                                type="time"
+                                name='time'
+                                className='_inputField'
+                                value={time}
+                                data-state='setTime'
+                                validations={[required]}
+                                onChange={change} />
                         </fieldset>
                     </div>
                     <fieldset className="column_fieldset">
                         <label>End Time</label>
-                        <input type="time" value={endTime} name="endTime" className="desc" id="endTime" onChange={(e) => change(e, "setEndTime")} required />
+                        <Input 
+                        id='time'
+                        type="time" 
+                        name="endTime" 
+                        value={endTime} 
+                        className="desc" 
+                        id="endTime" 
+                        onChange={(e) => change(e, "setEndTime")} />
                     </fieldset >
                     <fieldset className="column_fieldset">
                         <label>Tags (Space separated)</label>
-                        <input type="text" name="chips" value={chips} id="eventName" onChange={(event) => change(event, "setChips")} required />
+                        <input type="text" name="chips" value={chips} id="eventName" onChange={(event) => change(event, "setChips")} />
                     </fieldset>
                     <fieldset className="column_fieldset right">
                         <label> Image </label>
@@ -237,15 +289,15 @@ const EventCreateUpdate = ({ event, setShowModal }) => {
                         onClick={() => setErrorMsg("")} /> */}
                     </fieldset>
                     {showImg ?
-                            <fieldset className="column_fieldset">
-                                <img alt="profile" src={img} className="Img"></img>
-                            </fieldset>
-                            : null
-                        }
+                        <fieldset className="column_fieldset">
+                            <img alt="profile" src={img} className="Img"></img>
+                        </fieldset>
+                        : null
+                    }
                     {/* <button onSubmit={(event) => submitForm(event)} className="save" type="submit">Add</button> */}
                     <button className="save" type="submit">{isAddModal ? "Create" : "Update"}</button>
                 </div >
-
+                <CheckFieldsButton style={{ display: "none" }} ref={chkbuttonElement} />
                 {/* <button className="closeAdd" onClick={()=>closeAdd}>{close}</button> */}
             </Form >
 
