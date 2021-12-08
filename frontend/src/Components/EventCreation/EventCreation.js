@@ -179,7 +179,6 @@ const EventCreation=({event, setShowModal})=>{
         //dispatch call for edit event
         if(!isAddModal)
         {
-            console.log('WHY AM I HERE')
             setEventData(eventData => ({
                 ...eventData,
                 name : user?.profileObj?.name,
@@ -202,9 +201,8 @@ const EventCreation=({event, setShowModal})=>{
             if (chkbuttonElement.current.context._errors.length === 0) {
                 if (!user?.profileObj?.name) {
                     clearAllFields();
-                    return alert("You have to sign in to make a event")
+                    return 
                 }
-            let chipsArr = chips.split(" ")
             //dispatch call for create event
             dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))
             clearAllFields();
