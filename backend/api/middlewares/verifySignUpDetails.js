@@ -68,7 +68,7 @@ const checkExistingUser = (req, res, next) => {
         userName: req.body.userName
     }).exec((error, user) => {
         if (!user) {
-            setAuthErrorResponse("User doesn't exist! Please Sing-Up!", res)
+            setAuthErrorResponse("User doesn't exist! Please Sign-Up!", res)
             return;
         }
         if (error) {
