@@ -14,6 +14,11 @@ import CheckFieldsButton from "react-validation/build/button"
 
 import { isEmail, isStrongPassword, isAlpha } from "validator";
 
+/**
+ * validation for required field
+ * @param {value} value the input value
+ * @returns 
+ */
 const required = (value) => {
     if (!value) {
         return (
@@ -24,6 +29,11 @@ const required = (value) => {
     }
 }
 
+/**
+ * validation for email field
+ * @param {value} value of the email field
+ * @returns 
+ */
 const emailIsValid = (value) => {
     if (!isEmail(value)) {
         return (
@@ -34,6 +44,11 @@ const emailIsValid = (value) => {
     }
 }
 
+/**
+ * validation for username field
+ * @param {value} value of the username field
+ * @returns 
+ */
 const userNameIsValid = (value) => {
     if (value.length < 2 || value.length > 15) {
         return (
@@ -44,6 +59,11 @@ const userNameIsValid = (value) => {
     }
 }
 
+/**
+ * validation for name field
+ * @param {value} value of the name field
+ * @returns 
+ */
 const nameIsValid = (value) => {
     if (value.length < 2 || value.length > 15) {
         return (
@@ -60,6 +80,7 @@ const nameIsValid = (value) => {
     }
 }
 
+// validation for password field
 const passwordIsValid = (value) => {
     if (value.length < 8 || value.length > 25) {
         return (
@@ -83,6 +104,11 @@ const passwordIsValid = (value) => {
     }
 }
 
+/**
+ * the actual render function for signup form
+ * @param {user} user prop 
+ * @returns 
+ */
 function SignUpForm({ user }) {
 
     const [isSignIn, setIsSignin] = useState(true)
@@ -102,6 +128,7 @@ function SignUpForm({ user }) {
     const chkbuttonElement = React.useRef();
     const uploadBtnElement = React.useRef(null);
 
+    // function to handle google login success
     const handleSuccess = async (resp) => {
 
         const profileObj = resp?.profileObj
@@ -115,22 +142,25 @@ function SignUpForm({ user }) {
         }
     }
 
+    // function to handle google login failure
     const handleFailure = async (error) => {
         console.log(error)
     }
 
+    // function to handle signup submit
     const handleSignUpSubmit = async (e) => {
         e.preventDefault()
 
+        // validate all fields
         formElement.current.validateAll()
-        console.log(setImageurl)
+        // if no errors then proceed
         if (chkbuttonElement.current.context._errors.length === 0) {
             try {
                 const data = await signup(email, familyname, givenname, username, imageurl, password)
-                console.log(data)
                 let profileObj = data?.data?.newUser
                 let token = data?.data?.tokenId
                 try {
+                    // dispatch for auth
                     dispatch({ type: 'AUTH', data: { profileObj, token } })
                     navigate('/')
                 } catch (error) {
@@ -147,12 +177,9 @@ function SignUpForm({ user }) {
     const handleSignInSubmit = async (e) => {
         e.preventDefault()
         formElement.current.validateAll()
-        console.log('Api calling from frontend');
         // if (chkbuttonElement.current.context._errors.length === 0){
             try {
                 const data = await login(username, password)
-               // console.log(user) 
-               console.log('here FE'); 
                 let profileObj = data?.data?.newUser
                 let token = data?.data?.tokenId
                 try {
@@ -168,7 +195,7 @@ function SignUpForm({ user }) {
        // }     
     }
 
-
+    // onchange of input values set the states
     const onChangeValue = (e) => {
         let elementValue = e.target.value
         // setEmail(elementValue)
@@ -194,9 +221,9 @@ function SignUpForm({ user }) {
         }
     };
 
+    // when signup or login button is pressed at bottom, empty fields
     const authPageSwitch = async () => {
         setErrorMsg("")
-        console.log("I AM CALLED", username, password)
         await setIsSignin(!isSignIn)
         await setEmail('')
         await setFamilyname('')
@@ -204,8 +231,7 @@ function SignUpForm({ user }) {
         await setUsername('')
         await setImageurl('')
         await setPassword('')
-
-        // Clear all fields
+        // Clear all fields on page switch
     }
 
     /**
@@ -214,15 +240,14 @@ function SignUpForm({ user }) {
      */
     const handleImageContent = (e) => {
         setErrorMsg("")
-        console.log(e)
         let file = e.target.files[0]
         let files = []
-        // console.log(file)
         let reader = new FileReader()
 
         if (file !== undefined) {
             reader.readAsDataURL(file)
             reader.onload = () => {
+                // the file object
                 let fileData = {
                     name: file.name,
                     type: file.type,
@@ -231,8 +256,8 @@ function SignUpForm({ user }) {
                     file: file,
                 };
                 files.push(fileData)
-                console.log(files)
                 if (!(Math.round(file.size / 1000) > 15000)) {
+                    // only if base64 present set image url and show profile
                     if (fileData.base64) {
                         setImageurl(fileData.base64)
                         setShowProfile(true)
@@ -240,12 +265,14 @@ function SignUpForm({ user }) {
                         setShowProfile(false)
                     }
                 } else {
+                    // error message if file exceed certain size
                     setErrorMsg("File size cannot be more than 16 MB. File won't be uploaded")
                     uploadBtnElement.current.value = ""
                     setImageurl("")
                     setShowProfile(false)
                 }
 
+                // if file names dont match, show error
                 if (!file.name.match(/\.(jpg|jpeg|png)$/)) {
                     setImageurl("")
                     setShowProfile(false)
@@ -276,6 +303,7 @@ function SignUpForm({ user }) {
             </> : null
             }
             <div>
+                {/* signup form */}
                 <Form onSubmit={isSignIn ? handleSignInSubmit : handleSignUpSubmit} id="signup-form" ref={formElement} className="add_signup_form">
                     {!isSignIn ? <><fieldset className="column_fieldset">
                         <label>Email</label>
@@ -296,11 +324,7 @@ function SignUpForm({ user }) {
                         </div>
                         <fieldset className="column_fieldset">
                             <label>Profile Picture</label>
-                            {/* <FileBase
-                                type="file"
-                                multiple={false}
-                                onDone={({ base64 }) => handleImageContent(base64)}
-                            /> */}
+                            {/* image upload button */}
                             <input type="file" ref={uploadBtnElement} onChange={handleImageContent} onClick={() => setErrorMsg("")}
                             />
                         </fieldset>
@@ -313,6 +337,7 @@ function SignUpForm({ user }) {
                     </>
                         : null
                     }
+                    {/* login fields */}
                     <fieldset className="column_fieldset">
                         <label>Username</label>
                         <Input id="add-username" type="text" className="_inputField" name="username" value={username} data-state="setUsername" onChange={onChangeValue} validations={[required, userNameIsValid]}
@@ -327,6 +352,7 @@ function SignUpForm({ user }) {
                     <div className="btn_wrapper">
                         <button id="create-user" type="submit">{isSignIn ? 'Sign In' : 'Sign Up'}</button>
                         <span className="_orSeparator mx-3">- OR -</span>
+                        {/* google login button */}
                         <GoogleLogin
                             clientId={process.env.REACT_APP_CLIENT_ID}
                             className="googleLogin"
