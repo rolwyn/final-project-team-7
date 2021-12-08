@@ -1,4 +1,5 @@
 @import '../../Utils/Design-Tokens/CommonScssUtil.scss';
+// main navbar wrapper
 .navbar_nav {
 	top: 0;
 	position: fixed;
@@ -9,9 +10,11 @@
 	z-index: 9999;
 	background-color: $navbar-header-shade;
 	background-image: -webkit-linear-gradient(-30deg, $navbar-header-shade 73%, $navbar-gradiant-shade 50%);
+	// inner navbar container
 	.nav_container {
 		//flex mixin
 		@include flex-mixin(row, space-between, center);
+		// li menu buttons
 		li {
 			color: $color-white-shade-1;
 			font-size: fontSize(medium, m16);
@@ -24,7 +27,19 @@
 		.navbtn:hover {
 			color: $color-grey-shade-5;
 		}
+		// favourite icon svg
+		._favourites {
+			svg {
+				color: #ff4c47;
+				font-size: 18px;
+				margin: -1px 0;
+				&:hover {
+					color: $navbar-favourite-icon;
+				}
+			}
+		}
 	}
+	// styles for brand logo
 	.brand_logo {
 		.logo{
 			cursor: pointer;
@@ -32,7 +47,8 @@
 			align-items: center;
 			padding: 0px 25px;
 			img {
-				height: 65px;
+				width: 85px;
+				height: 95px;
 			}
 		}
 	}

@@ -130,9 +130,12 @@ export const deleteEvent = async (req, resp) => {
 export const updateEvent=async (request,response)=>{
     try{
         //in route called it as id, sets the params.id with whatever the url had as idd
-        const id=request.params.id;
-        const event= {...request.body};
-        const updatedEvent= await CardLayoutService.updateEvent(event);
+        const {id}=request.params;
+        
+        if (!mongoose.Types.ObjectId.isValid(id)) return response.errorHandler(`No post with id ${id}`, response, 404);
+        const event = {...request.body, creator: request.userId}
+        const updatedEvent= await CardLayoutService.updateEvent(id, event);
+        console.log("WTF", updatedEvent)
         setSuccessResponse(updatedEvent, response);
     }catch(e){
         errorHandler(e.message,response);

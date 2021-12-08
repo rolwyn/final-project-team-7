@@ -14,6 +14,17 @@ $navbar-shade-1: #ffffff;
 $navbar-header-shade: #013A6B;
 $navbar-gradiant-shade: #004E95;
 $navbar-search-icon-hover: #8ec9ff;
+$navbar-favourite-icon: #d9100a;
+
+//---- Signup Form Shades ----//
+$signup-profileimg-shade-1: #b9b9b9;
+$signup-separator: #616161;
+$signup-btn-disabled: #cccccc;
+$signup-btn-disabled-border: #c5c5c5;
+
+//---- Error Shades ----//
+$signup-form-invalid-input: #eb2e24;
+$signup-form-error-msg: #ef5350;
 
 //---- Grey Color Shade ----//
 $color-grey-shade-1  : #cbcbcb;
@@ -21,6 +32,7 @@ $color-grey-shade-2  : #bdbdbd;
 $color-grey-shade-3  : #9e9e9e;
 $color-grey-shade-4  : #37474f;
 $color-grey-shade-5  : #d1d1d1;
+$color-grey-shade-6  : #8f8f8f;
 
 //---- Peach Color Shade ----//
 $peach-shade-1        :#ffede7;
@@ -39,6 +51,7 @@ $green-shade-3          : #008000;
 $blue-shade-1          : #03a9f4;
 $blue-shade-2          : #1781d5;
 $blue-shade-3          : #607d8b;
+$blue-shade-4          : #2196f3;
 
 // Creating an array of font sizes in rem and then making a function in _functions.scss to use them
 $fontSizes: (

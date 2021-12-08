@@ -21,6 +21,7 @@ router.route('/:id/schedule')
 //when api/events/:id is called , depending on whether event needs to be deleted or updated, below calls are made 
 router.route('/:id')
     .delete(verifyJwtToken, CardLayoutController.deleteEvent)
-    .put(CardLayoutController.updateEvent)
+    .patch(verifyJwtToken, CardLayoutController.updateEvent)
+    // .patch(id,CardLayoutController.updateEvent)
 
 export default router;

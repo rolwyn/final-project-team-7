@@ -75,7 +75,7 @@ export const getEvents = () => baseUrl.get("/api/events/getEvents")
 
 export const searchEvents = (searchQuery) => baseUrl.get(`/api/events/search?searchQuery=${searchQuery.search || 'none'}`)
 
-export const updateEvent = (id, updatedEvent) => baseUrl.patch(`/api/events/${id}`, updatedEvent)
+export const updateEvent = (id, eventName, location, description, img, date, time, endTime, name, chipsArr) => baseUrl.patch(`/api/events/${id}`, {eventName: eventName, location: location, description: description, img: img, date: date, time: time, endTime: endTime, name: name, chipsArr: chipsArr})
 
 export const likeEvent = (id) => baseUrl.patch(`/api/events/${id}/like`)
 

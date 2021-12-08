@@ -40,7 +40,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 		<header>
 			<nav className="navbar_nav">
 				<div className="brand_logo" onClick={() => {dispatch({ type: "ISNOTSIGNIN" }); dispatch({type: "ISNOTFAV"})}}>
-					<div className='logo'><img alt="brandlogo" src="assets/images/logo.png"></img></div>
+					<div className='logo'><img alt="brandlogo" src="assets/images/EventLogo.png"></img></div>
 				</div>
 				<div className="navBtnWrapper w-5/12">
 					<SearchBar />
@@ -57,16 +57,17 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 								<button>
 									<Avatar className='rounded-full flex items-center flex-shrink-0 profilebtn' size="50" round={true} alt={user?.profileObj.name.charAt(0)} 
 										src={user?.profileObj?.imageUrl} name={user.profileObj.givenName + " " + user.profileObj.familyName} maxInitials={2} 
-										type="button" onClick={() => dispatch({ type: "ISSIGNIN" })}>
+										type="button" onClick={() => {dispatch({ type: "ISSIGNIN" }); dispatch({ type: "ISNOTFAV"})}}>
 									</Avatar>
 								</button>
 							</li>
               <li>
-                <button className='addbtn' onClick={() => {
+                <button className='addbtn _favourites' onClick={() => {
                   console.log("wishlist")
                   dispatch({ type: "ISFAV" })
+                  dispatch({ type: "ISNOTSIGNIN"})
                 }}>
-                 Favourites 
+                <FontAwesomeIcon icon="heart" />&nbsp;Favourites
                 </button>
               </li>
 							<li>
