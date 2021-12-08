@@ -9,7 +9,7 @@ import {createEvent} from '../../Actions/events';
 import { useDispatch } from 'react-redux';
 import './EventCreation.scss';
 
-const EventCreateUpdate=({event, setShowModal})=>{
+const EventCreation=({event, setShowModal})=>{
     //states describing the event and marking changes in the event.
     const [eventName, setEventName]=useState("");
     const [description, setDescription]= useState("");
@@ -28,7 +28,6 @@ const EventCreateUpdate=({event, setShowModal})=>{
     useEffect(() => {
         if(event)
         {
-        
             setEventName(event.eventName);
             setDescription(event.description);
             setImg(event.img);
@@ -173,5 +172,5 @@ const EventCreateUpdate=({event, setShowModal})=>{
 }
 
  
-export default EventCreateUpdate;
+export default EventCreation;
 

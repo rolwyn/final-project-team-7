@@ -4,7 +4,7 @@ import Mongoose from "mongoose";
 /**
  * defines the structure of events in database
  * each event has a 
- * name, image, location, description
+ * eventName, image, location, description
  * start and end time, date of event,  date of creation
  * chips/tags attached to it
  * person who created it
