@@ -16,9 +16,7 @@ function EventCard(props){
     // const [isEventLiked, setIsEventLiked] = useState(isLiked(props, user))
 
     const Hearts = () => {
-        console.log(props.event.likes)
         if(props.event.likes.length > 0){
-            console.log("IN HERE")
             if(props.event.likes.find((id) => id === user?.profileObj?.googleId || id === user?.profileObj?._id) !== undefined){
                 return (<><FontAwesomeIcon className='_liked' icon="heart" /></>)
             } 
@@ -31,13 +29,6 @@ function EventCard(props){
         e.preventDefault()
         dispatch(likeEvent(props.event.id))
     }
-
-    // onClick={handleEdit}
-    // const handleEdit = (e) => {
-    //     e.preventDefault()
-        
-    //     console.log("Edit clicked")
-    // }
 
     const handleDelete = (e) => {
         e.preventDefault()
@@ -54,14 +45,12 @@ function EventCard(props){
         dispatch(scheduleEvent(props.event.id))
 
         gapi.load('client:auth2', () => {
-            console.log('loaded client')
             gapi.client.init({
                 apiKey: API_KEY,
                 clientId: CLIENT_ID,
                 discoveryDocs: DISCOVERY_DOCS,
                 scope: SCOPES,
             })
-            console.log(API_KEY, CLIENT_ID)
             gapi.client.load('calendar', 'v3', () => console.log("loaded calendar"))
 
             gapi.auth2.getAuthInstance().signIn()
@@ -100,7 +89,6 @@ function EventCard(props){
                 })
 
                 req.execute(event => {
-                    console.log(event)
                     window.open(event.htmlLink)
                 })
             })
