@@ -10,9 +10,19 @@ export const getEvents = () => async (dispatch) => {
     }
 }
 
-export const createEvent = (eventName, location, description, img, date, time, endTime, name) => async (dispatch) => {
+export const getEventsBySearch = (searchQuery) => async (dispatch) => {
     try {
-        const {data} = await api.createEvent(eventName, location, description, img, date, time, endTime, name)
+        const { data } = await api.searchEvents(searchQuery)
+        console.log(data)
+        dispatch({ type: 'FETCH_BY_SEARCH', payload: data })
+    } catch(e) {
+        console.log(e.message)
+    }
+}
+
+export const createEvent = (eventName, location, description, img, date, time, endTime, name, chips) => async (dispatch) => {
+    try {
+        const {data} = await api.createEvent(eventName, location, description, img, date, time, endTime, name, chips)
         dispatch({ type: 'CREATE', payload: data })
 
     } catch (error) {

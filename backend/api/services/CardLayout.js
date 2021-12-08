@@ -4,13 +4,19 @@ import Event from "../models/CardLayout/Event.js";
  * @param {*} params 
  * @returns {}
  */
+//
 export const searchEvent =(params={})=>{
     //const id=params.id || 1
     const promise=Event.find(params).exec();
     return promise;
 };
 
-//takes contact, and saves it
+// searches event by query i.e title in this case
+export const searchEventsByQuery = (eventName) => {
+    return Event.find({ $or:[{eventName: eventName}, {chips: { $in:eventName}}] }).exec();
+}
+
+//takes event, and saves it to the events collection
 export const createEvent=async (event)=>{
     try { 
         const newContact=new Event(event);
@@ -19,12 +25,12 @@ export const createEvent=async (event)=>{
         console.log(error)
     }
 }
-
+//gets event on the basis of id, searches in the events collection and returns the event
 export const getEvent=(id)=>{
     const promise=Event.findById(id).exec();
     return promise;
 }
-
+//takes event and updates it in the events collection
 export const updateEvent = async (event) => {
     try {
         event._id=event.id;
@@ -34,17 +40,8 @@ export const updateEvent = async (event) => {
         console.log(err)
     }
 }
-
+//takes id of the event and deletes it in the events collection
 export const deleteEvent = async (id) => {
     const promise = await Event.findByIdAndRemove(id).exec()
     return promise
 }
-// export const update=(contact)=>{
-//     contact._id=contact.id;
-//     const promise=Event.findByIdAndUpdate(contact.id,contact,{new:true}).exec();
-//     return promise;
-// }
-// export const remove=(id)=>{
-//     const promise=Event.findByIdAndDelete(id).exec();
-//     return promise;
-// }

@@ -1,32 +1,27 @@
-import React, {useState} from 'react';
-import EventCreation  from '../EventCreation/EventCreation';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import EventCreation from '../EventCreation/EventCreation';
 import './Modal.scss'
 
-
-export default function Modal({showModal,openModal,isAddModal, setShowModal} ){
-    
+export default function Modal({ openModal, event, setShowModal }) {
+    const isAddModal = useSelector((state) => state.modal)
+    console.log(event)
     return (
 
         <div className="modal_fade">
             <div className='popup'>
                 <div className="modal-body">
-                    test text remove later
-                    
-                    {/* {console.log("EditModal true") : */}
-                    {isAddModal?<EventCreation></EventCreation>:
-                        <h1>Edit modal</h1>
-                        
+                    {
+                        isAddModal ? <EventCreation setShowModal={setShowModal}></EventCreation> :
+                            <EventCreation setShowModal={setShowModal} event={event}></EventCreation>
                     }
-                    
                 </div>
-                {/* onClick={setShowModal(false)} */}
+                {/*  */}
                 <div className="modal-close" >
-                    <img src="assets/images/close.png"/>
+                    <img src="assets/images/close.png" alt="close-button" onClick={() => setShowModal(prev => !prev)} />
                 </div>
             </div>
-            
-          
-      </div>
-      
+        </div>
+
     );
 }

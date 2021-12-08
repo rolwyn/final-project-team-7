@@ -9,7 +9,7 @@
 	align-items: center;
 	z-index: 9999;
 	background-color: #013A6B;
-	background-image: -webkit-linear-gradient(-30deg, #013A6B 75%, #004E95 50%);
+	background-image: -webkit-linear-gradient(-30deg, #013A6B 73%, #004E95 50%);
 	.nav_container {
 		display: flex;
 		align-items: center;
@@ -38,8 +38,14 @@
 			}
 		}
 	}
+	.navBtnWrapper {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 }
 
 .container {  
   display: flex;  
 }
+

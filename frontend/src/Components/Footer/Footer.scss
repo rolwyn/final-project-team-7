@@ -22,14 +22,23 @@ footer {
   position: fixed;
   bottom: 0px;
   margin-bottom: 0px;
-
-  .wrapper ul {
-   // display: flex;
-    justify-content: space-between;
-    background-color: #596277;
+  .right {
+    display: flex;
+    justify-content: right;
+    img {
+      height: 75px;
+      width: 75px;
+    }
   }
+
+  // .wrapper-footer ul {
+  //   float: right;
+  //   display: flex;
+  //   justify-content: space-between;
+  //   // background-color: #596277;
+  // }
   .copyright {
-    background-color: #404756;
+    background-color: #013a6b; //#404756;
     padding: 1px;
     //flex-basis: 100%;
     font-size: 10px;

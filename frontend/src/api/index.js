@@ -56,7 +56,7 @@ export const login = (username, password) => {
  * @param {*} time 
  * @returns a promise which resolves to a response object or error
  */
-export const createEvent = (eventName, location, description, img, date, time, endTime, name) => {
+export const createEvent = (eventName, location, description, img, date, time, endTime, name, chips) => {
     return baseUrl.post("/api/events/createEvent", {
         eventName: eventName,
         location: location,
@@ -65,14 +65,17 @@ export const createEvent = (eventName, location, description, img, date, time, e
         date: date,
         time: time,
         endTime: endTime,
-        name: name
+        name: name,
+        chips: chips
     });
 
 }
 //service call for getting all the events in the database
 export const getEvents = () => baseUrl.get("/api/events/getEvents")
 
-export const updateEvent = (id, updatedEvent) => baseUrl.patch(`/api/events/${id}/like`, updatedEvent)
+export const searchEvents = (searchQuery) => baseUrl.get(`/api/events/search?searchQuery=${searchQuery.search || 'none'}`)
+
+export const updateEvent = (id, updatedEvent) => baseUrl.patch(`/api/events/${id}`, updatedEvent)
 
 export const likeEvent = (id) => baseUrl.patch(`/api/events/${id}/like`)
 
