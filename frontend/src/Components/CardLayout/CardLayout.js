@@ -8,8 +8,10 @@ function CardLayout({isSignup, isAddModal, openModal}){
     const eventData = useSelector((state) => state.events)
     const isNotHomePage = useSelector((state) => state.profileReducer)
     const isFavPage = useSelector(state => state.favReducer)
+    // take user from localStorage
     const user = JSON.parse(localStorage.getItem('userProfile'))
 
+    // useeffect for when state changes in redux
     useEffect(() => {
     },[isNotHomePage, isFavPage]);
 
@@ -17,7 +19,7 @@ function CardLayout({isSignup, isAddModal, openModal}){
     },[eventData])
 
     return (
-        
+        // filter event data based on whether profile or home button is clicked
         isNotHomePage || isFavPage ?
         (isNotHomePage ?
         !eventData.filter((event) => event.creator === user?.profileObj?._id || event.creator === user?.profileObj?.googleId).length ? <div className="cards_container">you have no posts yet</div> : 
