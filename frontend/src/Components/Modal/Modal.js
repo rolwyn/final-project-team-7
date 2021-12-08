@@ -17,7 +17,8 @@ export default function Modal({ openModal, event, setShowModal }) {
                 </div>
                 {/*  */}
                 <div className="modal-close" >
-                    <img src="assets/images/close.png" alt="close-button" onClick={() => setShowModal(prev => !prev)} />
+                    <a class="close" onClick={() => setShowModal(prev => !prev)} href="#popup1">×</a>
+
                 </div>
             </div>
         </div>
