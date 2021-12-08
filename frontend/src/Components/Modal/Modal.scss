@@ -1,4 +1,7 @@
+
+
 .modal_fade {
+ top: 0;
   position: fixed;
   z-index: 1;
   background: rgba(0, 0, 0, 0.5);
@@ -26,7 +29,8 @@
   .modal-close {
     cursor: pointer;
     position: absolute;
-    top: 20px;
+    top: 65px;
+    left: 100px;
     right: 20px;
     width: 32px;
     height: 32px;

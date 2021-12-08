@@ -11,6 +11,9 @@ import { useDispatch } from 'react-redux';
 import './EventCreation.scss';
 import Input from "react-validation/build/input"
 import CheckFieldsButton from "react-validation/build/button"
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const EventCreateUpdate = ({ event, setShowModal }) => {
     //states describing the event and marking changes in the event.
@@ -48,6 +51,17 @@ const EventCreateUpdate = ({ event, setShowModal }) => {
             )
         }
     }
+
+
+    const validateDate = (value) => {
+        const currentDate = new Date();
+        if (currentDate => value) {
+            <p className='text-red-500 text-sm italic mt-2'><sup>*</sup> Cannot select past date!
+            </p>
+        }
+
+    }
+
     /**
      * Handle logic to throw error on image upload
      */
@@ -242,6 +256,7 @@ const EventCreateUpdate = ({ event, setShowModal }) => {
                                 type="date"
                                 name='date'
                                 className='_inputField'
+                                maxDate={new Date()}
                                 value={date}
                                 data-state='setDate'
                                 validations={[required]}
@@ -263,25 +278,37 @@ const EventCreateUpdate = ({ event, setShowModal }) => {
                     </div>
                     <fieldset className="column_fieldset">
                         <label>End Time</label>
-                        <Input 
-                        id='time'
-                        type="time" 
-                        name="endTime" 
-                        value={endTime} 
-                        className="desc" 
-                        id="endTime" 
-                        onChange={(e) => change(e, "setEndTime")} />
+                        <Input
+                            id='endTime'
+                            type="time"
+                            name="endTime"
+                            className='_inputField'
+                            value={endTime}
+                            data-state='setEndTime'
+                            validations={[required]}
+                            onChange={change} />
                     </fieldset >
                     <fieldset className="column_fieldset">
                         <label>Tags (Space separated)</label>
-                        <input type="text" name="chips" value={chips} id="eventName" onChange={(event) => change(event, "setChips")} />
+                        <Input
+                            id='chips'
+                            type="text"
+                            name="chips"
+                            className='_inputField'
+                            value={chips}
+                            data-state='setChips'
+                            validations={[required]}
+                            onChange={change} />
                     </fieldset>
                     <fieldset className="column_fieldset right">
                         <label> Image </label>
                         {/* <Input type="file"  accept="image/*" name="image" id="file" /> */}
                         <input
+                            id='Img'
+                            name='Img'
                             type="file"
                             ref={uploadBtnElement}
+                            validations={[required]}
                             onChange={handleImageContent}
                             onClick={() => setErrorMsg("")}
                         />
