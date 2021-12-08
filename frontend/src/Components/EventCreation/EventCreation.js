@@ -173,25 +173,12 @@ const EventCreation=({event, setShowModal})=>{
     //whenever form is submitted
     const submitForm = async (e) => {
         e.preventDefault();
-        formElement.current.validateAll()
-        // checkIfNull;
-        if (chkbuttonElement.current.context._errors.length === 0) {
-            if (!user?.profileObj?.name) {
-                clearAllFields();
-                return alert("You have to sign in to make a event")
-            }
-            let chipsArr = chips.split(" ")
-            console.log(chipsArr)
-            //dispatch call for create event
-            dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))
-            clearAllFields();
-            setShowModal((previousState => !previousState));
-        }
+        
+        
         let chipsArr = chips.split(" ")
         //dispatch call for edit event
         if(!isAddModal)
         {
-            console.log('WHY AM I HERE')
             setEventData(eventData => ({
                 ...eventData,
                 name : user?.profileObj?.name,
@@ -205,12 +192,22 @@ const EventCreation=({event, setShowModal})=>{
                 chips : chipsArr 
                 
             }))
-            console.log(eventData.id)
             dispatch(updateEvent(eventData.id, eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))
         }
         else{
             //dispatch call for create event
-            dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr)) 
+            formElement.current.validateAll()
+            // checkIfNull;
+            if (chkbuttonElement.current.context._errors.length === 0) {
+                if (!user?.profileObj?.name) {
+                    clearAllFields();
+                    return 
+                }
+            //dispatch call for create event
+            dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))
+            clearAllFields();
+            setShowModal((previousState => !previousState));
+            }
         }
          
         
