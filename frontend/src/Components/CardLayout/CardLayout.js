@@ -6,14 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function CardLayout({isSignup, isAddModal, openModal}){
 
     const eventData = useSelector((state) => state.events)
-    const isNotHomePage = useSelector((state) => state.profile)
+    const isNotHomePage = useSelector((state) => state.profileReducer)
+    const isFavPage = useSelector(state => state.favReducer)
     const user = JSON.parse(localStorage.getItem('userProfile'))
 
     useEffect(() => {
-    },[isNotHomePage]);
+        console.log()
+    },[isNotHomePage, isFavPage]);
 
     useEffect(() => {
-        console.log(eventData)
     },[eventData])
 
     // eventData.reverse()
@@ -22,7 +23,8 @@ function CardLayout({isSignup, isAddModal, openModal}){
     return (
         // !eventData ? <div className="page_loader"><FontAwesomeIcon spin={true} icon="spinner"/></div> : <>Hi</>
         
-        isNotHomePage ?
+        isNotHomePage || isFavPage ?
+        (isNotHomePage ?
         !eventData.filter((event) => event.creator === user?.profileObj?._id || event.creator === user?.profileObj?.googleId).length ? <div className="cards_container">you have no posts yet</div> : 
             <div className="cards_container">    
         { 
@@ -35,12 +37,29 @@ function CardLayout({isSignup, isAddModal, openModal}){
             
             ))
         }
-        </div>
+        </div> 
+        : 
+        (!eventData.filter((event) => event.likes.find((id) => id === user?.profileObj?.googleId || id === user?.profileObj?._id) !== undefined)).length ? <div className="cards_container">you have no posts yet</div> : 
+            <div className="cards_container">    
+        { 
+            eventData.filter((event) => event.likes.find((id) => id === user?.profileObj?.googleId || id === user?.profileObj?._id) !== undefined).map(event=>(
+                <EventCard openModal={openModal}
+                    key={event.id}
+                    event={event}
+                    
+                />
+            
+            ))
+        }
+        </div>  
+        )
         :
          
         !eventData.length ? <div className="page_loader"><FontAwesomeIcon spin={true} icon="spinner"/></div> : 
+            
             <div className="cards_container">    
         { 
+            
             eventData.map(event=>(
                 <EventCard
                     openModal={openModal}

@@ -19,7 +19,12 @@ mongoose.connect(host, {useNewUrlParser: true})
 .catch(error => {
     console.log("Database connection error:", error)
     process.exit()
-});
+})
+
+// mongoose.connect('mongodb://localhost:27017/eventracker').then(() => console.log("done")).catch(err => {
+//     console.log("db err")
+//     process.exit()
+// })
 
 app.use(cors());
 app.use(express.json({limit: '50mb'}));
