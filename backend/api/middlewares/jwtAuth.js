@@ -33,7 +33,6 @@ export const verifyJwtToken = async (req, res, next) => {
     }
     next()
   } catch (error) {
-    console.log(error.response);
     console.log(error)
   }
 }
