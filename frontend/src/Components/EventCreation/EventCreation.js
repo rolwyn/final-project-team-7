@@ -96,10 +96,8 @@ const EventCreation=({event, setShowModal})=>{
      */
     const handleImageContent = (e) => {
         setErrorMsg("")
-        console.log(e)
         let file = e.target.files[0]
         let files = []
-        // console.log(file)
         let reader = new FileReader()
 
         if (file !== undefined) {
@@ -113,7 +111,6 @@ const EventCreation=({event, setShowModal})=>{
                     file: file,
                 };
                 files.push(fileData)
-                console.log(files)
                 if (!(Math.round(file.size / 1000) > 15000)) {
                     if (fileData.base64) {
                         setImg(fileData.base64)
@@ -193,6 +190,8 @@ const EventCreation=({event, setShowModal})=>{
                 
             }))
             dispatch(updateEvent(eventData.id, eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))
+             clearAllFields();
+            setShowModal((previousState=>!previousState));
         }
         else{
             //dispatch call for create event
@@ -201,19 +200,17 @@ const EventCreation=({event, setShowModal})=>{
             if (chkbuttonElement.current.context._errors.length === 0) {
                 if (!user?.profileObj?.name) {
                     clearAllFields();
-                    return 
+                    setShowModal((previousState) => !previousState) 
                 }
             //dispatch call for create event
             dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))
             clearAllFields();
-            setShowModal((previousState => !previousState));
+            setShowModal((previousState=>!previousState));
             }
         }
          
         
         //handleUpdate();
-        clearAllFields();
-        setShowModal((previousState=>!previousState));
         
     }
     //whenever fields are updated
