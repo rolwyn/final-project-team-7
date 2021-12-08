@@ -132,7 +132,7 @@ export const updateEvent=async (request,response)=>{
         const {id}=request.params;
         
         if (!mongoose.Types.ObjectId.isValid(id)) return response.errorHandler(`No post with id ${id}`, response, 404);
-        const event = {...request.body, creator: request.userId}
+        const event = {...request.body, creator: request.userId, chips: request.body.chipsArr}
         const updatedEvent= await CardLayoutService.updateEvent(id, event);
         setSuccessResponse(updatedEvent, response);
     }catch(e){
