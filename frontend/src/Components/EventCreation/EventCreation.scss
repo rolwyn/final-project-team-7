@@ -1,7 +1,7 @@
 @import '../../Utils/Design-Tokens/CommonScssUtil.scss';
 
 .flex {
-  @include flex-mixin(row, space-evenly, center);
+  @include flex-mixin(row, left, center);
   fieldset{
     padding-right: 10px;
   }

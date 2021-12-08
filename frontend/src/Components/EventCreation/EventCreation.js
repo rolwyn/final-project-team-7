@@ -306,10 +306,10 @@ const EventCreation=({event, setShowModal})=>{
                                 type="date"
                                 name='date'
                                 className='_inputField'
-                                maxDate={new Date()}
+                            
                                 value={date}
                                 data-state='setDate'
-                                validations={[required]}
+                                validations={[required, validateDate]}
                                 onChange={change}
                             />
                         </fieldset>
