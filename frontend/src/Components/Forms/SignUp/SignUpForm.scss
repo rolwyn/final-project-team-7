@@ -54,6 +54,7 @@
         color: #616161;
     }
     button {
+        // inheritance
         @extend %default-btn-style;
         color: #ffffff;
         background-color: #03a9f4;

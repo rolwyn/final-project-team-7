@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getEvents, getEventsBySearch } from '../../Actions/events'
-import '../../Utils/Design-Tokens/CommonScssUtil.scss'
 import  '../SearchBar/SearchBar.scss'
 
 const SearchBar = () => {
