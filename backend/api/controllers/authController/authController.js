@@ -51,7 +51,6 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-        console.log('login api is callled from backend');
         const userName = req.body.userName
         const password = req.body.password
 
@@ -64,13 +63,11 @@ export const login = async (req, res) => {
  
          if (!passwordIsValid) {
             setErrorResponse("Invalid Password!", res)
-            console.log('Invalid password');
              return res.status(400).send({
                  token: null,
                  message: "Invalid Password!"
              });
          }
-         console.log('here'); 
         let token = jwt.sign({ id: loginUser?._id }, config.secretKey, {
             // 24 hours
             expiresIn: 86400
