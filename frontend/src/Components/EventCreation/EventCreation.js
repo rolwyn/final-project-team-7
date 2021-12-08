@@ -201,12 +201,11 @@ const EventCreation=({event, setShowModal})=>{
             if (chkbuttonElement.current.context._errors.length === 0) {
                 if (!user?.profileObj?.name) {
                     clearAllFields();
-                    return 
+                    setShowModal((previousState) => !previousState) 
                 }
             //dispatch call for create event
             dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))
             clearAllFields();
-            setShowModal((previousState => !previousState));
             }
         }
          
