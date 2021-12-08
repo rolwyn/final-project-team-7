@@ -16,7 +16,11 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const EventCreation=({event, setShowModal})=>{
-    //states describing the event and marking changes in the event.
+    /**
+     * states describing the event and marking changes in the event.
+     * 
+     */
+
     const [eventName, setEventName] = useState("");
     const [description, setDescription] = useState("");
     const [img, setImg] = useState("");
@@ -80,7 +84,10 @@ const EventCreation=({event, setShowModal})=>{
             )
         }
     }
-
+/**
+ * Validating date 
+ * @param {*} value 
+ */
 
     const validateDate = (value) => {
         const currentDate = new Date();
@@ -243,7 +250,9 @@ const EventCreation=({event, setShowModal})=>{
                 return null
         }
     }
-
+/**
+ * Conditionally rendering based on edit or update 
+ */
     return (
         <div className='container bg-white h-3/4'>
             {errorMsg ? <>
