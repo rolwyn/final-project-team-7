@@ -236,7 +236,7 @@ const EventCreateUpdate = ({ event, setShowModal }) => {
                         {/* <FileBase type="file" multiple={false} onDone={(base64) => onFileUpload(base64)} 
                         onClick={() => setErrorMsg("")} /> */}
                     </fieldset>
-                    {setShowImg ?
+                    {showImg ?
                             <fieldset className="column_fieldset">
                                 <img alt="profile" src={img} className="Img"></img>
                             </fieldset>
