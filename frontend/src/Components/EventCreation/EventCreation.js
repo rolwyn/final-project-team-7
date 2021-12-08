@@ -27,16 +27,16 @@ const EventCreateUpdate=({event, setShowModal})=>{
     //in case of edit, event prop exists, set states with events fields
     useEffect(() => {
         if(event)
-    {
+        {
         
-        setEventName(event.eventName);
-        setDescription(event.description);
-        setImg(event.img);
-        setDate(event.date);
-        setTime(event.time);
-        setLocation(event.location);
-    }
-    },[]);
+            setEventName(event.eventName);
+            setDescription(event.description);
+            setImg(event.img);
+            setDate(event.date);
+            setTime(event.time);
+            setLocation(event.location);
+        }
+    },[event]);
  
      
     //clear all states

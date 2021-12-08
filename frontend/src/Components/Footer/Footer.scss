@@ -13,12 +13,21 @@ footer {
   position: fixed;
   bottom: 0px;
   margin-bottom: 0px;
-
-  .wrapper ul {
+  .right {
     display: flex;
-    justify-content: space-between;
-    background-color: #596277;
+    justify-content: right;
+    img {
+      height: 75px;
+      width: 75px;
+    }
   }
+
+  // .wrapper-footer ul {
+  //   float: right;
+  //   display: flex;
+  //   justify-content: space-between;
+  //   // background-color: #596277;
+  // }
   .copyright {
     background-color: #404756;
     padding: 1px;
