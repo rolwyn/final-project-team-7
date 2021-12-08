@@ -246,13 +246,6 @@ const EventCreation=({event, setShowModal})=>{
                 return null
         }
     }
-    //on fileUpload
-    // const onFileUpload = (base64) => {
-    //     if (base64) { setImg(base64.base64); }
-    // }
-    // const addChips = (val) => {
-    //     setChips([...chips, val])
-    // }
 
     return (
         <div className='container bg-white h-3/4'>
@@ -263,7 +256,7 @@ const EventCreation=({event, setShowModal})=>{
             </> : null
             }
             <Form onSubmit={(event) => submitForm(event)} ref={formElement} className="form">
-                <div className='content_wrapper  px-5 py-10'>
+                <div className='content_wrapper px-5 py-10'>
                     {/* depending on which button is clicked(add/edit) change heading */}
                     {isAddModal ? <h1 className="tagline"> Create an Event</h1> : <h1 className="tagline"> Edit  {eventName}</h1>}
 
@@ -305,7 +298,7 @@ const EventCreation=({event, setShowModal})=>{
                             validations={[required]}
                             placeholder="What's the event about?" />
                     </fieldset>
-                    <div className=''>
+                    <div className='flex'>
                         <fieldset className="column_fieldset col-span-1">
                             <label> Date </label>
                             <Input
@@ -332,8 +325,7 @@ const EventCreation=({event, setShowModal})=>{
                                 validations={[required]}
                                 onChange={change} />
                         </fieldset>
-                    </div>
-                    <fieldset className="column_fieldset">
+                        <fieldset className="column_fieldset">
                         <label>End Time</label>
                         <Input
                             id='endTime'
@@ -345,6 +337,7 @@ const EventCreation=({event, setShowModal})=>{
                             validations={[required]}
                             onChange={change} />
                     </fieldset >
+                    </div>
                     <fieldset className="column_fieldset">
                         <label>Tags (Space separated)</label>
                         <Input
@@ -357,6 +350,8 @@ const EventCreation=({event, setShowModal})=>{
                             validations={[required]}
                             onChange={change} />
                     </fieldset>
+                   
+
                     <fieldset className="column_fieldset right">
                         <label> Image </label>
                         {/* <Input type="file"  accept="image/*" name="image" id="file" /> */}

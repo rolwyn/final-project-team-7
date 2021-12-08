@@ -1,6 +1,11 @@
 @import '../../Utils/Design-Tokens/CommonScssUtil.scss';
 
-
+.flex {
+  @include flex-mixin(row, space-evenly, center);
+  fieldset{
+    padding-right: 10px;
+  }
+}
 
 .tagline {
   text-align: center;
@@ -99,3 +104,4 @@ input[type=text], select, .desc {
   color: #ffffff;
   margin-bottom: 20px;
 }
+
