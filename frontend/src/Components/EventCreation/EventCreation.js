@@ -20,7 +20,7 @@ const EventCreation=({event, setShowModal})=>{
     const [location, setLocation] = useState("")
     const isAddModal = useSelector((state) => state.modal)
     const [chips, setChips] = useState("")
-    const [eventData, setEventData]=useState();
+    const [eventData, setEventData]=useState({});
     const dispatch = useDispatch()
     //for modal
     const user = JSON.parse(localStorage.getItem('userProfile'))
@@ -33,20 +33,26 @@ const EventCreation=({event, setShowModal})=>{
     useEffect(() => {
         if(event)
         {
-            const chipsSpaced=event.chips.join(' ');
-            setEventName(event.eventName);
-            setDescription(event.description);
-            setImg(event.img);
-            setDate(event.date);
-            setTime(event.time);
-            setLocation(event.location);
-            setEndTime(event.endTime);
-            setChips(chipsSpaced);
-            setEventData(event);
+            setStateIfEvent()
         }
+        return () => {
+            setEventData({}); // This worked for me
+          };
     },[event]);
  
-     
+    const setStateIfEvent = () => {
+        const chipsSpaced=event.chips.join(' ');
+        setEventName(event.eventName);
+        setDescription(event.description);
+        setImg(event.img);
+        setDate(event.date);
+        setTime(event.time);
+        setLocation(event.location);
+        setEndTime(event.endTime);
+        setChips(chipsSpaced);
+        setEventData(event);
+    } 
+
     //clear all states
     const clearAllFields = async ()=>{
         await setEventName("");
