@@ -16,6 +16,7 @@ const eventsReducer = (events = [], action) => {
             return events.map((event) => (event._id === action.payload._id ? action.payload : event))
         case DELETE:
             return events.filter((event) => event.id !== action.payload)
+        
         default:
             return events
     }

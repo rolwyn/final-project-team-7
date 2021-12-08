@@ -22,5 +22,6 @@ router.route('/:id/schedule')
 router.route('/:id')
     .delete(verifyJwtToken, CardLayoutController.deleteEvent)
     .put(CardLayoutController.updateEvent)
+    // .patch(id,CardLayoutController.updateEvent)
 
 export default router;

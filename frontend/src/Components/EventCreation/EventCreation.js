@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux';
 //import ReactDOM from 'react-dom';
 import Form from "react-validation/build/form";
 import FileBase from 'react-file-base64';
-import {createEvent} from '../../Actions/events';
+import {createEvent, updateEvent} from '../../Actions/events';
 import { useDispatch } from 'react-redux';
 import './EventCreation.scss';
 
-const EventCreateUpdate=({event, setShowModal})=>{
+const EventCreation=({event, setShowModal})=>{
     //states describing the event and marking changes in the event.
     const [eventName, setEventName]=useState("");
     const [description, setDescription]= useState("");
@@ -20,21 +20,29 @@ const EventCreateUpdate=({event, setShowModal})=>{
     const [location, setLocation] = useState("")
     const isAddModal = useSelector((state) => state.modal)
     const [chips, setChips] = useState("")
+    const [eventData, setEventData]=useState();
     const dispatch = useDispatch()
     //for modal
     const user = JSON.parse(localStorage.getItem('userProfile'))
+    const handleUpdate = () => {
+        dispatch(updateEvent(event.id))
+    }
+    
     
     //in case of edit, event prop exists, set states with events fields
     useEffect(() => {
         if(event)
         {
-        
+            const chipsSpaced=event.chips.join(' ');
             setEventName(event.eventName);
             setDescription(event.description);
             setImg(event.img);
             setDate(event.date);
             setTime(event.time);
             setLocation(event.location);
+            setEndTime(event.endTime);
+            setChips(chipsSpaced);
+            setEventData(event);
         }
     },[event]);
  
@@ -63,9 +71,30 @@ const EventCreateUpdate=({event, setShowModal})=>{
         }
         let chipsArr = chips.split(" ")
         console.log(chipsArr) 
-         //dispatch call for create event
-        dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))   
-
+        //dispatch call for edit event
+        if(!isAddModal)
+        {
+            await setEventData({
+                name : user?.profileObj?.name,
+                eventName : eventName,
+                location : location,
+                description : description,
+                img : img,
+                date : date,
+                time : time,
+                endTime : endTime,
+                chips : chipsArr 
+                
+            })
+            dispatch(updateEvent(eventData.id, eventData))
+        }
+        else{
+            //dispatch call for create event
+            dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr)) 
+        }
+         
+        
+        //handleUpdate();
         clearAllFields();
         setShowModal((previousState=>!previousState));
         
@@ -173,5 +202,5 @@ const EventCreateUpdate=({event, setShowModal})=>{
 }
 
  
-export default EventCreateUpdate;
+export default EventCreation;
 
