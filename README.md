@@ -7,7 +7,7 @@ We have created an Event Tracker for Boston, MA USA Specific events happening ar
 
 ## Inspiration
 
-Our Inspiration stemmed from having a centralized place to track events happening in Boston. Given how culturally diverse the city is with all the number of events happening around in various genre like music, theater, social, tech, etc. it's often difficult to have a tab on everthing ahpeening around.
+Our Inspiration stemmed from having a centralized place to track events happening in Boston. Given how culturally diverse the city is with all the number of events happening around in various genre like music, theater, social, tech, etc. it's often difficult to have a tab on everthing happening around.
 
 We provide a solution for people who want to explore the city and it's events to browse through the events on one centralized place.
 
@@ -37,7 +37,7 @@ The owner of the event can edit or delete a particular event. Edit and Delete ac
 
 ### 5. Like Events
 
-A logged in user can like events of their preference.
+A logged in user can like events of their preference and View these. 
 
 ### 6. Add to calendar
 
