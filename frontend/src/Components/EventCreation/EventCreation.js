@@ -125,7 +125,7 @@ const EventCreateUpdate = ({ event, setShowModal }) => {
             <Form onSubmit={(event) => submitForm(event)} className="form">
                 <div className='content_wrapper  px-5 py-10'>
                     {/* depending on which button is clicked(add/edit) change heading */}
-                    {isAddModal ? <h1 className="tagline"> Create an Event</h1> : <h1 className="tagline"> Edit {eventName}</h1>}
+                    {isAddModal ? <h1 className="tagline"> Create an Event</h1> : <h1 className="tagline"> Edit  {eventName}</h1>}
 
                     <fieldset className="column_fieldset">
                         <label> Event Name</label>
