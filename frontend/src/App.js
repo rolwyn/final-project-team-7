@@ -11,7 +11,8 @@ import { useDispatch } from 'react-redux';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit, faTrash, faPlusCircle, faSignOutAlt, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit, faTrash, faPlusCircle, 
+    faSignOutAlt, faSearch, faCalendarTimes, faMapMarkerAlt, faCalendar, faCalendarCheck } from '@fortawesome/free-solid-svg-icons'
 import { getEvents } from './Actions/events';
 //for displaying map
 import Map from './Components/Map/DisplayMap'
@@ -21,7 +22,8 @@ import Footer from './Components/Footer/Footer'
 //import PopUp from './Components/Navbar/PopUp'
 import Modal from './Components/Modal/Modal.js'
 
-library.add(fab, faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit, faTrash, faPlusCircle, faSignOutAlt, faSearch)
+library.add(fab, faCoffee, faArrowCircleLeft, faSpinner, faHeart, faEdit, faTrash, faPlusCircle, 
+    faSignOutAlt, faSearch, faCalendarTimes, faMapMarkerAlt, faCalendar, faCalendarCheck)
 
 function App() {
     const [isSignup, setIsSignup] = useState(false)
