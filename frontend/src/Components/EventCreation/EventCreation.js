@@ -74,8 +74,8 @@ const EventCreation=({event, setShowModal})=>{
         //dispatch call for edit event
         if(!isAddModal)
         {
-            setEventData({
-                ...eventData,
+            await setEventData({
+                name : user?.profileObj?.name,
                 eventName : eventName,
                 location : location,
                 description : description,
@@ -84,8 +84,9 @@ const EventCreation=({event, setShowModal})=>{
                 time : time,
                 endTime : endTime,
                 chips : chipsArr 
+                
             })
-            dispatch(updateEvent(eventData.id, eventData);
+            dispatch(updateEvent(eventData.id, eventData))
         }
         else{
             //dispatch call for create event
