@@ -53,7 +53,6 @@ export const saveEvent= async (request,response)=>{
     }
     catch(e)
     {
-        console.log(e)
         errorHandler(e.message,response);
     }
 
@@ -135,7 +134,6 @@ export const updateEvent=async (request,response)=>{
         if (!mongoose.Types.ObjectId.isValid(id)) return response.errorHandler(`No post with id ${id}`, response, 404);
         const event = {...request.body, creator: request.userId}
         const updatedEvent= await CardLayoutService.updateEvent(id, event);
-        console.log("WTF", updatedEvent)
         setSuccessResponse(updatedEvent, response);
     }catch(e){
         errorHandler(e.message,response);
