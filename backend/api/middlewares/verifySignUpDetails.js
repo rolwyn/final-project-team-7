@@ -67,12 +67,12 @@ const checkExistingUser = (req, res, next) => {
     User.findOne({
         userName: req.body.userName
     }).exec((error, user) => {
-        if (error) {
-            setErrorResponse(error.message, res)
-            return;
-        }
         if (!user) {
             setAuthErrorResponse("User doesn't exist! Please Sing-Up!", res)
+            return;
+        }
+        if (error) {
+            setAuthErrorResponse(error.message, res)
             return;
         }
         next();

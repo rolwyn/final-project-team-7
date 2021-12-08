@@ -148,22 +148,24 @@ function SignUpForm({ user }) {
         e.preventDefault()
         formElement.current.validateAll()
         console.log('Api calling from frontend');
-        try {
-            const user = await login(username, password)
-           // console.log(user) 
-           console.log('here FE'); 
-            let profileObj = user?.data?.newUser
-            let token = user?.data?.tokenId
+        if (chkbuttonElement.current.context._errors.length === 0){
             try {
-                dispatch({ type: 'AUTH', data: { profileObj, token } })
-                navigate('/')
+                const data = await login(username, password)
+               // console.log(user) 
+               console.log('here FE'); 
+                let profileObj = data?.data?.newUser
+                let token = data?.data?.tokenId
+                try {
+                    dispatch({ type: 'AUTH', data: { profileObj, token } })
+                    navigate('/')
+                } catch (error) {
+                    console.log(error)
+                }
             } catch (error) {
-                console.log(error)
+                console.log(error.response)
+                setErrorMsg(error.response?.data.message)
             }
-        } catch (error) {
-            console.log(error.response)
-            setErrorMsg(e.response?.data.message)
-        }
+        }     
     }
 
 
