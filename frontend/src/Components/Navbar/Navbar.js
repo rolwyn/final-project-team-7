@@ -17,12 +17,6 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
     setUser(JSON.parse(localStorage.getItem('userProfile')))
     }, [location])
 
-  //need to add logic for create
-  // const addEvent = () => {
-  //   dispatch({ type: "" })
-  //   navigate('/')
-  // }
-
   // const loadUserEvents = () => {
   //     dispatch({type: "ISNOTSIGNIN"})
   //     console.log(issignin)

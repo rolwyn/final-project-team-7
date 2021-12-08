@@ -25,12 +25,14 @@ function App() {
     const [isSignup, setIsSignup] = useState(false)
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('userProfile')))
     const dispatch = useDispatch()
-
     const [showModal, setShowModal]= useState(false);
-    //Setting button clicked true in case Add Event is clicked.
+    //Setting event state with details of event clicked to edit
     const [event, setEvent]=useState();
+    //retrieving isAddModal from store
     const isAddModal = useSelector((state) => state.modal)
 
+    //function to toggle popup ;
+    //if a card's edit button is clicked, then we will receive event details in eventOfCard
     const openModal=(eventOfCard)=>{
         setShowModal(prevModal=>!prevModal);
         if(eventOfCard)
@@ -39,7 +41,7 @@ function App() {
             
         }
     }
-
+    //when isAddModal changes, that is when either edit/add is clicked- render Modal
     useEffect(() => {
     },[isAddModal]);
 
@@ -51,18 +53,15 @@ function App() {
 
     return (
         <div>
-            {/* {showModal? <Modal openModal={openModal} buttonClicked={buttonClicked}/>: null} */}
+            {/* if show modal is set, then show Modal component, not otherwise */}
             {showModal? <Modal openModal={openModal} event={event} setShowModal={setShowModal}/>: null}
             
-            <Navbar user={user} setUser={setUser}  showModal={showModal}  openModal={openModal}  isSignup={isSignup} setIsSignup={setIsSignup} />
+            <Navbar user={user} setUser={setUser} openModal={openModal}  isSignup={isSignup} setIsSignup={setIsSignup} />
             <Routes>
                 <Route exact path="/auth" element={<SignUp user={user} />} />
-        
-
                 <Route exact path="/" element={
                     <>
                         <CardLayout openModal={openModal} />
-    
                         {/* <Map /> */}
                         <Footer/>
                     </>
