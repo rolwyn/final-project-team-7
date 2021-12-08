@@ -190,6 +190,8 @@ const EventCreation=({event, setShowModal})=>{
                 
             }))
             dispatch(updateEvent(eventData.id, eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))
+             clearAllFields();
+            setShowModal((previousState=>!previousState));
         }
         else{
             //dispatch call for create event
@@ -203,13 +205,12 @@ const EventCreation=({event, setShowModal})=>{
             //dispatch call for create event
             dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))
             clearAllFields();
+            setShowModal((previousState=>!previousState));
             }
         }
          
         
         //handleUpdate();
-        clearAllFields();
-        setShowModal((previousState=>!previousState));
         
     }
     //whenever fields are updated
