@@ -125,7 +125,7 @@ function EventCard(props){
             <div className="iconContainer">
                 <span>
                     <span className="like-counter">{props.event.likes.length}</span>
-                    <button class="_editIcon _like" disabled={!user?.profileObj} onClick={handleLike}><Hearts /></button>
+                    <button className="_editIcon _like" disabled={!user?.profileObj} onClick={handleLike}><Hearts /></button>
                 </span>
                 {/* :
                 <span>
