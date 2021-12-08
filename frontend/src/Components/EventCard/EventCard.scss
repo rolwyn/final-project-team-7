@@ -16,11 +16,38 @@
         right: 20px;
         top: 10px;
         z-index: 20;
-        button {
+        ._editIcon {
             margin: 0 5px;
-            font-size: 20px;
+            font-size: 18px;
             color: #ffffff;
+            &._rsvp {color: #cbff8f;}
+            &._like {
+                &:hover {
+                    color: #d32f2f;;
+                }
+            }
+            &._trash {
+                color: #795548;
+                &:hover {
+                    color: #4a291d
+                }
+            }
+            .iconText {
+                font-size: 14px;
+                color: white;
+                font-weight: 600;
+                text-shadow: 0 0 5px black;
+                margin-left: 5px;
+                &:hover {
+                    color: #cbcbcb;
+                }
+            }
         }
+        &._left {
+            left: 20px;
+            top: 10px;
+        }
+
     }
     .overlay {
         height: 100%;
@@ -42,12 +69,13 @@
         color: white;
         font-weight: 800;
         text-align: center;
-        padding: 50px 0;
+        padding: 80px 0;
         width: 100%;
         .eventTitle {
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 700;
             padding: 10px 0;
+            text-shadow: 0 0 5px black;
         }
         .eventDesc {
             font-weight: 500;
@@ -61,6 +89,18 @@
             -webkit-box-orient: vertical;
             text-overflow: ellipsis;
             padding: 0 30px;
+        }
+        .infomation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 13px;
+            .divider_vertical {
+                width: 1px;
+                height: 14px;
+                background: #d5d5d5;
+                margin: -4px 21px;
+            }
         }
     }
     .eventImg {
@@ -88,6 +128,9 @@
     .card:hover,
     .card:focus,
     .card:active {
+        .overlay {
+            opacity: 0.6;
+        }
         .eventDesc {
             white-space: normal;
             -webkit-line-clamp: unset;
@@ -99,6 +142,9 @@
 
 ._liked {
     color: #f44336;
+    &:hover {
+        color: #d3190b;
+    }
 }
 
 ._notliked {

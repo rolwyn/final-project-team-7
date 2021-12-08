@@ -3,6 +3,7 @@ import './EventCard.scss';
 import {likeEvent, deleteEvent, scheduleEvent} from '../../Actions/events'
 import { useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Moment from 'react-moment';
 
 function EventCard(props){
     const dispatch = useDispatch()
@@ -108,10 +109,23 @@ function EventCard(props){
     }
     return (
         <div className="card">
+            <div className="iconContainer _left">
+                {user?.profileObj ? <span>
+                    {/* RSVPD */}
+                    {/* Schedule */}
+                    <span className="like-counter">{props.event.scheduled.length}</span>
+                    {props.event.scheduled.find((id) => id === user?.profileObj?.googleId || id === user?.profileObj?._id) !== undefined ? 
+                    <button className="_editIcon _rsvp" onClick={handleRsvpd}><FontAwesomeIcon icon="calendar-check" /></button> :
+                    <button className="_editIcon" onClick={handleSchedule}><FontAwesomeIcon icon="calendar" /><span className="iconText">Add to calendar</span></button> }
+                </span> : 
+                <span>
+                    <span className="like-counter">{props.event.scheduled.length} Attending</span>    
+                </span>}
+            </div>
             <div className="iconContainer">
                 <span>
                     <span className="like-counter">{props.event.likes.length}</span>
-                    <button disabled={!user?.profileObj} onClick={handleLike}><Hearts /></button>
+                    <button className="_editIcon _like" disabled={!user?.profileObj} onClick={handleLike}><Hearts /></button>
                 </span>
                 {/* :
                 <span>
@@ -120,15 +134,6 @@ function EventCard(props){
                     </span>
                 } */}
                 
-                {user?.profileObj ? <span>
-                    <span className="like-counter">{props.event.scheduled.length}</span>
-                    {props.event.scheduled.find((id) => id === user?.profileObj?.googleId || id === user?.profileObj?._id) !== undefined ? 
-                    <button className="_editIcon" onClick={handleRsvpd}>RSVPD</button> :
-                    <button className="_editIcon" onClick={handleSchedule}>Schedule</button> }
-                </span> : 
-                <span>
-                    <span className="like-counter">{props.event.scheduled.length} Attending</span>    
-                </span>}
                 {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && 
                     <button className="_editIcon" onClick={()=>{
                         dispatch({ type: "ISEDIT"})
@@ -137,17 +142,32 @@ function EventCard(props){
                      >
                     <FontAwesomeIcon icon="edit" /></button>}
                 {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && 
-                    <button className="_editIcon" onClick={handleDelete}><FontAwesomeIcon icon="trash" /></button>}
+                    <button className="_editIcon _trash" onClick={handleDelete}><FontAwesomeIcon icon="trash" /></button>}
             </div>
             <div className="overlay"></div>
             <img className="eventImg" src={props.event.img} alt="event-pic"/>
             {/* {flagIcon} */}
             <div className="cardContent">
+                <div className="infomation">
+                    <div className="data_info">
+                        <FontAwesomeIcon icon="calendar-times" />&nbsp;
+                        <Moment format="MMM DD, YYYY">
+                            {props.event.date}
+                        </Moment>
+                    </div>
+                    <hr className="divider_vertical"></hr>
+                    <div className="location_info">
+                        <FontAwesomeIcon icon="map-marker-alt" />&nbsp;
+                        {props.event.location}
+                    </div>
+                </div>
+
                 <div className="eventTitle">
                     {props.event.eventName}
                     <span> by </span>
                     {props.event.name}
                 </div>
+
                 <div className="eventDesc">{props.event.description}</div>
             </div>
         </div>
