@@ -6,7 +6,11 @@ import './Navbar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../Utils/Design-Tokens/CommonScssUtil.scss'
 import SearchBar from '../SearchBar/SearchBar'
-
+/**
+ * Rebders Navbar with conditional buttons 
+ * @param {*} param0 
+ * @returns 
+ */
 const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 	const location = useLocation()
 	const navigate = useNavigate()
