@@ -15,6 +15,7 @@ function EventCard(props){
     let SCOPES = "https://www.googleapis.com/auth/calendar"
     // const [isEventLiked, setIsEventLiked] = useState(isLiked(props, user))
 
+    // toggle heart icon
     const Hearts = () => {
         if(props.event.likes.length > 0){
             if(props.event.likes.find((id) => id === user?.profileObj?.googleId || id === user?.profileObj?._id) !== undefined){
@@ -25,21 +26,25 @@ function EventCard(props){
         return (<><FontAwesomeIcon icon="heart" /></>)
     }
     
+    // handlelike logic
     const handleLike = (e) => {
         e.preventDefault()
         dispatch(likeEvent(props.event.id))
     }
 
+    // handle delete event logic
     const handleDelete = (e) => {
         e.preventDefault()
         dispatch(deleteEvent(props.event.id))
     }
 
+    // rsvp when event is scheduled
     const handleRsvpd = (e) => {
         e.preventDefault()
         alert("ALREADY SCHEDULED")
     }
 
+    // handle calender logic
     const handleSchedule = (e) => {
         e.preventDefault()
         dispatch(scheduleEvent(props.event.id))

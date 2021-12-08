@@ -11,7 +11,7 @@ const SearchBar = () => {
 	const dispatch = useDispatch()
     const [search, setSearch] = useState('')
 
-
+    // get query from url
     function useQuery() {
         return new URLSearchParams(location.search);
     }
