@@ -63,9 +63,9 @@ export const login = async (req, res) => {
          );
  
          if (!passwordIsValid) {
+            setErrorResponse("Invalid Password!", res)
             console.log('Invalid password');
-            
-             return res.status(401).send({
+             return res.status(400).send({
                  token: null,
                  message: "Invalid Password!"
              });

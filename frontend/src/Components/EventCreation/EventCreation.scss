@@ -1,68 +1,101 @@
-//this class describes the form's styling
-.form {
-  box-shadow: 0px 0px 5px 5px #a4abbd; //#ee9c9c; // rgb(255, 121, 188);
-  vertical-align: middle;
-  text-align: center;
-  padding: 2%;
-  margin: auto; //0% 1%;
-  border: grey;
-  //gradient background colour
-  background-image: linear-gradient(
-    to left bottom,
-    #2c92fa,
-    #6098eb,
-    #7d9edc,
-    #92a4cc,
-    #a4abbd
-  );
-  color: white;
-  border: rgb(255, 255, 255);
+@import '../../Utils/Design-Tokens/CommonScssUtil.scss';
 
-  width: fit-content;
-  //the heading of the form is styled below
-  h1 {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    font-size: 24px;
-    letter-spacing: -1.6px;
-    word-spacing: 2px;
-    color: white;
-    font-weight: normal;
-    text-decoration: none;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
-    margin: 5%;
+
+
+.tagline {
+  text-align: center;
+  font-size: xx-large;
+  color: rgb(112, 200, 216);
+}
+
+.save{
+  width: 100%;
+  background-color: #0888c3;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.form{
+  width: 100%;
+   div.containr {
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px;
+   
   }
-  // for any button in the form
-  button {
-    margin: auto;
-    display: block;
-    background-color: #404756;
-    border: white;
-    padding: 2% 5%;
-    border-radius: 5%;
+}
+label{
+  text-align: center;
+}
+
+// input, .desc{
+  
+//   align-items: center;
+//   width: 100%;
+//   border-color: black;
+//   //margin: 5px;
+// }
+input[type=text], .desc{
+ 
+  width: 100%;
+ // padding: 12px 20px;
+ // margin: 4px 0;
+ 
+}
+input[type=text], select, .desc {
+  width: 100%;
+  padding: 12px 20px;
+ // margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.column_fieldset {
+  margin-bottom: 10px;
+  position: relative;
+  @include flex-mixin(column, unset, unset);
+  label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #8f8f8f;
+      position: absolute;
+      top: 9px;
+      background: white;
+      left: 13px;
+      padding: 0px 5px 0px 5px;
   }
-  //close button should appear on the right
-  .closeAdd {
-    float: right;
+  input {
+      padding: 10px;
+      border: 1px solid #bdbdbd;
+      border-radius: 10px;
+      outline-color: #ecd9b9;
+      width: 100%;
+      margin-top: 20px;
+      &.is-invalid-input {
+          border: 1px solid #eb2e24;
+      }
   }
-  //every form element
-  .formElement {
-    display: flex;
-    justify-content: space-between;
-    margin: 1%;
-    label {
-      margin: 1%;
-    }
-    input {
-      margin: 1%;
-      color: grey;
-    }
-    input [type="file"] {
-      color: white;
-    }
-    textarea {
-      color: grey;
-    }
+  .Img {
+      width: 115px;
+      height: 110px;
+      border: 1px solid #b9b9b9;
+      border-radius: 10px;
+      object-fit: cover;
+      object-position: top;
   }
+}
+
+.error_message {
+  padding: 20px;
+  border: 1px solid #ef5350;
+  border-radius: 15px;
+  background: #ef5350;
+  color: #ffffff;
+  margin-bottom: 20px;
 }

@@ -40,7 +40,7 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 		<header>
 			<nav className="navbar_nav">
 				<div className="brand_logo" onClick={() => {dispatch({ type: "ISNOTSIGNIN" }); dispatch({type: "ISNOTFAV"})}}>
-					<div className='logo'><img alt="brandlogo" src="assets/images/logo.png"></img></div>
+					<div className='logo'><img alt="brandlogo" src="assets/images/EventLogo.png"></img></div>
 				</div>
 				<div className="navBtnWrapper w-5/12">
 					<SearchBar />
