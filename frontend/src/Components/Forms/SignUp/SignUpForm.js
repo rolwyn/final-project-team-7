@@ -148,7 +148,7 @@ function SignUpForm({ user }) {
         e.preventDefault()
         formElement.current.validateAll()
         console.log('Api calling from frontend');
-        if (chkbuttonElement.current.context._errors.length === 0){
+        // if (chkbuttonElement.current.context._errors.length === 0){
             try {
                 const data = await login(username, password)
                // console.log(user) 
@@ -165,7 +165,7 @@ function SignUpForm({ user }) {
                 console.log(error.response)
                 setErrorMsg(error.response?.data.message)
             }
-        }     
+       // }     
     }
 
 
