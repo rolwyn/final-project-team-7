@@ -1,3 +1,4 @@
+// grid layout for event cards
 .cards_container {
 	display: grid;
     height: 100%;
@@ -13,8 +14,6 @@
     height: 100%;
     position: absolute;
     text-align: center;
-    // background: #0000006e;
-    // z-index: 1;
 	svg{
 		top: 50%;
 		color: #000000;

@@ -1,8 +1,10 @@
+@import '../../Utils/Design-Tokens/CommonScssUtil.scss';
+// event card styles with transition
 .card {
     position: relative;
     border-radius: 30px;
     margin: 2%;
-    box-shadow: 0 0 5px 0px #f1f1f1;
+    box-shadow: 0 0 5px 0px $color-white-shade-7;
     cursor: pointer;
     min-height: 300px;
     height: 300px;
@@ -11,6 +13,7 @@
     vertical-align: middle;
     transform: translateZ(0);
     transition: height 0.5s ease-in-out;
+    // container for action icons like edit, delete, like, calendar
     .iconContainer {
         position: absolute;
         right: 20px;
@@ -18,25 +21,26 @@
         z-index: 20;
         ._editIcon {
             margin: 0 5px;
-            font-size: 18px;
-            color: #ffffff;
-            &._rsvp {color: #cbff8f;}
+            font-size: fontSize(medium, m18);
+            color: $color-white-shade-1;
+            // action icon colors
+            &._rsvp {color: $event-rsvp-icon;}
             &._like {
                 &:hover {
-                    color: #d32f2f;;
+                    color: $event-heart-icon;
                 }
             }
             &._trash {
-                color: #795548;
+                color: $event-trash-icon;
                 &:hover {
-                    color: #4a291d
+                    color: $event-trash-hover;
                 }
             }
             .iconText {
-                font-size: 14px;
-                color: white;
+                font-size: fontSize(small, s14);
+                color: $color-white-shade-1;
                 font-weight: 600;
-                text-shadow: 0 0 5px black;
+                text-shadow: 0 0 5px $color-black-shade-1;
                 margin-left: 5px;
                 &:hover {
                     color: #cbcbcb;
@@ -49,38 +53,41 @@
         }
 
     }
+    // overlay on event card
     .overlay {
         height: 100%;
         border-radius: 30px;
-        background: #000000;
+        background: $color-black-shade-1;
         z-index: 1;
         left: 0;
         top: 0;
         opacity: 0.3;
         position: relative;
         text-align: center;
-        color: white;
+        color: $color-white-shade-1;
         width: 100%;
     }
     .cardContent {
         position: absolute;
         z-index: 1;
         top: 0;
-        color: white;
+        color: $color-white-shade-1;
         font-weight: 800;
         text-align: center;
         padding: 80px 0;
         width: 100%;
+        // title for event
         .eventTitle {
-            font-size: 18px;
+            font-size: fontSize(medium, m18);
             font-weight: 700;
             padding: 10px 0;
-            text-shadow: 0 0 5px black;
+            text-shadow: 0 0 5px $color-black-shade-1;
         }
+        // description of the event
         .eventDesc {
             font-weight: 500;
             padding: 0 10px;
-            font-size: 13px;
+            font-size: fontSize(small, s13);
             max-height: 100px;
             overflow: hidden;
             display: -webkit-box;
@@ -89,11 +96,10 @@
             text-overflow: ellipsis;
             margin: 0 30px;
         }
+        // venue and date
         .infomation {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 13px;
+            @include flex-mixin(row, center, center);
+            font-size: fontSize(small, s13);
             .divider_vertical {
                 width: 1px;
                 height: 14px;
@@ -119,7 +125,7 @@
     .options {
         margin: 1%;
         padding: 2%;
-        display: flex;
+        @include flex-mixin(row, unset, unset);
         float: right;
     }
     }
@@ -146,10 +152,12 @@
     }
 }
 
+// when event is not liked styles
 ._notliked {
-    color: black;
+    color: $color-black-shade-1;
 }
 
+// like counter styles
 .like-counter{
-    color: #f1f1f1;
+    color: $color-white-shade-7;
 }
