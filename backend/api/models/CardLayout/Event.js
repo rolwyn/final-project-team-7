@@ -1,6 +1,16 @@
 import Mongoose from "mongoose";
 
-//defines the structure
+//
+/**
+ * defines the structure of events in database
+ * each event has a 
+ * name, image, location, description
+ * start and end time, date of event,  date of creation
+ * chips/tags attached to it
+ * person who created it
+ * people who liked the event
+ * people who scheduled it
+ */
 const EventSchema=new Mongoose.Schema({
     "eventName" :{
         type :String,
@@ -55,23 +65,18 @@ const EventSchema=new Mongoose.Schema({
         type : String,
         required : "Date is required"
     }
-    // "tags" : {
-    //     type : [String]
-    // }
-
+   
 },
 {
-    //added when lines 32 added
     versionKey:false
 }
 );
-//after installing postmann
+
 //id doesnt exist so we are adding virtual id
 EventSchema.virtual('id',()=>this._id.toHexString());
 EventSchema.set('toJSON',{virtuals:true});
 
-//Contact is the connection name and ContactSchema is the schema
-//Use contact Schema when called?
+//Event is the connection name and EventSchema is the schema
 
 const Event=Mongoose.model('Event',EventSchema);
 

@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useSelector } from 'react-redux';
 // import ReactDOM from 'react-dom';
 // import Modal from 'react-modal';
 //import ReactDOM from 'react-dom';
 import Form from "react-validation/build/form";
-//import Input from "react-validation/build/input";
 import FileBase from 'react-file-base64';
 import {createEvent} from '../../Actions/events';
 import { useDispatch } from 'react-redux';
 import './EventCreation.scss';
 
-const EventCreation=()=>{
+const EventCreateUpdate=({event, setShowModal})=>{
+    //states describing the event and marking changes in the event.
     const [eventName, setEventName]=useState("");
     const [description, setDescription]= useState("");
     const [img,setImg]=useState("");
@@ -17,22 +18,33 @@ const EventCreation=()=>{
     const [time,setTime]=useState("");
     const [endTime, setEndTime] = useState("")
     const [location, setLocation] = useState("")
+    const isAddModal = useSelector((state) => state.modal)
     const [chips, setChips] = useState("")
     const dispatch = useDispatch()
     //for modal
     const user = JSON.parse(localStorage.getItem('userProfile'))
-
-   
     
-     
-    
+    //in case of edit, event prop exists, set states with events fields
+    useEffect(() => {
+        if(event)
+        {
+        
+            setEventName(event.eventName);
+            setDescription(event.description);
+            setImg(event.img);
+            setDate(event.date);
+            setTime(event.time);
+            setLocation(event.location);
+        }
+    },[event]);
+ 
      
     //clear all states
     const clearAllFields = async ()=>{
-        await setDate("");
+        await setEventName("");
         await setDescription("");
         await setImg("");
-        await setEventName("");
+        await setDate("");
         await setTime("");
         await setLocation("")
         await setEndTime("")
@@ -51,9 +63,11 @@ const EventCreation=()=>{
         }
         let chipsArr = chips.split(" ")
         console.log(chipsArr) 
+         //dispatch call for create event
         dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))   
 
         clearAllFields();
+        setShowModal((previousState=>!previousState));
         
     }
     //whenever fields are updated
@@ -86,6 +100,7 @@ const EventCreation=()=>{
         
         
     }
+    //on fileUpload
     const onFileUpload = (base64) =>{
         if(base64)
         {
@@ -93,7 +108,6 @@ const EventCreation=()=>{
         }
              
     }
-
     // const addChips = (val) => {
     //     setChips([...chips, val])
     // }
@@ -113,27 +127,22 @@ const EventCreation=()=>{
     //       transform: 'translate(-50%, -50%)',
     //     },
     //   };
-    // const closeAdd={
-
-    // }
-    //render() { 
-        // const close = <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="white"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         return (<div> 
             <Form onSubmit={(event)=>submitForm(event)} className="form">
-            {/* <button className="closeAdd" onClick={()=>closeAdd}>{close}</button> */}
-                    <h1 className="star"> Create an Event</h1>
+                    {/* depending on which button is clicked(add/edit) change heading */}
+                    {isAddModal?<h1 className="star"> Create an Event</h1> : <h1 className="star"> Edit {eventName}</h1>}
                     <div className="formElement">
                         <label> Event Name</label>
                         <input type="text" name="eventName" value={eventName} id="eventName" onChange={(event)=>change(event, "setEventName")} required/>
                     </div>
                     <div className="formElement">
-                        <label> Location</label>
-                        <input type="text" name="location" value={location} id="location" onChange={(event)=>change(event, "setLocation")} required/>
-                    </div>
-                    <div className="formElement">
                         <label> Description</label>
                         <textarea type="text" value={description} name="desc" id="desc" onChange={(e)=>change(e,"setDescription")} placeholder="Tell Everyone what your event is about" required/>
                     </div>
+                    <div className="formElement">
+                        <label> Location</label>
+                        <input type="text" value={location} name="location" id="location" onChange={(e)=>change(e,"setLocation")} required/>
+                    </div> 
                     <div className="formElement">
                         <label> Date </label>
                         <input type="date" value={date} name="date" id="date" onChange={(e)=>change(e,"setDate")} required/>
@@ -152,11 +161,9 @@ const EventCreation=()=>{
                     </div>       
                     <div className="formElement right">
                         <label> Image </label>
-                        {/* <Input type="file"  accept="image/*" name="image" id="file" /> */}
-                        
                         <FileBase type="file" multiple={false} onDone={(base64)=>onFileUpload(base64)}/>
                    </div>    
-                    <button className="save" type="submit">Add</button>
+                    <button className="save" type="submit">{isAddModal?"Create":"Update"}</button>
        
                 
             </Form>
@@ -166,5 +173,5 @@ const EventCreation=()=>{
 }
 
  
-export default EventCreation;
+export default EventCreateUpdate;
 

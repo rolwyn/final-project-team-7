@@ -17,7 +17,7 @@ const setSuccessResponse= (data, response)=>{
     response.json(data);
 
 };
-//for error handling : 8:34pm 10/11/21
+// calls service to getAllEvents
 export const getAllEvents=async (request,response)=>{
     //response will get all the event deets
     try{
@@ -60,10 +60,10 @@ export const saveEvent= async (request,response)=>{
 };
 
 
-// //diff things we are reading in all funcs
+// calls service to get an Event by its id
 export const getEvent=async (request,response)=>{
     try{
-        //in route called it as id, sets the params.id with whatever the url had as idd
+        //in route called it as id, sets the params.id with whatever the url had as id
         const id=request.params.id;
         const event= await CardLayoutService.getEvent(id);
         setSuccessResponse(event, response);
@@ -72,6 +72,7 @@ export const getEvent=async (request,response)=>{
     }
 };
 
+// calls service to add user who liked the Event, in the likes array
 export const likeEvent = async (req, resp) => {
     try {
 
@@ -96,7 +97,7 @@ export const likeEvent = async (req, resp) => {
        errorHandler(error.message, resp)
     }
 }
-
+// calls service to schedule an event, sends user id and updates it in event collection 
 export const scheduleEvent = async (req, resp) => {
     try {
         const { id } = req.params
@@ -112,7 +113,7 @@ export const scheduleEvent = async (req, resp) => {
        errorHandler(error.message, resp) 
     }
 }
-
+// calls service to delete the event by its ID 
 export const deleteEvent = async (req, resp) => {
     try {
         const { id } = req.params
@@ -125,7 +126,7 @@ export const deleteEvent = async (req, resp) => {
        errorHandler(error.message, resp) 
     }
 }
-// //update the item 
+// calls service to update the entire event, with event received in body of request
 export const updateEvent=async (request,response)=>{
     try{
         //in route called it as id, sets the params.id with whatever the url had as idd
@@ -137,14 +138,3 @@ export const updateEvent=async (request,response)=>{
         errorHandler(e.message,response);
     }
 }
-// // //fix this
-// export const removeEvent=async (request,response)=>{
-//     try{
-//         //in route called it as id, sets the params.id with whatever the url had as idd
-//         const id=request.params.id;
-//         const event=  await CardLayoutService.removeEvent(id);
-//         setSuccessResponse({message: `Item : ${id} remove successfully`}, response);
-//     }catch(e){
-//         errorHandler(e.message,response);
-//     }
-// }

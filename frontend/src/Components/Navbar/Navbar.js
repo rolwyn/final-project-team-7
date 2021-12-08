@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useLocation, useLinkClickHandler } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Avatar from 'react-avatar';
@@ -17,12 +17,6 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
     setUser(JSON.parse(localStorage.getItem('userProfile')))
     }, [location])
 
-  //need to add logic for create
-  // const addEvent = () => {
-  //   dispatch({ type: "" })
-  //   navigate('/')
-  // }
-
   // const loadUserEvents = () => {
   //     dispatch({type: "ISNOTSIGNIN"})
   //     console.log(issignin)
@@ -35,12 +29,12 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 		dispatch({ type: "ISNOTSIGNIN" })
 		navigate('/')
 	}
-  //need to add logic for create
-	const addEvent = () => {
-		// setShowModal(true)
-		dispatch({ type: "" })
-		navigate('/')
-	}
+//   //need to add logic for create
+// 	const addEvent = () => {
+// 		// setShowModal(true)
+// 		dispatch({ type: "" })
+// 		navigate('/')
+// 	}
 
 	return (
 		<header>

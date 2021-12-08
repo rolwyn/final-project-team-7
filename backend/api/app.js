@@ -15,7 +15,6 @@ const app = express();
 mongoose.connect(host, {useNewUrlParser: true})
 .then(() => {
     console.log("Database connection is successful")
-    // saveRolesToDb()
 })
 .catch(error => {
     console.log("Database connection error:", error)
