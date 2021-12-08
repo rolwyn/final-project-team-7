@@ -17,10 +17,6 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
     setUser(JSON.parse(localStorage.getItem('userProfile')))
     }, [location])
 
-  // const loadUserEvents = () => {
-  //     dispatch({type: "ISNOTSIGNIN"})
-  //     console.log(issignin)
-  //     console.log("reached here")
 
     const isLoggedIn = useSelector((state) => state.profile)
 
@@ -29,12 +25,6 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 		dispatch({ type: "ISNOTSIGNIN" })
 		navigate('/')
 	}
-//   //need to add logic for create
-// 	const addEvent = () => {
-// 		// setShowModal(true)
-// 		dispatch({ type: "" })
-// 		navigate('/')
-// 	}
 
 	return (
 		<header>
@@ -63,9 +53,8 @@ const Navbar = ({ user, setUser, isSignup, setIsSignup, openModal }) => {
 							</li>
               <li>
                 <button className='addbtn _favourites' onClick={() => {
-                  console.log("wishlist")
-                  dispatch({ type: "ISFAV" })
-                  dispatch({ type: "ISNOTSIGNIN"})
+					dispatch({ type: "ISFAV" })
+					dispatch({ type: "ISNOTSIGNIN"})
                 }}>
                 <FontAwesomeIcon icon="heart" />&nbsp;Favourites
                 </button>

@@ -5,7 +5,6 @@ import './Modal.scss'
 
 export default function Modal({ openModal, event, setShowModal }) {
     const isAddModal = useSelector((state) => state.modal)
-    console.log(event)
     return (
 
         <div className="modal_fade">
