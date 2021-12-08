@@ -305,9 +305,7 @@ const EventCreation=({event, setShowModal})=>{
                                 id='date'
                                 type="date"
                                 name='date'
-                                className='_inputField'
-                            
-                                value={date}
+                                className='_inputField'             value={date}
                                 data-state='setDate'
                                 validations={[required, validateDate]}
                                 onChange={change}
