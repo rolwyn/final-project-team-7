@@ -21,4 +21,5 @@ const eventsReducer = (events = [], action) => {
     }
 }
 
+
 export default eventsReducer

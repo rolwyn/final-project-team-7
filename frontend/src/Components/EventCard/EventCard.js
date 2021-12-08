@@ -136,8 +136,8 @@ function EventCard(props){
                 
                 {(user?.profileObj?.googleId === props.event.creator || user?.profileObj?._id === props.event.creator) && 
                     <button className="_editIcon" onClick={()=>{
-                        dispatch({ type: "ISEDIT" })
-                        props.openModal()
+                        dispatch({ type: "ISEDIT"})
+                        props.openModal(props.event)
                   }}
                      >
                     <FontAwesomeIcon icon="edit" /></button>}
