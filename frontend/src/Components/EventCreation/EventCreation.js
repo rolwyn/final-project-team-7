@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 //import ReactDOM from 'react-dom';
 import Form from "react-validation/build/form";
 import FileBase from 'react-file-base64';
-import {createEvent} from '../../Actions/events';
+import {createEvent, updateEvent} from '../../Actions/events';
 import { useDispatch } from 'react-redux';
 import './EventCreation.scss';
 
@@ -63,7 +63,7 @@ const EventCreation=({event, setShowModal})=>{
         let chipsArr = chips.split(" ")
         console.log(chipsArr) 
          //dispatch call for create event
-        dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr))   
+         isAddModal?dispatch(createEvent(eventName, location, description, img, date, time, endTime, user?.profileObj?.name, chipsArr)):dispatch(updateEvent(event.id, event))  
 
         clearAllFields();
         setShowModal((previousState=>!previousState));
